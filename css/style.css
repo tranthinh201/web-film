@@ -1,0 +1,168 @@
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.tabs {
+  display: block;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  overflow: hidden;
+}
+.tabs [class^="tab"] label,
+.tabs [class*=" tab"] label {
+  color: #43464b !important;
+  cursor: pointer;
+  display: block;
+  font-size: 1.1em;
+  line-height: 1em;
+  padding: 1rem 0;
+  text-align: left;
+}
+.tabs [class^="tab"] [type="radio"],
+.tabs [class*=" tab"] [type="radio"] {
+  border-bottom: 1px solid rgba(239, 237, 239, 0.5);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  width: 80%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.tabs [class^="tab"] [type="radio"]:hover,
+.tabs [class^="tab"] [type="radio"]:focus,
+.tabs [class*=" tab"] [type="radio"]:hover,
+.tabs [class*=" tab"] [type="radio"]:focus {
+  border-bottom: 1px solid #fd264f;
+}
+
+.tabs [class^="tab"] [type="radio"]:checked,
+.tabs [class*=" tab"] [type="radio"]:checked {
+  border-bottom: 2px solid #fd264f;
+}
+.tabs [class^="tab"] [type="radio"]:checked + div,
+.tabs [class*=" tab"] [type="radio"]:checked + div {
+  opacity: 1;
+}
+.tabs [class^="tab"] [type="radio"] + div,
+.tabs [class*=" tab"] [type="radio"] + div {
+  display: block;
+  opacity: 0;
+  padding: 1rem 0;
+  width: 90%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.tabs .tab-2 {
+  width: 40%;
+}
+.tabs .tab-2 [type="radio"] + div {
+  width: 200%;
+  margin-left: 200%;
+}
+.tabs .tab-2 [type="radio"]:checked + div {
+  margin-left: 0;
+}
+.tabs .tab-2:last-child [type="radio"] + div {
+  margin-left: 100%;
+}
+.tabs .tab-2:last-child [type="radio"]:checked + div {
+  margin-left: -100%;
+}
+
+.tabs {
+  display: flex;
+  /* width: 100%; */
+  /* margin: auto; */
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.tab-ui {
+  display: flex !important;
+  flex-wrap: wrap;
+  width: 100vw !important;
+}
+
+.item-movie {
+  margin: 20px 20px 20px 0;
+}
+
+.image-movie {
+  height: 250px;
+}
+
+.image-movie > img {
+  height: inherit;
+}
+.name-movie {
+  margin-top: 20px;
+}
+
+.name-movie > span {
+  text-transform: uppercase;
+}
+
+.image-movie {
+  position: relative;
+  z-index: 1000;
+}
+
+.image-movie:hover .booking-movie {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.booking-movie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1, 1, 1, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.booking-movie > .button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid white;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.booking-movie > .button:hover {
+  background-color: #fa8231;
+  border-color: #fa8231;
+}
+
+.border-bottom {
+  border-bottom: 2px solid gray;
+}
+
+.mr-t-1px {
+  margin-top: -1px;
+}
