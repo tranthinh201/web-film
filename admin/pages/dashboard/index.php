@@ -16,7 +16,7 @@
   <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
@@ -39,16 +39,16 @@
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
+                <i class="fas fa-dollar-sign"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
+                <p class="text-sm mb-0 text-capitalize">Doanh thu hôm nay</p>
                 <h4 class="mb-0">$53k</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than lask week</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>hơn tuần trước</p>
             </div>
           </div>
         </div>
@@ -56,16 +56,16 @@
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                <i class="fas fa-users"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                <p class="text-sm mb-0 text-capitalize">Tổng người dùng hôm nay</p>
                 <h4 class="mb-0">2,300</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than lask month</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>hơn tuần trước</p>
             </div>
           </div>
         </div>
@@ -76,13 +76,13 @@
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                <p class="text-sm mb-0 text-capitalize">Những khách hàng mới</p>
                 <h4 class="mb-0">3,462</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> hơn ngày hôm qua</p>
             </div>
           </div>
         </div>
@@ -93,13 +93,13 @@
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
+                <p class="text-sm mb-0 text-capitalize">Doanh số bán hàng</p>
                 <h4 class="mb-0">$103,430</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>hơn ngày hôm qua</p>
             </div>
           </div>
         </div>
@@ -135,12 +135,12 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Doanh số hằng ngày </h6>
+              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) tăng doanh số bán hàng ngày hôm nay. </p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> updated 4 min ago </p>
+                <p class="mb-0 text-sm"> cập nhật 4p trước </p>
               </div>
             </div>
           </div>
@@ -155,12 +155,12 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
+              <h6 class="mb-0 ">Nhiệm vụ đã hoàn thành</h6>
               <p class="text-sm ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">just updated</p>
+                <p class="mb-0 text-sm">vừa mới cập nhật</p>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                            <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Material XD Version</h6>
@@ -218,16 +218,16 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../../assets/img/team-1.jpg" alt="team1">
+                            <img src="../assets/img/team-1.jpg" alt="team1">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../../assets/img/team-2.jpg" alt="team2">
+                            <img src="../assets/img/team-2.jpg" alt="team2">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="../../assets/img/team-3.jpg" alt="team3">
+                            <img src="../assets/img/team-3.jpg" alt="team3">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../../assets/img/team-4.jpg" alt="team4">
+                            <img src="../assets/img/team-4.jpg" alt="team4">
                           </a>
                         </div>
                       </td>
@@ -251,7 +251,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
+                            <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Add Progress Track</h6>
@@ -261,10 +261,10 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../../assets/img/team-2.jpg" alt="team5">
+                            <img src="../assets/img/team-2.jpg" alt="team5">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../../assets/img/team-4.jpg" alt="team6">
+                            <img src="../assets/img/team-4.jpg" alt="team6">
                           </a>
                         </div>
                       </td>
@@ -288,7 +288,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
+                            <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
@@ -298,10 +298,10 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../../assets/img/team-3.jpg" alt="team8">
+                            <img src="../assets/img/team-3.jpg" alt="team8">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../../assets/img/team-1.jpg" alt="team9">
+                            <img src="../assets/img/team-1.jpg" alt="team9">
                           </a>
                         </div>
                       </td>
@@ -325,7 +325,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
+                            <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
@@ -335,16 +335,16 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../../assets/img/team-4.jpg" alt="user1">
+                            <img src="../assets/img/team-4.jpg" alt="user1">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../../assets/img/team-3.jpg" alt="user2">
+                            <img src="../assets/img/team-3.jpg" alt="user2">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="../../assets/img/team-4.jpg" alt="user3">
+                            <img src="../assets/img/team-4.jpg" alt="user3">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../../assets/img/team-1.jpg" alt="user4">
+                            <img src="../assets/img/team-1.jpg" alt="user4">
                           </a>
                         </div>
                       </td>
@@ -368,7 +368,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
+                            <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
@@ -378,7 +378,7 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../../assets/img/team-4.jpg" alt="user5">
+                            <img src="../assets/img/team-4.jpg" alt="user5">
                           </a>
                         </div>
                       </td>
@@ -402,7 +402,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
+                            <img src="../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
@@ -412,10 +412,10 @@
                       <td>
                         <div class="avatar-group mt-2">
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../../assets/img/team-1.jpg" alt="user6">
+                            <img src="../assets/img/team-1.jpg" alt="user6">
                           </a>
                           <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../../assets/img/team-4.jpg" alt="user7">
+                            <img src="../assets/img/team-4.jpg" alt="user7">
                           </a>
                         </div>
                       </td>
@@ -553,7 +553,7 @@
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
           <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <p></p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">

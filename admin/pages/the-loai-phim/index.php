@@ -6,24 +6,10 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-    <title>
-        Thể loại phim
-    </title>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <!-- Nucleo Icons -->
-    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <!-- CSS Files -->
-    <link id="pagestyle" href="../../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <?php
+    include('../../include/libraries.php'); 
+  ?>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -58,10 +44,9 @@ session_start();
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+                                <table class="table align-items-center mb-0 table-hover table-bordered">
                                     <thead>
                                         <tr style="text-align: center">
-                                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Mã thể loại phim</th>
                                             <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Tên thể loại phim</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
@@ -73,9 +58,7 @@ session_start();
                                         foreach ($result as $row) {
                                             echo '
                                             <tr style="text-align: center">
-                                            <th>
-                                                <p class=" text-secondary mb-0">' . $row['id'] . '</p>
-                                            </th>
+
                                             <th>
                                                 <p class=" text-secondary mb-0">' . $row['ten'] . '</p>
                                             </th>
