@@ -88,7 +88,6 @@
         <div class="tab-2">
             <label for="tab2-2" class="border-bottom">PHIM SẮP CHIẾU</label>
             <input id="tab2-2" class="mr-t-1px" name="tabs-two" type="radio">
-            <h2>chỗ này vẫn là tĩnh à ?</h2>
             <div class="tab-ui">
                 <div class="item-movie">
                     <div class="image-movie">
