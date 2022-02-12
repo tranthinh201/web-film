@@ -11,37 +11,14 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
+
     <title>Trang chủ</title>
 </head>
 
 <body>
-    <nav class="nav-bar">
-        <div class="header">
-            <div class="logo">
-                <img src="../image/logo/spiderman.png" alt="logo" style="width: 80px">
-            </div>
-            <div class="search-input">
-                <input type="text" placeholder="Tìm kiếm tên phim và diễn viên">
-                <i class="fa fa-search ps-abs"></i>
-            </div>
-            <div class="login">
-                <i class="fa fa-user me-sm-1"></i>
-                <span>Đăng nhập</span>
-            </div>
-        </div>
-        <div class="menu">
-            <ul>
-                <li><a href="">Mua vé</a></li>
-                <li><a href="">Phim</a></li>
-                <li><a href="">Góc điện ảnh</a></li>
-                <li><a href="">Sự kiện</a></li>
-                <li><a href="">Rạp</a></li>
-                <li><a href="">Giá vé</a></li>
-                <li><a href="">Hỗ trợ</a></li>
-                <li><a href="">Thành viên</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- header-start -->
+    <?php include('./include/header.php') ?>
+    <!-- header-end -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="https://www.galaxycine.vn/media/2022/1/19/banner-2048x682_1642609806386.jpg" alt="logo"></div>
