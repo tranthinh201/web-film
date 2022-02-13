@@ -11,6 +11,7 @@ $query = mysqli_query($connect, $sql);
   <?php
     include('../../include/libraries.php'); 
   ?>
+  <title>danh sach phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">

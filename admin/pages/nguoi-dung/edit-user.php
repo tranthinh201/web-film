@@ -1,7 +1,16 @@
 <?php
 session_start();
+require_once('../../../config/db.php');
+    $id=$_GET['id'];
 
-	require_once('../../../config/db.php');
+    $sql_au="SELECT * FROM vai_tro";
+   
+    $query_au =mysqli_query($connect,$sql_au);
+
+    $sql_up='SELECT * FROM nguoi_dung WHERE id ="'.$id.'"';
+
+    $query_up=mysqli_query($connect,$sql_up);
+    $row_up=mysqli_fetch_assoc($query_up);
 
 	if(isset($_POST['submit']))
 	{
@@ -12,15 +21,14 @@ session_start();
         $date=$_POST['date'];
 		$role=$_POST['role'];
 
-		$sql= 'insert into nguoi_dung(ho_ten,ten_tk,mat_khau,email,vai_tro_id,ngay_vao_lam ) 
-        values ("' . $fullname . '", "' . $username . '", "' . $password . '", "' . $email . '", "' . $role . '", "' . $date . '")';
+		$sql= 'update nguoi_dung set ho_ten="'.$fullname.'",ten_tk="'.$username.'",email="'.$email.'",mat_khau="'.$password.'",ngay_vao_lam="'.$date.'",vai_tro_id="'.$role.'" where id = "' . $id . '"';
 
 
 		$query=mysqli_query($connect,$sql);
 		// var_dump($query);
   //       die();
-		echo "<script language='javascript'>alert('Thêm mới phim thành công!')</script>";
-		// header('location:index.php');
+		// echo "<script language='javascript'>alert('Thêm mới phim thành công!')</script>";
+		header('location:index.php');
 	}
 	// else
 	// {
@@ -60,44 +68,50 @@ session_start();
 
                 <div class="w-50">
                     <label class="form-label">Họ và tên:</label>
-                    <input type="text" class="form-control" name="fullname">
+                    <input type="text" class="form-control" name="fullname" value="<?= $row_up['ho_ten'];?>" disable>
                 </div>
                 <div class="w-50">
                     <label class="form-label">Tên tài khoản:</label>
-                    <input type="text" class="form-control" name="username">
+                    <input type="text" class="form-control" name="username" value="<?= $row_up['ten_tk'];?>">
                 </div>
             </div>
             <div class="d-flex w-100 mb-4 justify-content-around">
                 <div class="w-50">
                     <label class="form-label">Mật khẩu:</label>
-                    <input type="text" class="form-control" name="password">
+                    <input type="text" class="form-control" name="password" value="<?= $row_up['mat_khau'];?>">
                 </div>
                 <div class="w-50">
                     <label class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" value="<?= $row_up['email'];?>">
                 </div>
             </div>
             <div class="d-flex w-100 mb-4 justify-content-around">
                 <div class="w-50">
                     <label class="form-label">Ngay vao lam:</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="date" class="form-control" name="date" value="<?= $row_up['ngay_vao_lam'];?>">
                 </div>
                 <div class="w-50">
                     <label for="">Vai tro:</label>
-                    <select class="form-select" aria-label="Default select example" name="role">
+                    <select class="form-select" aria-label="Default select example" name="role" >
                         <?php
-                        $sql = "SELECT * FROM vai_tro";
-                        $result = executeResult($sql);
-                        foreach ($result as $rows) {
-                            echo '
-                                <option value="' . $rows['id'] . '">' . $rows['ten'] . '</option>
-                            ';
-                        }
-                        ?>
+                            while ($row_au = mysqli_fetch_assoc($query_au)) {?>
+                                <option <?php if($row_au['id'] == $row_up['vai_tro_id']){ echo "selected"; }  ?> value="<?php echo $row_au['id']; ?>"><?php echo $row_au['ten']; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Thêm mới</button>
+            <?php 
+                if ($row_up['vai_tro_id'] =='TR') {
+                    // code...
+                    echo ' <button type="submit" class="btn btn-primary" name="submit">Chỉnh sửa</button>';
+                }
+                else
+                {
+                    echo "bạn không đc phép truy cập";
+                }
+            ?>
+
+           
         </form>
     </div>
     <?php

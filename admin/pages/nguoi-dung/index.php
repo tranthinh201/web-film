@@ -23,7 +23,7 @@ session_start();
   <?php
     include('../../include/libraries.php'); 
   ?>
-
+  <title>nguoi dung</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -46,7 +46,7 @@ session_start();
             </div>
         </nav>
         <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="#">Thêm mới</a>
+            <a class="btn btn-outline-success me-2" href="add-user.php">Thêm mới</a>
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
@@ -64,10 +64,9 @@ session_start();
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Họ tên</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Số CMND</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số điện thoại</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên tài khoản</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mật khẩu:</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày vào làm</th>
 
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vai trò</th>
@@ -85,16 +84,13 @@ session_start();
                                                 <p class="text-xs text-secondary mb-0" >' . $row['ho_ten'] . '</p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ">' . $row['so_cmnd'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ">' . $row['ten_tk'] . '</p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ">' . $row['so_dien_thoai'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ">' . $row['mat_khau'] . '</p>
                                             </th>
                                             <th>
                                                 <p class="text-xs text-secondary mb-0" >' . $row['email'] . '</p>
-                                            </th>
-                                            <th>
-                                                <p class="text-xs text-secondary mb-0" >' . $row['dia_chi'] . '</p>
                                             </th>
                                             <th>
                                                 <p class="text-xs text-secondary mb-0" >' . $row['ngay_vao_lam'] . '</p>
@@ -108,7 +104,7 @@ session_start();
                                             <th class="align-middle">
                                             <th class="align-middle">
                                                 <div>
-                                                <a href="./cap-nhat.php?id=' . $row['id'] . '" style="margin-right: 40px;"class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
+                                                <a href="edit-user.php?id=' . $row['id'] . '" style="margin-right: 40px;"class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
                                                     <i class="far fa-edit"></i> Edit
                                                 </a>
                                                 <a href="javascript:;" onclick="deleteId(' . $row['id'] . ')"  class=" font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">

@@ -9,7 +9,7 @@ session_start();
   <?php
     include('../../include/libraries.php'); 
   ?>
-
+  <title>the loai phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
