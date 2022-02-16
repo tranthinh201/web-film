@@ -10,7 +10,7 @@ require_once('../../../config/db.php');
     $sql_up='SELECT * FROM nguoi_dung WHERE id ="'.$id.'"';
 
     $query_up=mysqli_query($connect,$sql_up);
-    $row_up=mysqli_fetch_assoc($query_up);
+    $row_up=mysqli_fetch_array($query_up);
 
 	if(isset($_POST['submit']))
 	{
@@ -101,7 +101,7 @@ require_once('../../../config/db.php');
                 </div>
             </div>
             <?php 
-                if ($row_up['vai_tro_id'] =='TR') {
+                if ($row_up['vai_tro_id'] == 'QL') {
                     // code...
                     echo ' <button type="submit" class="btn btn-primary" name="submit">Chỉnh sửa</button>';
                 }

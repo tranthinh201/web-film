@@ -13,8 +13,16 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
-require_once('../../../config/db.php');
-session_start();
+    session_start();
+    require_once('../../../config/db.php');
+    
+    
+    // $sql_up='SELECT * FROM nguoi_dung ';
+
+    // $query_up=mysqli_query($connect,$sql_up);
+    // $row_up=mysqli_fetch_assoc($query_up);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

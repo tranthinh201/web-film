@@ -33,6 +33,15 @@
                     <span class="nav-link-text ms-1">Thể loại phim</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="../dinh-dang-phim/">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Định dạng phim</span>
+                </a>
+            </li>            
             <li class="nav-item">
                 <a class="nav-link text-white" href="../nguoi-dung/">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
