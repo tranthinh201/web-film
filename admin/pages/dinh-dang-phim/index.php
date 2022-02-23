@@ -50,6 +50,7 @@ session_start();
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Stt </th>
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Tên</th>
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Phụ thu </th>
+                                       
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
@@ -71,10 +72,14 @@ session_start();
                                                 <td><?php echo ++$offset; ?></th>
                                                 <td><?php echo $row['ten']; ?></td>
                                                 <td><?php echo $row['phu_thu']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-warning" href="sua_news?id=<?php echo $row['id']; ?>"> Sửa</a>
 
-                                                    <!-- <a onclick="return Del('<?=$row['title']?>')" class="btn btn-danger" href="xoa_news?id=<?php echo $row['id_p']; ?>">Xóa</a> -->
+                                                <td >
+                                                    <a class=' font-weight-bold text-xs btn btn-warning' style='margin-right: 40px;' data-toggle='tooltip' data-original-title='Edit user' href="edit_dinh-dang-phim.php?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa
+                                                    </a>
+
+                                                    <button onclick='deleteId("<?= $row['id'] ?>")' class=' font-weight-bold text-xs btn btn-danger' data-toggle='tooltip'>
+                                                    <i class='fas fa-trash'></i> delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         <?php } ?>

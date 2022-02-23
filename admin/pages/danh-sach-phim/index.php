@@ -1,8 +1,8 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
-$sql      = 'SELECT * FROM phim';
-$query = mysqli_query($connect, $sql);
+// $sql      = 'SELECT * FROM phim';
+// $query = mysqli_query($connect, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,14 +60,27 @@ $query = mysqli_query($connect, $sql);
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
                       <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loại phim</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chức năng</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">loai phim id</th>
 
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while ($row = mysqli_fetch_array($query)) {
+                    <?php 
+                      $item_per_page=!empty($_GET['per_page'])?$_GET['per_page']:5;
+                      $current_page=!empty($_GET['page'])?$_GET['page']:1;
+                      $offset=($current_page-1)*$item_per_page;
+                    
+                      $totalRecords=mysqli_query($connect,"select * from phim");
+                      $totalRecords=$totalRecords->num_rows;
+                      $totalPages=ceil($totalRecords / $item_per_page);
+                      $film=mysqli_query($connect,"select * from phim order by id DESC limit ".$item_per_page." offset  ".$offset."");
+                      $no=1;
+                      while ($row=mysqli_fetch_array($film)){
                     ?>
                       <tr style='text-align: center'>
+                        <td>
+                          <p class='text-xs text-secondary mb-0' style='white-space: normal;font-weight:bold;font-size:120px ;'><?= ++$offset; ?></p>
+                        </td>
                         <td>
                           <p class='text-xs text-secondary mb-0' style='white-space: normal;font-weight:bold;font-size:120px ;'><?= $row['ten'] ?></p>
                         </td>
@@ -113,6 +126,13 @@ $query = mysqli_query($connect, $sql);
                 </table>
               </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end" style="margin:20px 0">      
+                <?php
+                  include '../../../config/pagination.php'; 
+                ?>
+                </ul> 
+            </nav>
           </div>
         </div>
       </div>

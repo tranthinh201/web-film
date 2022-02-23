@@ -46,7 +46,9 @@ session_start();
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0 table-hover table-bordered">
                                     <thead>
+
                                         <tr style="text-align: center">
+                                            <th>stt</th>
                                             <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Tên thể loại phim</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
@@ -54,11 +56,14 @@ session_start();
                                     <tbody>
                                         <?php
                                         $sql = "SELECT * from loai_phim";
+                                        $no=1;
                                         $result = executeResult($sql);
                                         foreach ($result as $row) {
                                             echo '
                                             <tr style="text-align: center">
-
+                                            <th>
+                                                <p class=" text-secondary mb-0">' . $no++. '</p>
+                                            </th>
                                             <th>
                                                 <p class=" text-secondary mb-0">' . $row['ten'] . '</p>
                                             </th>
