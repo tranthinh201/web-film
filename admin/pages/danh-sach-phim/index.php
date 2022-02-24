@@ -9,9 +9,9 @@ $query = mysqli_query($connect, $sql);
 
 <head>
   <?php
-    include('../../include/libraries.php'); 
+  include('../../include/libraries.php');
   ?>
-  <title>danh sach phim</title>
+  <title>Danh sách phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -67,6 +67,7 @@ $query = mysqli_query($connect, $sql);
                   <tbody>
                     <?php while ($row = mysqli_fetch_array($query)) {
                     ?>
+
                       <tr style='text-align: center'>
                         <td>
                           <p class='text-xs text-secondary mb-0' style='white-space: normal;font-weight:bold;font-size:120px ;'><?= $row['ten'] ?></p>

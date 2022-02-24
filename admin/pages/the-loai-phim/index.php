@@ -6,10 +6,10 @@ session_start();
 <html lang="en">
 
 <head>
-  <?php
-    include('../../include/libraries.php'); 
-  ?>
-  <title>the loai phim</title>
+    <?php
+    include('../../include/libraries.php');
+    ?>
+    <title>Thể loại phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">

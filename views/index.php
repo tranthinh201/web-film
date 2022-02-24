@@ -17,7 +17,9 @@
 
 <body>
     <!-- header-start -->
-    <?php include('./include/header.php') ?>
+    <?php include('./include/header.php');
+
+    ?>
     <!-- header-end -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">

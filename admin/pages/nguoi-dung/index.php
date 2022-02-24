@@ -20,10 +20,10 @@ session_start();
 <html lang="en">
 
 <head>
-  <?php
-    include('../../include/libraries.php'); 
-  ?>
-  <title>nguoi dung</title>
+    <?php
+    include('../../include/libraries.php');
+    ?>
+    <title>Người dùng</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
