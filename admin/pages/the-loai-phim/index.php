@@ -55,31 +55,20 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * from loai_phim";
-                                        $no=1;
-                                        $result = executeResult($sql);
-                                        foreach ($result as $row) {
-                                            echo '
-                                            <tr style="text-align: center">
-                                            <th>
-                                                <p class=" text-secondary mb-0">' . $no++. '</p>
-                                            </th>
-                                            <th>
-                                                <p class=" text-secondary mb-0">' . $row['ten'] . '</p>
-                                            </th>
-                                            <th class="align-middle">
-                                                <div>
-                                                <a href="./cap-nhat.php?id=' . $row['id'] . '" style="margin-right: 40px;"class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
-                                                    <i class="far fa-edit"></i> Edit
-                                                </a>
-                                                <a href="javascript:;" onclick="deleteId(' . $row['id'] . ')"  class=" font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                                                    <i class="fas fa-trash"></i> delete
-                                                </a>
-                                            </th>
+                                        $sql="SELECT * FROM loai_phim";
+                                        $query=mysqli_query($connect,$sql);
+                                        $no = 1;
+                                        while ($row = mysqli_fetch_assoc($query)) {?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></th>
+                                                <td><?php echo $row['ten']; ?></td>
+                                                <td>
+                                                    <a class="btn btn-warning" style='margin-right: 40px;' href="sua_catenews?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
+
+                                                    <a onclick="return Del('<?=$row['ten']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
+                                                </td>
                                             </tr>
-                                            ';
-                                        }
-                                        ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -116,16 +105,7 @@ session_start();
 </html>
 
 <script type="text/javascript">
-    function deleteId(id) {
-        var option = confirm('Bạn có chắc chắn muốn xoá thể loại phim này không?')
-        if (!option) {
-            return;
-        }
-        $.post('./xoa.php', {
-            'id': id,
-            'action': 'delete'
-        }, function(data) {
-            location.reload()
-        })
+    function Del(name){
+        return confirm("Bạn có chắc chắn muốn xóa: " + name + " ?");
     }
 </script>

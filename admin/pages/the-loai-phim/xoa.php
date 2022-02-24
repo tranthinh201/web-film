@@ -1,18 +1,15 @@
 <?php
-require_once('../../../config/db.php');
-var_dump($_POST['action']);
-if (!empty($_POST)) {
-    if (isset($_POST['action'])) {
-        $action = $_POST['action'];
+    session_start();
+    require_once '../../../config/db.php';
+    require_once('../../../config/sql_cn.php');
+    $id = $_GET['id'];
+    $sql = "DELETE FROM loai_phim WHERE id = $id";
+    $query = mysqli_query($connect, $sql);
 
-        switch ($action) {
-            case 'delete':
-                if (isset($_POST['id'])) {
-                    $id = $_POST['id'];
-                    $sql = 'delete from loai_phim where id = ' . $id;
-                    execute($sql);
-                }
-                break;
-        }
+    header('location:index.php');
+            if (!isset($_SESSION['user'])) {
+        // code...
+        header('location:../login.php');
     }
-}
+
+?>
