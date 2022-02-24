@@ -24,11 +24,11 @@
                     </div>
                     <span class="nav-link-text ms-1">Danh sách phim</span>
                 </a>
-            </li> 
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="../the-loai-phim">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="fa-solid fa-clapperboard"></i>
+                        <i class="fa-solid fa-clapperboard"></i>
                     </div>
                     <span class="nav-link-text ms-1">Thể loại phim</span>
                 </a>
@@ -50,6 +50,22 @@
                     <span class="nav-link-text ms-1">Danh sách người dùng</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../suat-chieu">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-list"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Danh sách suất chiếu</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="../loai-ve">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-ticket"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Danh sách loại vé</span>
+                </a>
+            </li>
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
             </li>
@@ -61,7 +77,8 @@
                     <span class="nav-link-text ms-1">Thông tin</span>
                 </a>
             </li>
-<!--             <li class="nav-item">
+
+            <!--             <li class="nav-item">
                 <a class="nav-link text-white " href="../sign-in.php">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">login</i>

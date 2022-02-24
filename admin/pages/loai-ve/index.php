@@ -1,6 +1,8 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
+$sql      = 'SELECT * FROM gia_ve';
+$query = mysqli_query($connect, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +11,7 @@ session_start();
     <?php
     include('../../include/libraries.php');
     ?>
-    <title>Thể loại phim</title>
+    <title>Loại vé</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -22,7 +24,7 @@ session_start();
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5" style="width: 200px;">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thể loại phim</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Danh sách Loại vé</li>
                 </ol>
             </nav>
             <?php
@@ -30,7 +32,7 @@ session_start();
             ?>
         </nav>
         <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="./them-the-loai.php">Thêm mới</a>
+            <a class="btn btn-outline-success me-2" href="./them-moi.php">Thêm mới</a>
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
@@ -39,41 +41,19 @@ session_start();
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Thể loại phim</h6>
+                                <h6 class="text-white text-capitalize ps-3">Danh sách Loại vé phim</h6>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0 table-hover table-bordered">
+                                <table class="table align-items-center mb-0  table-hover table-bordered">
                                     <thead>
-
-                                        <tr style="text-align: center">
-                                            <th>stt</th>
-                                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Tên thể loại phim</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Đối tượng</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7  text-center">Mức giá</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-<<<<<<< HEAD
-                                        $sql="SELECT * FROM loai_phim";
-                                        $query=mysqli_query($connect,$sql);
-                                        $no = 1;
-                                        while ($row = mysqli_fetch_assoc($query)) {?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></th>
-                                                <td><?php echo $row['ten']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-warning" style='margin-right: 40px;' href="sua_catenews?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
-
-                                                    <a onclick="return Del('<?=$row['ten']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-=======
-                                        $sql = "SELECT * from loai_phim";
-                                        $query = mysqli_query($connect, $sql);
-                                        ?>
                                         <?php while ($row = mysqli_fetch_array($query)) {
                                         ?>
 
@@ -81,7 +61,9 @@ session_start();
                                                 <td>
                                                     <p class='text-xs text-secondary mb-0'><?= $row['ten'] ?></p>
                                                 </td>
-
+                                                <td>
+                                                    <p class='text-xs text-secondary mb-0'><?= $row['don_gia'] ?></p>
+                                                </td>
                                                 <th class="align-middle">
                                                     <div>
                                                         <a href="./cap-nhat.php?id=<?= $row['id'] ?>" style="margin-right: 40px;" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
@@ -93,9 +75,6 @@ session_start();
                                                 </th>
                                             </tr>
                                         <?php } ?>
-
-
->>>>>>> 77193f6b08995b84965bbbd2c742e47ff27e2831
                                     </tbody>
                                 </table>
                             </div>
@@ -105,15 +84,13 @@ session_start();
             </div>
         </div>
         <?php
-        include('../../include/footer.php');
-
+        include('../../include/footer.php')
         ?>
+
     </main>
+
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -132,7 +109,16 @@ session_start();
 </html>
 
 <script type="text/javascript">
-    function Del(name){
-        return confirm("Bạn có chắc chắn muốn xóa: " + name + " ?");
+    function deleteId(id) {
+        var option = confirm('Bạn có chắc chắn muốn xoá thể loại phim này không?')
+        if (!option) {
+            return;
+        }
+        $.post('./xoa-ve.php', {
+            'id': id,
+            'action': 'delete'
+        }, function(data) {
+            location.reload()
+        })
     }
 </script>

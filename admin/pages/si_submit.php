@@ -5,14 +5,18 @@ if (isset($_SESSION['user'])) {
     header('location: ../pages/dashboard');
 }
 
+var_dump($_SESSION['user']);
+
 if (isset($_POST['submit']) && $_POST['username'] != '' && $_POST['password'] != '') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+
+
     require_once '../../config/sql_cn.php';
     $sql = "select * from nguoi_dung where ten_tk='$username' and mat_khau='$password'";
+
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-
         $_SESSION['user'] = $username;
         header("location:  ../pages/dashboard");
     } else {

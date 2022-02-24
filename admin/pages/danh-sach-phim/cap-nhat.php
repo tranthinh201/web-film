@@ -18,6 +18,8 @@ if (isset($_GET['id'])) {
     $sql      = 'SELECT * FROM phim WHERE id = "' . $id . '"';
     $query = mysqli_query($connect, $sql);
     $item  = mysqli_fetch_assoc($query);
+    $select_theloai = "SELECT * FROM loai_phim";
+    $query_theloai = mysqli_query($connect, $select_theloai);
 }
 if (!empty($_POST)) {
     $name = $_POST['name'];
@@ -138,14 +140,12 @@ if (!empty($_POST)) {
                 <div class=" w-25">
                     <select class="form-select checked" aria-label="Default select example" name="type" disabled>
                         <?php
-                        $sql = "SELECT * FROM loai_phim";
-                        $result = executeResult($sql);
-                        foreach ($result as $rows) {
-                            echo '
-                                <option value="' . $rows['id'] . '">' . $rows['ten'] . '</option>
-                            ';
-                        }
-                        ?>
+                        while ($row_theloai = mysqli_fetch_assoc($query_theloai)) { ?>
+                            <option <?php if ($row_theloai['id'] == $item['loai_phim_id']) {
+                                        echo "selected";
+                                    }  ?> value="<?php echo $row_theloai['id']; ?>"><?php echo $row_theloai['ten']; ?></option>
+                        <?php } ?>
+
                     </select>
                 </div>
             </div>

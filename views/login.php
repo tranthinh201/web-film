@@ -1,229 +1,185 @@
-<div class="login-wrap">
-    <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng nhập</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Đăng ký</label>
-        <div class="login-form">
-            <form method="post" class="sign-in-htm">
-                <div class="group">
-                    <label for="user" class="label">Tài khoản</label>
-                    <input id="user" type="text" class="input" name="user">
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Mật khẩu </label>
-                    <input id="pass" type="password" class="input" data-type="password" name="password">
-                </div>
-                <div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Nhớ tài khoản</label>
-                </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Đăng nhập">
-                </div>
-                <div class="hr"></div>
-                <div class="foot-lnk">
-                    <a href="#forgot">Quên mật khẩu</a>
-                </div>
-            </form>
-            <form method="post" class="sign-up-htm">
-                <div class="group">
-                    <label for="user" class="label">Username</label>
-                    <input id="user" type="text" class="input">
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="input" data-type="password">
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Repeat Password</label>
-                    <input id="pass" type="password" class="input" data-type="password">
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Email Address</label>
-                    <input id="pass" type="text" class="input">
-                </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Sign Up">
-                </div>
-                <div class="hr"></div>
-                <div class="foot-lnk">
-                    <label for="tab-1">Already Member?</a>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<?php
+session_start();
+if (isset($_SESSION['user-client'])) {
+    header('location: ../index.php');
+}
+?>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+        Đăng nhập
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="../admin/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../admin/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../admin/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-200">
+    <div class="container position-sticky z-index-sticky top-0">
+        <div class="row">
+            <div class="col-12">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+                    <div class="container-fluid ps-2 pe-0">
+                        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon mt-2">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navigation">
+                            <ul class="navbar-nav mx-auto">
+                                <!--                 <li class="nav-item">
+                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../pages/dashboard.html">
+                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
+                    Dashboard
+                  </a>
+                </li> -->
+
+                                <li class="nav-item">
+                                    <!--                   <a class="nav-link me-2" href="sign-up.php">
+                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                    Đăng ký
+                  </a> -->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link me-2" href="sign-in.php">
+                                        <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                                        Đăng nhập
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+            </div>
         </div>
     </div>
-</div>
-</div>
+    <main class="main-content  mt-0">
+        <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+            <div class="container my-auto">
+                <div class="row">
+                    <div class="col-lg-4 col-md-8 col-12 mx-auto">
+                        <div class="card z-index-0 fadeIn3 fadeInBottom">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Đăng nhập</h4>
+                                    <div class="row mt-3">
+                                        <div class="col-2 text-center ms-auto">
+                                            <a class="btn btn-link px-3" href="javascript:;">
+                                                <i class="fa fa-facebook text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 text-center px-1">
+                                            <a class="btn btn-link px-3" href="javascript:;">
+                                                <i class="fa fa-github text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 text-center me-auto">
+                                            <a class="btn btn-link px-3" href="javascript:;">
+                                                <i class="fa fa-google text-white text-lg"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form role="form" action="./include/sign-in.php" method="POST" class="text-start">
+                                    <p style="margin-bottom:25px;color:red;">
+                                        <?php
+                                        if (isset($_SESSION['thongbao'])) {
+                                            echo $_SESSION['thongbao'];
+                                            session_unset();
+                                        }
+                                        ?>
+                                    </p>
+                                    <p style="margin-bottom:25px;color:green;">
+                                        <?php
+                                        if (isset($_SESSION['thongbaoo'])) {
+                                            echo $_SESSION['thongbaoo'];
+                                            session_unset();
+                                        }
+                                        ?>
+                                    </p>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <label class="form-label">Mật khẩu</label>
+                                        <input type="password" name="password" class="form-control">
+                                    </div>
+                                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label mb-0 ms-2" for="rememberMe">Lưu mật khẩu</label>
+                                    </div>
+                                    <div class="text-center">
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+                                        <input type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" name="submit" value="Đăng nhập">
+                                    </div>
+                                    <p class="mt-4 text-sm text-center">
+                                        Chưa có tài khoản ?
+                                        <a href="./register.php" class="text-primary text-gradient font-weight-bold">Đăng ký</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer position-absolute bottom-2 py-2 w-100">
+                <div class="container">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-12 col-md-6 my-auto">
+                            <div class="copyright text-center text-sm text-white text-lg-start">
+                                © <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                được tạo <i class="fa fa-heart" aria-hidden="true"></i> bởi
+                                <a href="#" class="font-weight-bold text-white" target="_blank">HTcinema</a>
 
-    a {
-        color: inherit;
-        text-decoration: none
-    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+    <!--   Core JS Files   -->
+    <script src="../admin/assets/js/core/popper.min.js"></script>
+    <script src="../admin/assets/js/core/bootstrap.min.js"></script>
+    <script src="../admin/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../admin/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.min.js?v=3.0.0"></script>
+</body>
 
-    .login-wrap {
-        width: 100%;
-        margin: auto;
-        max-width: 525px;
-        min-height: 670px;
-        position: relative;
-    }
-
-    .login-html {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        padding: 90px 70px 50px 70px;
-        background: rgba(46, 204, 113, .5);
-    }
-
-    .login-html .sign-in-htm,
-    .login-html .sign-up-htm {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        position: absolute;
-        transform: rotateY(180deg);
-        backface-visibility: hidden;
-        transition: all .4s linear;
-    }
-
-    .login-html .sign-in,
-    .login-html .sign-up,
-    .login-form .group .check {
-        display: none;
-    }
-
-    .login-html .tab {
-        font-size: 22px;
-        margin-right: 15px;
-        padding-bottom: 5px;
-        margin: 0 15px 10px 0;
-        display: inline-block;
-        border-bottom: 2px solid transparent;
-        font-family: 'Langar', cursive;
-    }
-
-    .login-html .sign-in:checked+.tab,
-    .login-html .sign-up:checked+.tab {
-        color: #fff;
-        border-color: #fa8231;
-    }
-
-    .login-form {
-        min-height: 345px;
-        position: relative;
-        perspective: 1000px;
-        transform-style: preserve-3d;
-    }
-
-    .login-form .group {
-        margin-bottom: 15px;
-    }
-
-
-
-
-    .login-form .group .input {
-        outline: none;
-        border: 1px solid #fa8231;
-        padding: 15px 20px;
-        border-radius: 5px;
-        width: 100%;
-        font-size: 20px;
-        display: block;
-        font-family: 'Langar', cursive;
-    }
-
-    .login-form .group input[data-type="password"] {
-        text-security: circle;
-        -webkit-text-security: circle;
-    }
-
-    .login-form .group .label {
-
-        font-size: 12px;
-        font-family: 'Langar', cursive;
-
-    }
-
-    .login-form .group .button {
-        background: #1161ee;
-        font-family: 'Langar', cursive;
-        border: 1px solid #fa8231;
-        background-color: #fa8231;
-        width: 50%;
-        padding: 10px 20px;
-        font-size: 20px;
-        font-weight: 500;
-
-    }
-
-    .login-form .group label .icon {
-        width: 15px;
-        height: 15px;
-        border-radius: 2px;
-        position: relative;
-        display: inline-block;
-        background: rgba(255, 255, 255, .1);
-
-    }
-
-    .login-form .group label .icon:before,
-    .login-form .group label .icon:after {
-        content: '';
-        width: 10px;
-        height: 2px;
-        background: #fff;
-        position: absolute;
-        transition: all .2s ease-in-out 0s;
-    }
-
-    .login-form .group label .icon:before {
-        left: 3px;
-        width: 5px;
-        bottom: 6px;
-        transform: scale(0) rotate(0);
-    }
-
-    .login-form .group label .icon:after {
-        top: 6px;
-        right: 0;
-        transform: scale(0) rotate(0);
-    }
-
-    .login-form .group .check:checked+label {
-        color: #fff;
-    }
-
-    .login-form .group .check:checked+label .icon {
-        background: #1161ee;
-    }
-
-    .login-form .group .check:checked+label .icon:before {
-        transform: scale(1) rotate(45deg);
-    }
-
-    .login-form .group .check:checked+label .icon:after {
-        transform: scale(1) rotate(-45deg);
-    }
-
-    .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
-        transform: rotate(0);
-    }
-
-    .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
-        transform: rotate(0);
-    }
-
-    .hr {
-        height: 2px;
-        margin: 60px 0 50px 0;
-        background: rgba(255, 255, 255, .2);
-    }
-
-    .foot-lnk {
-        text-align: center;
-    }
-</style>
+</html>

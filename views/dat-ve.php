@@ -26,33 +26,7 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-    <nav class="nav-bar">
-        <div class="header">
-            <div class="logo">
-                <img src="../image/logo/spiderman.png" alt="logo" style="width: 80px">
-            </div>
-            <div class="search-input">
-                <input type="text" placeholder="Tìm kiếm tên phim và diễn viên">
-                <i class="fa fa-search ps-abs"></i>
-            </div>
-            <div class="login">
-                <i class="fa fa-user me-sm-1"></i>
-                <span>Đăng nhập</span>
-            </div>
-        </div>
-        <div class="menu">
-            <ul>
-                <li><a href="">Mua vé</a></li>
-                <li><a href="">Phim</a></li>
-                <li><a href="">Góc điện ảnh</a></li>
-                <li><a href="">Sự kiện</a></li>
-                <li><a href="">Rạp</a></li>
-                <li><a href="">Giá vé</a></li>
-                <li><a href="">Hỗ trợ</a></li>
-                <li><a href="">Thành viên</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('./include/header.php'); ?>
 
     <div class="row-link">
         <ul>
@@ -155,11 +129,11 @@ if (isset($_GET['id'])) {
                         <div class="time-movie">
                             <ul class="list-time-cinema">
                                 <?php
-                                $sql = 'SELECT * FROM suat_chieu WHERE phim_id = "' . $id . '"';
+                                $sql = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), id FROM suat_chieu WHERE phim_id = "' . $id . '"';
                                 $result = executeResult($sql);
                                 foreach ($result as $row) {
                                     echo '
-                                        <li><a href="./book-ticket.php?suat_chieu=' . $row['id'] . '">' . $row['gio_bat_dau'] . '</a></li>
+                                        <li><a href="./book-ticket.php?suat_chieu=' . $row['id'] . '">' . $row['TIME(gio_bat_dau)'] . '</a></li>
                                     ';
                                 }
                                 ?>
