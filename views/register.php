@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!--  //FORM NÀY ĐỂ DÀNH CHO CLIENT -->
 
@@ -13,7 +14,7 @@ session_start();
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Material Dashboard 2 by Creative Tim
+        Đăng ký tài khoản
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -33,7 +34,7 @@ session_start();
         <div class="row">
             <div class="col-12">
                 <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
+                <!-- <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
                     <div class="container-fluid ps-2 pe-0">
                         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon mt-2">
@@ -60,7 +61,7 @@ session_start();
                             </ul>
                         </div>
                     </div>
-                </nav>
+                </nav> -->
                 <!-- End Navbar -->
             </div>
         </div>
@@ -91,24 +92,46 @@ session_start();
                                 <div class="card-body">
                                     <form role="form" action="./include/sign-up.php" method="POST">
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Họ và Tên</label>
-                                            <input type="text" name="fullname" class="form-control">
+
+                                            <input type="text" name="fullname" placeholder="Họ và tên" class="form-control">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Tên tài khoản</label>
-                                            <input type="text" name="username" class="form-control">
+                                            <input type="text" name="phonenumber" placeholder="Số điện thoại" class="form-control">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email">
+                                            <input type="text" name="socmnd" placeholder="Số chứng minh" class="form-control">
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Mật khẩu</label>
-                                            <input type="password" name="password" class="form-control">
+                                            <textarea type="text" name="address" placeholder="Địa chỉ" class="form-control"></textarea>
                                         </div>
                                         <div class="input-group input-group-outline mb-3">
-                                            <label class="form-label">Nhập lại mật khẩu</label>
-                                            <input type="password" name="repassword" class="form-control">
+                                            <input type="date" name="date" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="1">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Nam
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sex" id="exampleRadios2" value="0">
+                                                <label class="form-check-label" for="exampleRadios2">
+                                                    Nữ
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input-group input-group-outline mb-3">
+                                            <input type="email" placeholder="Email" class="form-control" name="email">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+
+                                            <input type="password" placeholder="Mật khâu" name="password" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <input type="password" placeholder="Nhập lại mật khẩu" name="repassword" class="form-control">
                                         </div>
                                         <div class="form-check form-check-info text-start ps-0">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -117,7 +140,7 @@ session_start();
                                             </label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" name="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">OK</button>
+                                            <button type="submit" name="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng Ký</button>
                                         </div>
                                     </form>
                                 </div>

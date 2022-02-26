@@ -119,12 +119,12 @@ if (isset($_SESSION['user-client'])) {
                                         ?>
                                     </p>
                                     <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" name="email" class="form-control">
+
+                                        <input type="email" name="email" placeholder="Email" class="form-control">
                                     </div>
                                     <div class="input-group input-group-outline mb-3">
-                                        <label class="form-label">Mật khẩu</label>
-                                        <input type="password" name="password" class="form-control">
+
+                                        <input type="password" name="password" placeholder="Mật khẩu" class="form-control">
                                     </div>
                                     <div class="form-check form-switch d-flex align-items-center mb-3">
                                         <input class="form-check-input" type="checkbox" id="rememberMe">
