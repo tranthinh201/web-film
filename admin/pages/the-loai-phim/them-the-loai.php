@@ -1,5 +1,7 @@
 <?php
 require_once('../../../config/db.php');
+session_start();
+include('../../include/check-log.php');
 $name = "";
 if (!empty($_POST)) {
     if (isset($_POST['name'])) {

@@ -1,6 +1,7 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
+
 $sql      = 'SELECT * FROM phim';
 $query = mysqli_query($connect, $sql);
 ?>

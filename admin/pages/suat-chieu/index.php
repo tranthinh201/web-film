@@ -1,6 +1,5 @@
 <?php
 require_once('../../../config/db.php');
-session_start();
 $sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 $query = mysqli_query($connect, $sql);
 ?>
@@ -31,9 +30,7 @@ $query = mysqli_query($connect, $sql);
             include('../../include/header.php')
             ?>
         </nav>
-        <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="./them-phim.php">Thêm mới</a>
-        </nav>
+
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
