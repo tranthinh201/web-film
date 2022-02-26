@@ -62,7 +62,8 @@ if (isset($_GET['id'])) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($row = mysqli_fetch_array($query)) {
+                                    <?php
+                                            while ($row = mysqli_fetch_array($query)) {
                                     ?>
 
                                         <tr style='text-align: center'>
@@ -90,11 +91,11 @@ if (isset($_GET['id'])) {
                                                 <p class='text-xs text-secondary mb-0'><?= $row['dinh_dang_phim_id'] ?></p>
                                             </td>
                                             <td>
-                                                <a href="Javascript:void(0)" onclick="deleteId('<?= $row['id'] ?>')" style="margin-right: 40px;" class=" font-weight-bold text-xs btn btn-warning" data-toggle='tooltip' data-original-title='Edit user'>
-                                                    Xoá xuất chiếu
+                                                <a href="Javascript:void(0)" onclick="deleteId('<?= $row['id'] ?>')" style="margin-right: 40px;" class=" font-weight-bold text-xs btn btn-danger" data-toggle='tooltip' data-original-title='Edit user'>
+                                                    Xoá suất chiếu
                                                 </a>
-                                                <a href='./cap-nhat-suat-chieu.php?id=<?= $row['id'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-warning' data-toggle='tooltip' data-original-title='Edit user'>
-                                                    Cập nhật xuất chiếu
+                                                <a href='./cap-nhat-suat-chieu.php?id=<?= $row['id'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-info' data-toggle='tooltip' data-original-title='Edit user'>
+                                                    Cập nhật suất chiếu
                                                 </a>
                                             </td>
                                         </tr>

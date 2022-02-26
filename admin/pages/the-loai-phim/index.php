@@ -6,10 +6,10 @@ session_start();
 <html lang="en">
 
 <head>
-    <?php
-    include('../../include/libraries.php');
-    ?>
-    <title>Thể loại phim</title>
+  <?php
+    include('../../include/libraries.php'); 
+  ?>
+  <title>the loai phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -55,7 +55,6 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-<<<<<<< HEAD
                                         $sql="SELECT * FROM loai_phim";
                                         $query=mysqli_query($connect,$sql);
                                         $no = 1;
@@ -64,38 +63,12 @@ session_start();
                                                 <td><?php echo $no++; ?></th>
                                                 <td><?php echo $row['ten']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning" style='margin-right: 40px;' href="sua_catenews?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
+                                                    <a class="btn btn-warning" style='margin-right: 40px;' href="cap-nhat.php?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
 
                                                     <a onclick="return Del('<?=$row['ten']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
-=======
-                                        $sql = "SELECT * from loai_phim";
-                                        $query = mysqli_query($connect, $sql);
-                                        ?>
-                                        <?php while ($row = mysqli_fetch_array($query)) {
-                                        ?>
-
-                                            <tr class="text-center">
-                                                <td>
-                                                    <p class='text-xs text-secondary mb-0'><?= $row['ten'] ?></p>
-                                                </td>
-
-                                                <th class="align-middle">
-                                                    <div>
-                                                        <a href="./cap-nhat.php?id=<?= $row['id'] ?>" style="margin-right: 40px;" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
-                                                            <i class="far fa-edit"></i> Sửa
-                                                        </a>
-                                                        <a href="javascript:;" onclick="deleteId(<?= $row['id'] ?>)" class=" font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                                                            <i class="fas fa-trash"></i> Xoá
-                                                        </a>
-                                                </th>
-                                            </tr>
-                                        <?php } ?>
-
-
->>>>>>> 77193f6b08995b84965bbbd2c742e47ff27e2831
                                     </tbody>
                                 </table>
                             </div>

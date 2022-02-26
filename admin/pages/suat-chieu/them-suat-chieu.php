@@ -22,8 +22,8 @@ if (!empty($_POST)) {
     if ($ngay_chieu != '') {
         $sql = 'INSERT INTO suat_chieu(gio_bat_dau, gio_ket_thuc, ngay_chieu, phong_chieu_id, dinh_dang_phim_id, phim_id) 
         values ("' . $gio_bat_dau . '", "' . $gio_ket_thuc . '", "' . $ngay_chieu . '", "' . $phong_chieu . '", "' . $dinh_dang_phim . '", "' . $id . '")';
-        var_dump($sql);
-        die();
+        // var_dump($sql);
+        // die();
         execute($sql);
         echo "<script language='javascript'>alert('Thêm mới phim thành công!')</script>";
     }
@@ -55,7 +55,7 @@ if (!empty($_POST)) {
             </ol>
         </nav>
         <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="../danh-sach-phim/">Trở về</a>
+            <a class="btn btn-outline-success me-2" href="../suat-chieu/danh-sach.php">Trở về</a>
         </nav>
     </nav>
     <div class="container-fluid py-4" style="height:85vh">

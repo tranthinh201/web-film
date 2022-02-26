@@ -1,8 +1,8 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
-$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
-$query = mysqli_query($connect, $sql);
+//$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
+//$query = mysqli_query($connect, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,26 +49,38 @@ $query = mysqli_query($connect, $sql);
                                 <table class="table align-items-center mb-0  table-hover table-bordered">
                                     <thead>
                                         <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên phim</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Độ tuổi</th> -->
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày chiếu</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngôn ngữ</th>
-                                            <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Diễn viên</th> -->
-                                            <!--  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quốc gia</th> -->
+ 
+
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NSX</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
-                                            <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th> -->
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loại phim</th>
+
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chức năng</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php while ($row = mysqli_fetch_array($query)) {
+                                        <?php 
+                                            $item_per_page=!empty($_GET['per_page'])?$_GET['per_page']:5;
+                                            $current_page=!empty($_GET['page'])?$_GET['page']:1;
+                                             $offset=($current_page-1)*$item_per_page;
+                                        
+                                            $totalRecords=mysqli_query($connect,"select * from phim");
+                                            $totalRecords=$totalRecords->num_rows;
+                                            $totalPages=ceil($totalRecords / $item_per_page);
+                                            $film=mysqli_query($connect,"SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id order by phim.id DESC limit ".$item_per_page." offset  ".$offset."");
+                                            $no=1;
+                                            while ($row = mysqli_fetch_array($film)) {
                                         ?>
 
                                             <tr style='text-align: center'>
+                                                <td>
+                                                    <p class='text-xs text-secondary mb-0' style='white-space: normal;font-weight:bold;font-size:120px ;'><?= ++$offset ?></p>
+                                                </td>
                                                 <td>
                                                     <p class='text-xs text-secondary mb-0' style='white-space: normal;font-weight:bold;font-size:120px ;'><?= $row['ten'] ?></p>
                                                 </td>
@@ -80,10 +92,6 @@ $query = mysqli_query($connect, $sql);
                                                     <p class='text-xs text-secondary mb-0' style='width:100px;
                         white-space: normal;'><?= $row['ngay_cong_chieu'] ?></p>
                                                 </td>
-                                                <td>
-                                                    <p class='text-xs text-secondary mb-0' style='width:100px;
-                        white-space: normal;'><?= $row['ngon_ngu'] ?></p>
-                                                </td>
 
                                                 <td>
                                                     <p class='text-xs text-secondary mb-0' style='width:100px;
@@ -94,13 +102,9 @@ $query = mysqli_query($connect, $sql);
                                                     <p class='text-xs text-secondary mb-0' style='width:100px;
                         white-space: normal;'><?= $row['trang_thai'] ?></p>
                                                 </td>
+                                                <td>
 
-                                                <td>
-                                                    <p class='text-xs text-secondary mb-0' style='width:100px;
-                        white-space: normal;'><?= $row['loai_phim_id'] ?></p>
-                                                </td>
-                                                <td>
-                                                    <a href='./danh-sach.php?id=<?= $row['id'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-warning' data-toggle='tooltip' data-original-title='Edit user'>
+                                                    <a href='./danh-sach.php?id=<?= $row['id'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-outline-warning' data-toggle='tooltip' data-original-title='Edit user'>
                                                         <i class="fa-solid fa-eye"></i>
                                                         Xem suất chiếu
                                                     </a>
@@ -111,6 +115,13 @@ $query = mysqli_query($connect, $sql);
                                 </table>
                             </div>
                         </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end" style="margin:20px 0">      
+                <?php
+                  include '../../../config/pagination.php'; 
+                ?>
+                </ul> 
+            </nav>
                     </div>
                 </div>
             </div>

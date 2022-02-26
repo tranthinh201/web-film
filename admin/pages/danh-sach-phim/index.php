@@ -49,7 +49,8 @@ session_start();
                 <table class="table align-items-center mb-0  table-hover table-bordered">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên phim</th>
+                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số thứ tự</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7" >Tên phim</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
                       <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Độ tuổi</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày chiếu</th>
@@ -60,7 +61,7 @@ session_start();
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
                       <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loại phim</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">loai phim id</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
 
                     </tr>
                   </thead>
