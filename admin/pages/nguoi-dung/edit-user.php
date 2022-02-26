@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../../include/check-log.php');
 require_once('../../../config/db.php');
 $id = $_GET['id'];
 

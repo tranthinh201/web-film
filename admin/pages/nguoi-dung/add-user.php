@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../../include/check-log.php');
+require_once('../../../config/db.php');
 
 if (isset($_POST['submit'])) {
     $fullname = $_POST['fullname'];

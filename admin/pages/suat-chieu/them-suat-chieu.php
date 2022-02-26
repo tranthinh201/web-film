@@ -1,7 +1,8 @@
 <?php
 require_once('../../../config/db.php');
 require_once('../../../config/sql_cn.php');
-
+session_start();
+include('../../include/check-log.php');
 if ($_GET['id']) {
     $id       = $_GET['id'];
     $sql = 'SELECT * FROM phim WHERE id ="PH0001"';

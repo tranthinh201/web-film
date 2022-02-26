@@ -1,5 +1,7 @@
 <?php
 require_once('../../../config/db.php');
+session_start();
+include('../../include/check-log.php');
 $sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 $query = mysqli_query($connect, $sql);
 ?>
