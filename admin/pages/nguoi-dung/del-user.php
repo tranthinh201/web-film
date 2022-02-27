@@ -3,7 +3,7 @@
     require_once '../../../config/db.php';
     require_once('../../../config/sql_cn.php');
     $id = $_GET['id'];
-    $sql = 'DELETE FROM loai_phim WHERE id = "' . $id . '"';
+    $sql = 'DELETE FROM nguoi_dung WHERE id ="' . $id . '"';
     $query = mysqli_query($connect, $sql);
 
     header('location:index.php');

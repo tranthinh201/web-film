@@ -61,11 +61,11 @@ session_start();
                                         while ($row = mysqli_fetch_assoc($query)) {?>
                                             <tr>
                                                 <td><?php echo $no++; ?></th>
-                                                <td><?php echo $row['ten']; ?></td>
+                                                <td><?php echo $row['ten_loai']; ?></td>
                                                 <td>
                                                     <a class="btn btn-warning" style='margin-right: 40px;' href="cap-nhat.php?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
 
-                                                    <a onclick="return Del('<?=$row['ten']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
+                                                    <a onclick="return Del('<?=$row['ten_loai']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

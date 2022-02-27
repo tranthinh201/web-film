@@ -1,4 +1,4 @@
-<!--
+    <!--
 =========================================================
 * Material Dashboard 2 - v3.0.0
 =========================================================
@@ -84,45 +84,39 @@
                                     <tbody>
                                         <?php
                                         $sql = "SELECT * from nguoi_dung";
-                                        $result = executeResult($sql);
-                                        foreach ($result as $row) {
-                                            echo '
+                                        $result = mysqli_query($connect,$sql);
+                                        while ($row=mysqli_fetch_array($result)) 
+                                            { ?>
+        
                                             <tr style="text-align: center">
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" >' . $row['ho_ten'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ><?= $row['ho_ten'] ?></p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ">' . $row['ten_tk'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" "><?= $row['ten_tk'] ?></p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ">' . $row['mat_khau'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" "><?= $row['mat_khau'] ?></p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" >' . $row['email'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ><?= $row['email'] ?></p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" >' . $row['ngay_vao_lam'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ><?= $row['ngay_vao_lam'] ?></p>
                                             </th>
 
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" >' . $row['vai_tro_id'] . '</p>
+                                                <p class="text-xs text-secondary mb-0" ><?= $row['vai_tro_id'] ?></p>
                                             </th>
                                             
                                             
                                             <th class="align-middle">
-                                            <th class="align-middle">
-                                                <div>
-                                                <a href="edit-user.php?id=' . $row['id'] . '" style="margin-right: 40px;"class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
-                                                    <i class="far fa-edit"></i> Edit
+                                                <a href="./edit-user.php?id=<?= $row['id'] ?>" style="margin-right: 40px;" class=" font-weight-bold text-xs btn btn-warning" data-toggle="tooltip" data-original-title="Edit user">
+                                                    <i class="far fa-edit"></i> Sửa
                                                 </a>
-                                                <a href="javascript:;" onclick="deleteId(' . $row['id'] . ')"  class=" font-weight-bold text-xs btn btn-danger" data-toggle="tooltip" data-original-title="Edit user">
-                                                    <i class="fas fa-trash"></i> delete
-                                                
-                                            </th>
+                                                <a onclick="return Del('<?=$row['ten_tk']?>')" class="btn btn-danger" href="del-user.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
                                             </tr>
-                                            ';
-                                        }
-                                        ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -227,5 +221,10 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.min.js?v=3.0.0"></script>
 </body>
+<script>
+        function Del(name){
+        return confirm("Bạn có chắc chắn muốn xóa: " + name + " ?");
+    }
+</script>
 
 </html>

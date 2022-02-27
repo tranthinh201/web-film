@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $sql      = 'SELECT * FROM loai_phim WHERE id = ' . $id;
     $row = executeResult($sql);
     foreach ($row as $item) {
-        $name = $item['ten'];
+        $name = $item['ten_loai'];
     }
 }
 if (!empty($_POST)) {
@@ -19,7 +19,7 @@ if (!empty($_POST)) {
     }
 
     if ($name != '') {
-        $sql = 'UPDATE loai_phim SET ten = "' . $name . '" where id = ' . $id;
+        $sql = 'UPDATE loai_phim SET ten_loai = "' . $name . '" where id = ' . $id;
         execute($sql);
         echo "<script language='javascript'>alert('Cập nhật thể loại thành công!')</script>";
     }
@@ -57,7 +57,7 @@ if (!empty($_POST)) {
         <form method="post" class="form-control w-25 d-flex flex-column justify-content-center m-auto">
             <div class="mb-3">
                 <label class="form-label">Tên thể loại phim</label>
-                <input type="text" class="form-control" name="name" value="<?= $item['ten'] ?>">
+                <input type="text" class="form-control" name="name" value="<?= $item['ten_loai'] ?>">
             </div>
             <button type="submit" class="btn btn-primary">Cập nhật</button>
         </form>

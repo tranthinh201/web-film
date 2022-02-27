@@ -74,7 +74,7 @@ session_start();
                       $totalRecords=mysqli_query($connect,"select * from phim");
                       $totalRecords=$totalRecords->num_rows;
                       $totalPages=ceil($totalRecords / $item_per_page);
-                      $film=mysqli_query($connect,"select * from phim order by id DESC limit ".$item_per_page." offset  ".$offset."");
+                      $film=mysqli_query($connect,"SELECT phim.id id_ne,phim.ten,phim.hinh_anh,phim.ngay_cong_chieu,phim.ngon_ngu,phim.nha_san_xuat,phim.trang_thai,loai_phim.ten_loai FROM phim,loai_phim WHERE phim.loai_phim_id=loai_phim.id ORDER BY phim.id DESC LIMIT ".$item_per_page." offset  ".$offset."");
                       $no=1;
                       while ($row=mysqli_fetch_array($film)){
                     ?>
@@ -111,13 +111,13 @@ session_start();
 
                         <td>
                           <p class='text-xs text-secondary mb-0' style='width:100px;
-                        white-space: normal;'><?= $row['loai_phim_id'] ?></p>
+                        white-space: normal;'><?= $row['ten_loai'] ?></p>
                         </td>
                         <td>
-                          <a href='./cap-nhat.php?id=<?= $row['id'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-warning' data-toggle='tooltip' data-original-title='Edit user'>
+                          <a href='./cap-nhat.php?id=<?= $row['id_ne'] ?>' style='margin-right: 40px;' class=' font-weight-bold text-xs btn btn-warning' data-toggle='tooltip' data-original-title='Edit user'>
                             Xem chi tiết
                           </a>
-                          <button onclick='deleteId("<?= $row['id'] ?>")' class=' font-weight-bold text-xs btn btn-danger' data-toggle='tooltip'>
+                          <button onclick='deleteId("<?= $row['id_ne'] ?>")' class=' font-weight-bold text-xs btn btn-danger' data-toggle='tooltip'>
                             <i class='fas fa-trash'></i> delete
                           </button>
 

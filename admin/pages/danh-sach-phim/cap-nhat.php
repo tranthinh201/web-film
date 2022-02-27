@@ -143,7 +143,7 @@ if (!empty($_POST)) {
                         while ($row_theloai = mysqli_fetch_assoc($query_theloai)) { ?>
                             <option <?php if ($row_theloai['id'] == $item['loai_phim_id']) {
                                         echo "selected";
-                                    }  ?> value="<?php echo $row_theloai['id']; ?>"><?php echo $row_theloai['ten']; ?></option>
+                                    }  ?> value="<?php echo $row_theloai['id']; ?>"><?php echo $row_theloai['ten_loai']; ?></option>
                         <?php } ?>
 
                     </select>
