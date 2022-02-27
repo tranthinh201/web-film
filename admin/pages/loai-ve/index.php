@@ -1,6 +1,7 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
+include('../../include/check-log.php');
 $sql      = 'SELECT * FROM gia_ve';
 $query = mysqli_query($connect, $sql);
 ?>

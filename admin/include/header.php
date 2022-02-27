@@ -10,11 +10,15 @@
             <li class="nav-item d-flex align-items-center">
                 <?php
                 if (isset($_SESSION['user'])) {
-                    echo '
-                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Xin chào <span style="color:red">' . $_SESSION['user'] . ' </span></span>
-                        </a>';
+                    $sql = 'SELECT * FROM nguoi_dung WHERE ten_tk = "' . $_SESSION['user'] . '"';
+                    $result = executeResult($sql);
+                    foreach ($result as $row) {
+                        echo '
+                            <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Xin chào <span style="color:red">' . $row['ho_ten'] . ' </span></span>
+                            </a>';
+                    }
                 } else {
                     header('Location: ../pages/sign-in.php');
                 } ?>

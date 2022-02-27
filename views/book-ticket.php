@@ -56,23 +56,25 @@ if (isset($_GET['suat_chieu'])) {
     <div class="container">
         <div class="screen"></div>
         <div class="row">
+            <span class="seat occupied" style="color: white;">A</span>
             <?php
             foreach ($kqghe as $item) {
                 if (!empty($kqghedat)) {
                     foreach ($kqghedat as $items) {
                         if ($item['vi_tri_day'] == 'A') {
                             if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied"><input value="' . $item['vi_tri_cot'] . '" type="text">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
+                                echo '<div class="seat occupied"><input value="' . $item['vi_tri_cot'] . '" type="text">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div>';
                             } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
+                                echo '<div class="seat">' . $item['vi_tri_cot'] . '</div></br>';
                             }
                         }
                     }
                 } else if ($item['vi_tri_day'] == 'A') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
+                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '</div></br>';
                 }
             }
             ?>
+            <span class="seat occupied" style="color: white;">A</span>
         </div>
         <div class="row">
             <?php
@@ -264,7 +266,7 @@ if (isset($_GET['suat_chieu'])) {
 
 
         <p class="text">
-            You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
+            You have selected <span id="count" style="color: white">0</span> seats for a price of $<span id="total">0</span>
         </p>
 
 

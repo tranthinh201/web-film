@@ -13,6 +13,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
+<<<<<<< HEAD
     session_start();
     require_once('../../../config/db.php');
     
@@ -23,6 +24,11 @@
     // $row_up=mysqli_fetch_assoc($query_up);
 
 
+=======
+require_once('../../../config/db.php');
+session_start();
+include('../../include/check-log.php');
+>>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
 ?>
 <!DOCTYPE html>
 <html lang="en">

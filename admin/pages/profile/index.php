@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+include('../../include/check-log.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

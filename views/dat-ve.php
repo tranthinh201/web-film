@@ -133,7 +133,7 @@ if (isset($_GET['id'])) {
                                 $result = executeResult($sql);
                                 foreach ($result as $row) {
                                     echo '
-                                        <li><a href="./book-ticket.php?suat_chieu=' . $row['id'] . '">' . $row['TIME(gio_bat_dau)'] . '</a></li>
+                                        <li><a href="./book-ticket.php?suat_chieu=' . $row['id'] . '">' . date('H:i', strtotime($row['TIME(gio_bat_dau)']))  . '</a></li>
                                     ';
                                 }
                                 ?>

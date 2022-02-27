@@ -1,8 +1,14 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
+<<<<<<< HEAD
 //$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 //$query = mysqli_query($connect, $sql);
+=======
+include('../../include/check-log.php');
+$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
+$query = mysqli_query($connect, $sql);
+>>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +37,7 @@ session_start();
             include('../../include/header.php')
             ?>
         </nav>
-        <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="./them-phim.php">Thêm mới</a>
-        </nav>
+
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
