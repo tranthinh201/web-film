@@ -132,14 +132,6 @@ $query = mysqli_query($connect, $sql);
                             </ul>
                         </nav>
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end" style="margin:20px 0">
-                                <?php
-                                include '../../../config/pagination.php';
-                                ?>
-                            </ul>
-                        </nav>
-
                     </div>
                 </div>
             </div>
