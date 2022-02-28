@@ -21,6 +21,7 @@ if (!empty($_POST)) {
     $phong_chieu = $_POST['phong-chieu'];
     $dinh_dang_phim = $_POST['dinh-dang-phim'];
 
+
     if ($ngay_chieu != '') {
         $sql = 'UPDATE suat_chieu SET gio_bat_dau = "' . $gio_bat_dau . '", gio_ket_thuc = "' . $gio_ket_thuc . '",  ngay_chieu = "' . $ngay_chieu . '",
         phong_chieu_id = "' . $phong_chieu . '", dinh_dang_phim_id = "' . $dinh_dang_phim . '"
@@ -31,6 +32,8 @@ if (!empty($_POST)) {
         header('Location: ./danh-sach.php?id=' . $item['phim_id'] . '');
     }
 }
+
+die();
 ?>
 
 
