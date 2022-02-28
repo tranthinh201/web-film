@@ -1,13 +1,7 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
-
-// $sql      = 'SELECT * FROM phim';
-// $query = mysqli_query($connect, $sql);
-
 include('../../include/check-log.php');
-$sql      = 'SELECT * FROM phim';
-$query = mysqli_query($connect, $sql);
 
 ?>
 <!DOCTYPE html>
@@ -55,34 +49,29 @@ $query = mysqli_query($connect, $sql);
                 <table class="table align-items-center mb-0  table-hover table-bordered">
                   <thead>
                     <tr>
-                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số thứ tự</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7" >Tên phim</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số thứ tự</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7">Tên phim</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Độ tuổi</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày chiếu</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngôn ngữ</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Diễn viên</th> -->
-                      <!--  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quốc gia</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NSX</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
-                      <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình ảnh</th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loại phim</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
 
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
-                      $item_per_page=!empty($_GET['per_page'])?$_GET['per_page']:5;
-                      $current_page=!empty($_GET['page'])?$_GET['page']:1;
-                      $offset=($current_page-1)*$item_per_page;
-                    
-                      $totalRecords=mysqli_query($connect,"select * from phim");
-                      $totalRecords=$totalRecords->num_rows;
-                      $totalPages=ceil($totalRecords / $item_per_page);
-                      $film=mysqli_query($connect,"SELECT phim.id id_ne,phim.ten,phim.hinh_anh,phim.ngay_cong_chieu,phim.ngon_ngu,phim.nha_san_xuat,phim.trang_thai,loai_phim.ten_loai FROM phim,loai_phim WHERE phim.loai_phim_id=loai_phim.id ORDER BY phim.id DESC LIMIT ".$item_per_page." offset  ".$offset."");
-                      $no=1;
-                      while ($row=mysqli_fetch_array($film)){
+                    <?php
+                    $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 5;
+                    $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($current_page - 1) * $item_per_page;
+
+                    $totalRecords = mysqli_query($connect, "select * from phim");
+                    $totalRecords = $totalRecords->num_rows;
+                    $totalPages = ceil($totalRecords / $item_per_page);
+                    $film = mysqli_query($connect, "SELECT phim.id id_ne,phim.ten,phim.hinh_anh,phim.ngay_cong_chieu,phim.ngon_ngu,phim.nha_san_xuat,phim.trang_thai,loai_phim.ten_loai FROM phim,loai_phim WHERE phim.loai_phim_id=loai_phim.id ORDER BY phim.id DESC LIMIT " . $item_per_page . " offset  " . $offset . "");
+                    $no = 1;
+                    while ($row = mysqli_fetch_array($film)) {
                     ?>
 
                       <tr style='text-align: center'>
@@ -112,11 +101,6 @@ $query = mysqli_query($connect, $sql);
 
                         <td>
                           <p class='text-xs text-secondary mb-0' style='width:100px;
-                        white-space: normal;'><?= $row['trang_thai'] ?></p>
-                        </td>
-
-                        <td>
-                          <p class='text-xs text-secondary mb-0' style='width:100px;
                         white-space: normal;'><?= $row['ten_loai'] ?></p>
                         </td>
                         <td>
@@ -135,11 +119,11 @@ $query = mysqli_query($connect, $sql);
               </div>
             </div>
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end" style="margin:20px 0">      
+              <ul class="pagination justify-content-end" style="margin:20px 0">
                 <?php
-                  include '../../../config/pagination.php'; 
+                include '../../../config/pagination.php';
                 ?>
-                </ul> 
+              </ul>
             </nav>
           </div>
         </div>
