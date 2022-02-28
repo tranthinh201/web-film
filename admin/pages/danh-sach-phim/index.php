@@ -1,14 +1,14 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
-<<<<<<< HEAD
+
 // $sql      = 'SELECT * FROM phim';
 // $query = mysqli_query($connect, $sql);
-=======
+
 include('../../include/check-log.php');
 $sql      = 'SELECT * FROM phim';
 $query = mysqli_query($connect, $sql);
->>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

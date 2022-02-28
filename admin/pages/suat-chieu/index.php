@@ -1,14 +1,20 @@
 <?php
 require_once('../../../config/db.php');
 session_start();
-<<<<<<< HEAD
+
 //$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 //$query = mysqli_query($connect, $sql);
-=======
+
 include('../../include/check-log.php');
 $sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 $query = mysqli_query($connect, $sql);
->>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
+
+
+include('../../include/check-log.php');
+$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
+$query = mysqli_query($connect, $sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +64,7 @@ $query = mysqli_query($connect, $sql);
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Độ tuổi</th> -->
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày chiếu</th>
- 
+
 
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NSX</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
@@ -68,6 +74,7 @@ $query = mysqli_query($connect, $sql);
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php 
                                             $item_per_page=!empty($_GET['per_page'])?$_GET['per_page']:5;
                                             $current_page=!empty($_GET['page'])?$_GET['page']:1;
@@ -79,6 +86,19 @@ $query = mysqli_query($connect, $sql);
                                             $film=mysqli_query($connect,"SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id order by phim.id DESC limit ".$item_per_page." offset  ".$offset."");
                                             $no=1;
                                             while ($row = mysqli_fetch_array($film)) {
+
+                                        <?php
+                                        $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 5;
+                                        $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
+                                        $offset = ($current_page - 1) * $item_per_page;
+
+                                        $totalRecords = mysqli_query($connect, "select * from phim");
+                                        $totalRecords = $totalRecords->num_rows;
+                                        $totalPages = ceil($totalRecords / $item_per_page);
+                                        $film = mysqli_query($connect, "SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id order by phim.id DESC limit " . $item_per_page . " offset  " . $offset . "");
+                                        $no = 1;
+                                        while ($row = mysqli_fetch_array($film)) {
+
                                         ?>
 
                                             <tr style='text-align: center'>
@@ -119,6 +139,7 @@ $query = mysqli_query($connect, $sql);
                                 </table>
                             </div>
                         </div>
+
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end" style="margin:20px 0">      
                 <?php
@@ -126,6 +147,15 @@ $query = mysqli_query($connect, $sql);
                 ?>
                 </ul> 
             </nav>
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end" style="margin:20px 0">
+                                <?php
+                                include '../../../config/pagination.php';
+                                ?>
+                            </ul>
+                        </nav>
+
                     </div>
                 </div>
             </div>

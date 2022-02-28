@@ -8,12 +8,12 @@ $sql_au = "SELECT * FROM vai_tro";
 
 $query_au = mysqli_query($connect, $sql_au);
 
-<<<<<<< HEAD
+
     $query_up=mysqli_query($connect,$sql_up);
     $row_up=mysqli_fetch_array($query_up);
-=======
+
 $sql_up = 'SELECT * FROM nguoi_dung WHERE id ="' . $id . '"';
->>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
+
 
 $query_up = mysqli_query($connect, $sql_up);
 $row_up = mysqli_fetch_assoc($query_up);
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
                     </select>
                 </div>
             </div>
-<<<<<<< HEAD
+
             <?php 
                 if ($row_up['vai_tro_id'] == 'QL') {
                     // code...
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
                 {
                     echo "bạn không đc phép truy cập";
                 }
-=======
+
             <?php
             if ($row_up['vai_tro_id'] == 'TR') {
                 // code...
@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
             } else {
                 echo "bạn không đc phép truy cập";
             }
->>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
+
             ?>
 
 

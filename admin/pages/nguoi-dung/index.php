@@ -13,7 +13,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
-<<<<<<< HEAD
     session_start();
     require_once('../../../config/db.php');
     
@@ -24,11 +23,6 @@
     // $row_up=mysqli_fetch_assoc($query_up);
 
 
-=======
-require_once('../../../config/db.php');
-session_start();
-include('../../include/check-log.php');
->>>>>>> cee61f9ab98fc4ee9437bb19ea2fe209bf6553e7
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,11 +102,11 @@ include('../../include/check-log.php');
                                                 <p class="text-xs text-secondary mb-0" ><?= $row['email'] ?></p>
                                             </th>
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ><?= $row['ngay_vao_lam'] ?></p>
+                                                <p class="text-xs text-secondary mb-0" >' . $row['ngay_vao_lam'] . '</p>
                                             </th>
 
                                             <th>
-                                                <p class="text-xs text-secondary mb-0" ><?= $row['vai_tro_id'] ?></p>
+                                                <p class="text-xs text-secondary mb-0" >' . $row['vai_tro_id'] . '</p>
                                             </th>
                                             
                                             
