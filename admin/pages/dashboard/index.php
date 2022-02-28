@@ -25,7 +25,13 @@ include('../../../config/db.php') ?>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  <?php include('../../include/sidebar.php') ?>
+  <?php include('../../include/sidebar.php');
+  $doanhthu = 'SELECT SUM(tong_tien) FROM ve_ban';
+  $resultdoanhthu = executeResult($doanhthu);
+  foreach ($resultdoanhthu as $row) {
+    $now = $row['SUM(tong_tien)'];
+  }
+  ?>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
@@ -44,7 +50,8 @@ include('../../../config/db.php') ?>
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Doanh thu hôm nay</p>
-                <h4 class="mb-0">$53k</h4>
+
+                <h4 class="mb-0"><?= number_format($now, 0, '', ','); ?></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
