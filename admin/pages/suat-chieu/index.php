@@ -2,17 +2,12 @@
 require_once('../../../config/db.php');
 session_start();
 
-//$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
-//$query = mysqli_query($connect, $sql);
-
-include('../../include/check-log.php');
-$sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
-$query = mysqli_query($connect, $sql);
 
 
 include('../../include/check-log.php');
 $sql      = 'SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id ';
 $query = mysqli_query($connect, $sql);
+
 
 
 ?>
@@ -75,17 +70,6 @@ $query = mysqli_query($connect, $sql);
                                     </thead>
                                     <tbody>
 
-                                        <?php 
-                                            $item_per_page=!empty($_GET['per_page'])?$_GET['per_page']:5;
-                                            $current_page=!empty($_GET['page'])?$_GET['page']:1;
-                                             $offset=($current_page-1)*$item_per_page;
-                                        
-                                            $totalRecords=mysqli_query($connect,"select * from phim");
-                                            $totalRecords=$totalRecords->num_rows;
-                                            $totalPages=ceil($totalRecords / $item_per_page);
-                                            $film=mysqli_query($connect,"SELECT phim.id, phim.ten, hinh_anh, phim.ngay_cong_chieu, ngon_ngu,  loai_phim_id, nha_san_xuat, trang_thai FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id order by phim.id DESC limit ".$item_per_page." offset  ".$offset."");
-                                            $no=1;
-                                            while ($row = mysqli_fetch_array($film)) {
 
                                         <?php
                                         $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 5;
@@ -140,13 +124,13 @@ $query = mysqli_query($connect, $sql);
                             </div>
                         </div>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end" style="margin:20px 0">      
-                <?php
-                  include '../../../config/pagination.php'; 
-                ?>
-                </ul> 
-            </nav>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end" style="margin:20px 0">
+                                <?php
+                                include '../../../config/pagination.php';
+                                ?>
+                            </ul>
+                        </nav>
 
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end" style="margin:20px 0">
