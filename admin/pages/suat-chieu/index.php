@@ -132,6 +132,11 @@ $query = mysqli_query($connect, $sql);
                             </ul>
                         </nav>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 93713bc34ba0300ee3378a43e618b2bd5ecd5e27
                     </div>
                 </div>
             </div>

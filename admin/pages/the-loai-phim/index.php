@@ -7,10 +7,10 @@ include('../../include/check-log.php');
 <html lang="en">
 
 <head>
-  <?php
-    include('../../include/libraries.php'); 
-  ?>
-  <title>the loai phim</title>
+    <?php
+    include('../../include/libraries.php');
+    ?>
+    <title>Thể loại phim</title>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -56,17 +56,17 @@ include('../../include/check-log.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql="SELECT * FROM loai_phim";
-                                        $query=mysqli_query($connect,$sql);
+                                        $sql = "SELECT * FROM loai_phim";
+                                        $query = mysqli_query($connect, $sql);
                                         $no = 1;
-                                        while ($row = mysqli_fetch_assoc($query)) {?>
+                                        while ($row = mysqli_fetch_assoc($query)) { ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></th>
                                                 <td><?php echo $row['ten_loai']; ?></td>
                                                 <td>
                                                     <a class="btn btn-warning" style='margin-right: 40px;' href="cap-nhat.php?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa </a>
 
-                                                    <a onclick="return Del('<?=$row['ten_loai']?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
+                                                    <a onclick="return Del('<?= $row['ten_loai'] ?>')" class="btn btn-danger" href="xoa.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -106,7 +106,7 @@ include('../../include/check-log.php');
 </html>
 
 <script type="text/javascript">
-    function Del(name){
+    function Del(name) {
         return confirm("Bạn có chắc chắn muốn xóa: " + name + " ?");
     }
 </script>
