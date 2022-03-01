@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="if-m">
                     <span>Thể loại:</span>
-                    <span><?= $ten_loai_phim['ten'] ?></span>
+                    <span><?= $ten_loai_phim['ten_loai'] ?></span>
                 </div>
                 <div class="if-m">
                     <span>Ngày:</span>

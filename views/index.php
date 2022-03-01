@@ -44,7 +44,7 @@
             <input id="tab2-1" class="mr-t-1px" name="tabs-two" type="radio" checked="checked">
             <div class="tab-ui">
                 <?php
-                $sql = "SELECT * FROM phim WHERE trang_thai = 'Đang chiếu' AND da_xoa = '0'";
+                $sql = "SELECT * FROM phim WHERE trang_thai = 'Đang chiếu' AND da_xoa = '1'";
                 $result = executeResult($sql);
                 foreach ($result as $items) {
                     echo '

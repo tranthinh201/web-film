@@ -25,6 +25,8 @@ if (isset($_GET['suat_chieu'])) {
     <link rel="stylesheet" href="../css/dat-ve.css">
     <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
     <title>Trang chủ</title>
 </head>
 
@@ -54,220 +56,52 @@ if (isset($_GET['suat_chieu'])) {
     </div>
 
     <div class="container">
-        <div class="screen"></div>
-        <div class="row">
-            <span class="seat occupied" style="color: white;">A</span>
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'A') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied"><input value="' . $item['vi_tri_cot'] . '" type="text">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'A') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '</div></br>';
-                }
-            }
-            ?>
-            <span class="seat occupied" style="color: white;">A</span>
+        <!-- <div class="input-box-wrapper">
+            <div class="box">
+                <input type="checkbox" value="Javascript" class="checkbox" id="Javascript">
+                <label for="Javascript"><i class="fa-solid fa-square"></i></label>
+            </div>
+            <div class="box">
+                <input type="checkbox" value="Java" class="checkbox" id="Java">
+                <label for="Java"><i class="fa-solid fa-square"></i></label>
+            </div>
+            <div class="box">
+                <input type="checkbox" value="ReactJS" class="checkbox" id="ReactJS">
+                <label for="ReactJS"><i class="fa-solid fa-square"></i></label>
+            </div>
+
+        </div> -->
+
+        <div class="print-value">
+            <p id="value-list" style="color: white; "></p>
         </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'B') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
+        <div class="input-box-wrapper">
+            <div class="box">
+
+                <?php
+                foreach ($kqghe as $item) {
+                    if (!empty($kqghedat)) {
+                        foreach ($kqghedat as $items) {
+                            if ($item['vi_tri_day'] == 'A') {
+                                if ($item['id'] == $items['ghe_id']) {
+                                    echo ' <input type="checkbox" value="' . $item['id'] . '" class="checkbox" id="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '" disabled>
+                                <label style="color:pink;" for="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '"><i class="fa-solid fa-square"></i></label>';
+                                } else {
+                                    echo ' <input type="checkbox" value="' . $item['id'] . '" class="checkbox" id="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '">
+                                <label for="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '"><i class="fa-solid fa-square"></i></label>';
+                                }
                             }
                         }
+                    } else if ($item['vi_tri_day'] == 'A') {
+                        echo ' <input type="checkbox" value="' . $item['id'] . '" class="checkbox" id="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '">
+                                <label for="' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '"><i class="fa-solid fa-square"></i></label>';
                     }
-                } else if ($item['vi_tri_day'] == 'B') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
                 }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'C') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'C') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'D') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'D') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'E') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'E') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'F') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'F') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'G') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'G') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'H') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'H') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'I') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'I') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($kqghe as $item) {
-                if (!empty($kqghedat)) {
-                    foreach ($kqghedat as $items) {
-                        if ($item['vi_tri_day'] == 'J') {
-                            if ($item['id'] == $items['ghe_id']) {
-                                echo '<div class="seat occupied">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            } else {
-                                echo '<div class="seat">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                            }
-                        }
-                    }
-                } else if ($item['vi_tri_day'] == 'J') {
-                    echo '<div class="seat ">' . $item['vi_tri_cot'] . '' . $item['vi_tri_day'] . '</div></br>';
-                }
-            }
-            ?>
+                ?>
+            </div>
+
         </div>
 
-
-
-
-
-
-
-        <div class="movie-container">
-            <label for="movie">Pick a movie:</label>
-            <select name="movie" id="movie">
-                <option value="10">The Big Lebowski ($10)</option>
-                <option value="12">Fargo ($12)</option>
-                <option value="8">O Brother ($8)</option>
-                <option value="9">No Country for Old Men ($9)</option>
-            </select>
-        </div>
-
-
-        <p class="text">
-            You have selected <span id="count" style="color: white">0</span> seats for a price of $<span id="total">0</span>
-        </p>
 
 
 </body>
@@ -279,179 +113,85 @@ if (isset($_GET['suat_chieu'])) {
 </html>
 
 <style type="text/css">
-    @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
-
-    * {
-        box-sizing: border-box;
-    }
-
-    .movie-container {
-        margin: 20px 0;
-    }
-
-    .movie-container select {
-        background-color: #fff;
-        border: 0;
-        border-radius: 5px;
-        font-size: 14px;
-        font-family: inherit;
-        margin-left: 10px;
-        padding: 5px 15px;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
     .container {
-        perspective: 100%;
-        margin-bottom: 30px;
-        background-color: #242333;
-
+        position: relative;
+        width: 600px;
+        background-color: #232234;
+        padding: 24px;
+        margin: 30px auto;
     }
 
-    .seat {
-        background-color: #444451;
-        /* height: 21px; */
-        padding: 10px 20px;
-        width: 65px;
-        margin: 6px;
-        /* border-top-left-radius: 10px; */
-        /* border-top-right-radius: 10px; */
+    .container .title {
+        font-size: 2rem;
         text-align: center;
-        font-weight: bold;
-        color: antiquewhite;
+        color: white;
+        text-transform: capitalize;
     }
 
-    .seat.selected {
-        background-color: #6feaf6;
-        color: black;
+    .container .input-box-wrapper {
+        position: relative;
     }
 
-    .seat.occupied {
-        background-color: #fff;
-        color: black;
-
-    }
-
-    .seat:nth-of-type(7) {
-        margin-right: 28px;
-    }
-
-    .seat:nth-last-of-type(7) {
-        margin-left: 28px;
-    }
-
-    .seat:not(.occupied):hover {
-        cursor: pointer;
-        transform: scale(1.2);
-    }
-
-    .showcase .seat:not(.occupied):hover {
-        cursor: default;
-        transform: scale(1);
-    }
-
-    .showcase {
-        background: rgba(0, 0, 0, 0.1);
-        padding: 5px 10px;
-        border-radius: 5px;
-        color: #777;
-        list-style-type: none;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .showcase li {
+    .input-box-wrapper .box {
+        position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin: 0 10px;
+        border: 1px solid #383854;
+        border-bottom: 0;
+        padding: 14px 10px;
     }
 
-    .showcase li small {
-        margin-left: 2px;
-    }
 
-    .row {
-        display: flex;
-        justify-content: center;
-    }
 
-    .screen {
-        background-color: #fff;
-        height: 70px;
+    .input-box-wrapper>.box>label {
+        color: white;
+        text-transform: capitalize;
+        margin-left: 20px;
+        display: block;
+        cursor: pointer;
         width: 100%;
-        margin: 15px 0;
-        transform: rotateX(-45deg);
-        box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
     }
 
-    p.text {
-        margin: 5px 0;
+
+    .input-box-wrapper .box .checkbox {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
     }
 
-    p.text span {
-        color: #6feaf6;
+    input[type="checkbox"] {
+        display: none;
     }
 </style>
 
 <script>
-    const container = document.querySelector(".container");
-    const seats = document.querySelectorAll(".row .seat:not(.occupied)");
-    const count = document.getElementById("count");
-    const total = document.getElementById("total");
-    const movieSelect = document.getElementById("movie");
+    var list = document.getElementById('value-list');
+    var text = '<span>Bạn đã chọn: </span>';
+    var listArray = [];
+    var checkboxs = document.querySelectorAll('.checkbox');
+    var text2 = document.querySelectorAll('.input-box-wrapper>.box>label');
+    var hehe = document.querySelectorAll('#value-list>p');
+    for (var check of checkboxs) {
+        check.addEventListener('click', function() {
+            if (this.checked == true) {
+                listArray.push(`<span value="${this.value}">${this.id}</span>`);
+                list.innerHTML = text + listArray.join(' , ');
+                for (var test of text2) {
+                    if (test.htmlFor == this.id) {
+                        test.style.color = 'red';
+                    }
+                }
 
-
-    let ticketPrice = +movieSelect.value;
-
-    // Note: localStorage is not enabled in CodePen for security reasons.
-    function populateUI() {
-        const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
-        if (selectedSeats !== null && selectedSeats.length > 0) {
-            seats.forEach((seat, index) => {
-                if (selectedSeats.indexOf(index) > -1) seat.classList.add("selected");
-            });
-        }
-        const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
-        if (selectedMovieIndex !== null)
-            movieSelect.selectedIndex = selectedMovieIndex;
+            } else {
+                listArray = listArray.filter(e => e !== this.id);
+                list.innerHTML = text + listArray.join(' , ');
+                for (var test of text2) {
+                    if (test.htmlFor == this.id) {
+                        test.style.color = 'white';
+                    }
+                }
+            }
+        })
     }
-
-    function setMovieData(movieIndex, moviePrice) {
-        localStorage.setItem("selectedMovieIndex", movieIndex);
-        localStorage.setItem("selectedMoviePrice", moviePrice);
-    }
-
-    function updateSelectedCount() {
-        const selectedSeats = document.querySelectorAll(".row .seat.selected");
-        // const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
-        // localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
-        const selectedSeatsCount = selectedSeats.length;
-        count.innerText = selectedSeatsCount;
-        total.innerText = selectedSeatsCount * ticketPrice;
-        console.log(selectedSeatsCount)
-    }
-
-    movieSelect.addEventListener("change", (e) => {
-        ticketPrice = +e.target.value;
-        // setMovieData(e.target.selectedIndex, e.target.value);
-        updateSelectedCount();
-    });
-
-    container.addEventListener("click", (e) => {
-        if (
-            e.target.classList.contains("seat") &&
-            !e.target.classList.contains("occupied")
-        ) {
-
-            e.target.classList.toggle("selected");
-            updateSelectedCount();
-
-        }
-    });
-
-    // Init
-    // populateUI();
-    // updateSelectedCount();
 </script>

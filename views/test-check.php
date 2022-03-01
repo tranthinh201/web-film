@@ -5,26 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
     <title>Document</title>
 </head>
 
 <body>
+    <h1 id="myH1" class="democlass" data-seat="hihi">The Element Object</h1>
+    <script type="text/javascript">
+        let attr = element.getAttribute("class");
+        console.log(attr);
+    </script>
     <div class="container">
         <p class="title">
             Chọn ghế ngồi
         </p>
         <div class="input-box-wrapper">
             <div class="box">
-                <input type="checkbox" value="Javascript" class="checkbox" id="Javascript">
-                <label for="Js">Javascript</label>
+                <input type="checkbox" value="Javascript" data="Javascript" class="checkbox" id="Javascript">
+                <label for="Javascript"><i class="fa-solid fa-square"></i></label>
             </div>
             <div class="box">
                 <input type="checkbox" value="Java" class="checkbox" id="Java">
-                <label for="Java">Java</label>
+                <label for="Java"><i class="fa-solid fa-square"></i></label>
             </div>
             <div class="box">
                 <input type="checkbox" value="ReactJS" class="checkbox" id="ReactJS">
-                <label for="ReactJS">ReactJS</label>
+                <label for="ReactJS"><i class="fa-solid fa-square"></i></label>
             </div>
 
         </div>
@@ -81,6 +88,10 @@
         height: 20px;
         cursor: pointer;
     }
+
+    input[type="checkbox"] {
+        display: none;
+    }
 </style>
 
 <script>
@@ -89,14 +100,13 @@
     var listArray = [];
     var checkboxs = document.querySelectorAll('.checkbox');
     var text2 = document.querySelectorAll('.input-box-wrapper>.box>label');
-
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
             if (this.checked == true) {
                 listArray.push(this.value);
                 list.innerHTML = text + listArray.join(' , ');
                 for (var test of text2) {
-                    if (test.outerText == this.value) {
+                    if (test.htmlFor == this.value) {
                         test.style.color = 'red';
                     }
                 }
@@ -105,7 +115,7 @@
                 listArray = listArray.filter(e => e !== this.value);
                 list.innerHTML = text + listArray.join(' , ');
                 for (var test of text2) {
-                    if (test.outerText == this.value) {
+                    if (test.htmlFor == this.value) {
                         test.style.color = 'white';
                     }
                 }
