@@ -30,7 +30,7 @@ session_start();
             ?>
         </nav>
         <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="./them-the-loai.php">Thêm mới</a>
+            <a class="btn btn-outline-success me-2" href="./add_dinh-dang-phim.php">Thêm mới</a>
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
@@ -77,9 +77,7 @@ session_start();
                                                     <a class=' font-weight-bold text-xs btn btn-warning' style='margin-right: 40px;' data-toggle='tooltip' data-original-title='Edit user' href="edit_dinh-dang-phim.php?id=<?php echo $row['id']; ?>"> <i class="far fa-edit"></i> Sửa
                                                     </a>
 
-                                                    <button onclick='deleteId("<?= $row['id'] ?>")' class=' font-weight-bold text-xs btn btn-danger' data-toggle='tooltip'>
-                                                    <i class='fas fa-trash'></i> delete
-                                                    </button>
+                                                    <a onclick="return Del('<?=$row['ten']?>')" class="btn btn-danger" href="del_dinh-dang-phim.php?id=<?php echo $row['id']; ?>"> <i class='fas fa-trash'></i> Xóa</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -126,16 +124,7 @@ session_start();
 </html>
 
 <script type="text/javascript">
-    function deleteId(id) {
-        var option = confirm('Bạn có chắc chắn muốn xoá thể loại phim này không?')
-        if (!option) {
-            return;
-        }
-        $.post('./xoa.php', {
-            'id': id,
-            'action': 'delete'
-        }, function(data) {
-            location.reload()
-        })
+        function Del(name){
+        return confirm("Bạn có chắc chắn muốn xóa: " + name + " ?");
     }
 </script>

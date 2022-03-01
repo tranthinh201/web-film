@@ -133,7 +133,10 @@ $query = mysqli_query($connect, $sql);
                         </nav>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc6131e779b32247d76a05529aa618746f6f9ead
                     </div>
                 </div>
             </div>
