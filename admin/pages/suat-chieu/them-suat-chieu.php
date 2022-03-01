@@ -5,7 +5,7 @@ session_start();
 include('../../include/check-log.php');
 if ($_GET['id']) {
     $id       = $_GET['id'];
-    $sql = 'SELECT * FROM phim WHERE id ="PH0001"';
+    $sql = 'SELECT * FROM phim WHERE id ="' . $id . '"';
     $query_up = mysqli_query($connect, $sql);
     $row_up = mysqli_fetch_assoc($query_up);
 }
