@@ -62,7 +62,7 @@ include('../../include/check-log.php');
                                         $query = mysqli_query($connect, $sql);
                                         $no = 1;
                                         while ($row = mysqli_fetch_assoc($query)) { ?>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td><?php echo $no++; ?></th>
                                                 <td><?php echo $row['ten']; ?></td>
                                                 <td><?php echo $row['dang_ban']; ?></td>

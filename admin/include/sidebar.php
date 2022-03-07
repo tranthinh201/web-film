@@ -41,7 +41,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Định dạng phim</span>
                 </a>
-            </li>            
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="../nguoi-dung/">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -58,6 +58,7 @@
                     <span class="nav-link-text ms-1">Danh sách suất chiếu</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link text-white " href="../loai-ve">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -77,7 +78,7 @@
             <li class="nav-item">
                 <a class="nav-link text-white " href="../do-an">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fas fa-cookie"></i>
+                        <i class="fas fa-cookie"></i>
                     </div>
                     <span class="nav-link-text ms-1">Danh sách đồ ăn</span>
                 </a>

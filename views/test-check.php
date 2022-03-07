@@ -100,7 +100,9 @@
     var listArray = [];
     var checkboxs = document.querySelectorAll('.checkbox');
     var text2 = document.querySelectorAll('.input-box-wrapper>.box>label');
+
     for (var check of checkboxs) {
+
         check.addEventListener('click', function() {
             if (this.checked == true) {
                 listArray.push(this.value);

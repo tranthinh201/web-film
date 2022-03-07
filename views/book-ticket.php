@@ -172,10 +172,11 @@ if (isset($_GET['suat_chieu'])) {
     var checkboxs = document.querySelectorAll('.checkbox');
     var text2 = document.querySelectorAll('.input-box-wrapper>.box>label');
     var hehe = document.querySelectorAll('#value-list>p');
+    console.log(listArray)
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
             if (this.checked == true) {
-                listArray.push(`<span value="${this.value}">${this.id}</span>`);
+                listArray.push(this.id);
                 list.innerHTML = text + listArray.join(' , ');
                 for (var test of text2) {
                     if (test.htmlFor == this.id) {
