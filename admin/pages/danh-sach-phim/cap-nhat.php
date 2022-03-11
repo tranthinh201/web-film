@@ -1,5 +1,5 @@
 <?php
-require_once('../../../config/db.php');
+require_once('../../../config/sql_cn.php');
 session_start();
 include('../../include/check-log.php');
 
@@ -35,6 +35,7 @@ if (!empty($_POST)) {
     $nation = $_POST['nation'];
     $producer = $_POST['producer'];
     $synopsis = $_POST['synopsis'];
+    $synopsis = str_replace('"', '\\"', $synopsis);
     if ($_FILES['image']['name'] == "") {
         $image = $item['hinh_anh'];
     } else {
@@ -49,9 +50,12 @@ if (!empty($_POST)) {
         $sql = 'UPDATE phim SET ten = "' . $name . '", thoi_luong = ' . $time . ',  gioi_han_tuoi = ' . $age . ',
         ngay_cong_chieu = "' . $date . '", ngon_ngu = "' . $language . '", dien_vien = "' . $cast . '", quoc_gia = "' . $nation . '", nha_san_xuat =  "' . $producer . '", tom_tat =  "' . $synopsis . '", trang_thai =  "' . $status . '", hinh_anh = "' . $image . '", loai_phim_id = "' . $type . '"
         where id = "' . $id . '"';
-
-        execute($sql);
-        echo "<script language='javascript'>alert('Cập nhật phim thành công!')</script>";
+        $result = mysqli_query($conn, $sql);
+        if ($result == true) {
+            echo "<script language='javascript'>alert('Cập nhật phim thành công!')</script>";
+        } else {
+            echo "<script language='javascript'>alert('Cập nhật phim thất bại!')</script>";
+        }
     }
 }
 ?>

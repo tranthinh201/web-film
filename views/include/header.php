@@ -20,19 +20,8 @@
             <div class="navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item nav-item-arrow-down nav-hover-show-sub">
-                        <a class="nav-link" href="#">Homepage</a>
+                        <a class="nav-link" href="./index.php">Trang chủ</a>
                         <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
-                        <ul class="collapse nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="homepage-1.html">Homepage 1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="homepage-2.html">Homepage 2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="homepage-3.html">Homepage 3</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item nav-item-arrow-down nav-hover-show-sub">
                         <a class="nav-link" href="#" data-role="nav-toggler">Pages</a>
@@ -114,7 +103,21 @@
                     </li>
                 </ul>
                 <div class="navbar-extra">
-                    <a class="btn-theme btn" href="#"><i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;Buy Ticket</a>
+                    <?php
+                    if (isset($_SESSION['user-client'])) {
+                        $sql = 'SELECT * FROM khach_hang where email = "' . $_SESSION['user-client'] . '"';
+                        $result = executeResult($sql);
+                        foreach ($result as $row) {
+                            echo '<a href="javascript:void(0)"><i class="fas fa-user"></i>&nbsp;&nbsp' . $row['ho_ten'] . '&nbsp;&nbsp/&nbsp;&nbsp<a href="./logout.php">Đăng xuất</a></a>';
+                        }
+                    } else {
+                        echo '<a href="./login.php"><i class="fas fa-user"></i>&nbsp;&nbspĐăng nhập';
+                    }
+                    ?>
+                    </a>
+                </div>
+                <div class="navbar-extra">
+                    <a class="btn-theme btn" href="#"><i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;Mua vé</a>
                 </div>
             </div>
         </nav>
