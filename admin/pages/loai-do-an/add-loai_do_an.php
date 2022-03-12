@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5 d-flex">
                 <li class=" breadcrumb-item text-sm"><a class="opacity-5 text-dark text-decoration-none color-background"></a>Pages</li>
                 <li class="breadcrumb-item text-sm text-dark" aria-current="page">Danh sách loại đồ ăn</li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thêm loại do an</li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thêm loại đồ ăn</li>
             </ol>
         </nav>
         <nav class="navbar navbar-light bg-light">

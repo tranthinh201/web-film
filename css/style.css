@@ -94,26 +94,43 @@ select:focus {
 .tab-ui {
   display: flex !important;
   flex-wrap: wrap;
-  width: 100vw !important;
+  width: 90vw !important;
 }
 
 .item-movie {
   margin: 20px 20px 20px 0;
 }
 
-.image-movie {
-  height: 250px;
+.image-movie {  
+
+  margin-left: 20px;
+/*   max-height: 100%; */
+  height: 390px;
+  width: 300px;
 }
 
 .image-movie > img {
-  height: inherit;
+  height:100%;
+  max-width: 78%;
+  border-radius: 10px;
 }
 .name-movie {
   margin-top: 20px;
+  max-width: 86%;
+  text-align: center;
 }
 
-.name-movie > span {
+.name-movie >a> span {
   text-transform: uppercase;
+  font-size: 17px;
+  font-weight: bold;
+  color: #ff8a00;
+
+}
+.name-movie> a > span:hover
+{
+  text-decoration: underline;
+  /* cursor: pointer; */
 }
 
 .image-movie {
@@ -125,6 +142,7 @@ select:focus {
   visibility: visible;
   opacity: 1;
   transition: all 0.5s;
+  border-radius: 10px;
 }
 
 .booking-movie {
@@ -137,6 +155,7 @@ select:focus {
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s;
+  max-width: 80%
 }
 
 .booking-movie > .button {
