@@ -76,7 +76,7 @@
             <label for="tab2-2" class="border-bottom">PHIM SẮP CHIẾU</label>
             <input id="tab2-2" class="mr-t-1px" name="tabs-two" type="radio">
             <div class="tab-ui">
-                <div class="item-movie">
+                <div class="item-movie" >
                     <div class="image-movie">
                         <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
                         <div class="booking-movie">
@@ -84,40 +84,9 @@
                         </div>
                     </div>
                     <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
-                    </div>
-                </div>
-                <div class="item-movie">
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
-                    </div>
-                </div>
-                <div class="item-movie">
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
-                    </div>
-                </div>
-                <div class="item-movie">
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
                     </div>
                 </div>
                 <div class="item-movie" >
@@ -128,7 +97,9 @@
                         </div>
                     </div>
                     <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
                     </div>
                 </div>
                 <div class="item-movie" >
@@ -139,7 +110,74 @@
                         </div>
                     </div>
                     <div class="name-movie">
-                        <span>SPIDER-MAN NO WAY HOME</span>
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-movie" >
+                    <div class="image-movie">
+                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
+                        <div class="booking-movie">
+                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        </div>
+                    </div>
+                    <div class="name-movie">
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-movie" >
+                    <div class="image-movie">
+                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
+                        <div class="booking-movie">
+                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        </div>
+                    </div>
+                    <div class="name-movie">
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-movie" >
+                    <div class="image-movie">
+                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
+                        <div class="booking-movie">
+                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        </div>
+                    </div>
+                    <div class="name-movie">
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-movie" >
+                    <div class="image-movie">
+                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
+                        <div class="booking-movie">
+                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        </div>
+                    </div>
+                    <div class="name-movie">
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-movie" >
+                    <div class="image-movie">
+                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
+                        <div class="booking-movie">
+                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        </div>
+                    </div>
+                    <div class="name-movie">
+                        <a href="Javascript:void(0)">
+                            <span>SPIDER-MAN NO WAY HOME</span>
+                        </a>
                     </div>
                 </div>
             </div>
