@@ -147,40 +147,33 @@ if (isset($_GET['id'])) {
                 </section>
             </div>
         </div>
-        <?php
-        $i = 0;
-        while ($i < 7) { ?>
-            <article class="movie-line-entity">
-                <div class="entity-extra" style="width: 100%">
-                    <div class="text-uppercase entity-extra-title">Lịch chiếu</div>
-                    <div class="entity-showtime">
-                        <div class="showtime-wrap">
-                            <?php
+        select * from suat_chieu
+        where suat_chieu.ngay_chieu > now() + INTERVAL 7 day;
 
-                            $date = new DateTime();
+        <article class="movie-line-entity">
+            <div class="entity-extra" style="width: 100%">
+                <div class="text-uppercase entity-extra-title">Lịch chiếu</div>
+                <div class="entity-showtime">
+                    <div class="showtime-wrap">
+                        <?php
 
-                            $sql = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), id  FROM suat_chieu WHERE ngay_chieu = "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
-                            var_dump($sql);
-                            $result = executeResult($sql);
-                            foreach ($result as $row) {
-                                echo '
-                                    <div class="showtime-item">
-                                        <a href="./book-ticket.php?id=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">' . date('H:i', strtotime($row['TIME(gio_bat_dau)']))  . '</a>
-                                    </div>
-                                ';
-                            }
-                            // $date = strtotime("+1 day");
-                            // echo date('d/m/Y', $date);
-                            ?>
-                        </div>
+                        $date = new DateTime();
+                        $sql = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), phim.id id_phim, suat_chieu.id FROM phim, suat_chieu WHERE phim.id = suat_chieu.phim_id AND ngay_chieu = "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';;
+                        $result = executeResult($sql);
+
+                        foreach ($result as $row) {
+                            echo '<div class="showtime-item">
+                                     <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">' . date('H:i', strtotime($row['TIME(gio_bat_dau)']))  . '</a>
+                                    </div>';
+                        }
+
+                        // $date = strtotime("+1 day");
+                        // echo date('d/m/Y', $date);
+                        ?>
                     </div>
                 </div>
-            </article>
-        <?php
-            $i = $i + 1;
-        }
-
-        ?>
+            </div>
+        </article>
     </div>
 
 
