@@ -33,7 +33,7 @@
                         <a class="nav-link" href="./ticket-price.php">Giá vé</a>
                     </li>
                     <li class="nav-item nav-hover-show-sub">
-                        <a class="nav-link" href="contact-us.html">Giới thiệu</a>
+                        <a class="nav-link" href="./contact-us.php">Giới thiệu</a>
                     </li>
                 </ul>
                 <div class="navbar-extra">
