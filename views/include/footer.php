@@ -15,7 +15,7 @@
                     <p class="footer-text">245 Hoàng Quốc Việt, Cầu Giấy,
                         <br />Hà Nội
                     </p>
-                    <p class="footer-text">Số điệN thoại:&nbsp;&nbsp;0964888777</p>
+                    <p class="footer-text">Số điện thoại:&nbsp;&nbsp;0964888777</p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
@@ -51,7 +51,7 @@
                         <a class="content-link" href="#">Blog</a>
                     </li>
                     <li>
-                        <a class="content-link" href="#">Sụ kiện</a>
+                        <a class="content-link" href="#">Sự kiện</a>
                     </li>
                     <li>
                         <a class="content-link" href="#">Trung tâm hỗ trợ</a>

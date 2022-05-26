@@ -10,6 +10,9 @@ if (isset($_POST['submit']) && $_POST['email'] != '' && $_POST['password'] != ''
     $password = md5($_POST['password']);
     require_once '../../config/sql_cn.php';
     $sql = "select * from khach_hang where email='$email' and mat_khau='$password'";
+    
+
+
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['user-client'] = $email;
@@ -23,3 +26,4 @@ if (isset($_POST['submit']) && $_POST['email'] != '' && $_POST['password'] != ''
     $_SESSION['thongbao'] = "Vui lòng nhập đầy đủ thông tin!";
     header("location: ./include/sign-in.php");
 }
+
