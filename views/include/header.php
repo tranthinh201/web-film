@@ -24,7 +24,7 @@
                         <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
                     </li>
                     <li class="nav-item nav-hover-show-sub">
-                        <a class="nav-link" href="./demo.php">Lịch chiếu phim</a>
+                        <a class="nav-link" href="./lich-chieu.php">Lịch chiếu phim</a>
                     </li>                    
                     <li class="nav-item nav-hover-show-sub">
                         <a class="nav-link" href="./movies-list.php">Phim</a>

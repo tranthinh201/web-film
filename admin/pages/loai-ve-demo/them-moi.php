@@ -6,14 +6,17 @@ require_once('../../../config/db.php');
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $sql = 'INSERT INTO gia_ve(ten, don_gia) VALUES ("' . $name . '", "' . $price . '")';
-    $query = mysqli_query($connect, $sql);
-
-    if ($query == true) {
-        echo "<script language='javascript'>alert('Thêm mới thành công!')</script>";
-    } else {
-        echo "<script language='javascript'>alert('Thêm mới thất bại!')</script>";
-    }
+    echo gettype($name);
+    var_dump($name);
+    // foreach($name as $key => $value) {
+    //     var_dump($key);
+       
+    // }
+    // if ($query == true) {
+    //     echo "<script language='javascript'>alert('Thêm mới thành công!')</script>";
+    // } else {
+    //     echo "<script language='javascript'>alert('Thêm mới thất bại!')</script>";
+    // }
     // header('location:index.php');
 }
 
