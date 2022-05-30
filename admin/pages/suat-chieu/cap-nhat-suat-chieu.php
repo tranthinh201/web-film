@@ -9,31 +9,45 @@ if ($_GET['id']) {
     $query_up = mysqli_query($connect, $sql);
     $item = mysqli_fetch_assoc($query_up);
 }
-$gio_bat_dau = "";
-$gio_ket_thuc = "";
-$ngay_chieu = "";
-$phong_chieu = "";
-$dinh_dang_phim = "";
-if (!empty($_POST)) {
+// $gio_bat_dau = "";
+// $gio_ket_thuc = "";
+// $ngay_chieu = "";
+// $phong_chieu = "";
+// $dinh_dang_phim = "";
+if (isset($_POST['submit'])) {
+
     $gio_bat_dau = $_POST['gio-bat-dau'];
     $gio_ket_thuc = $_POST['gio-ket-thuc'];
     $ngay_chieu = $_POST['ngay-chieu'];
     $phong_chieu = $_POST['phong-chieu'];
     $dinh_dang_phim = $_POST['dinh-dang-phim'];
 
+    if ($_POST['gio-bat-dau']&&$_POST['gio-ket-thuc'] == "") 
+    {
+        $gio_bat_dau=$item['gio_bat_dau'];
+        $gio_ket_thuc=$item['gio_ket_thuc'];
+    }
 
-    if ($ngay_chieu != '') {
+    else
+    {
+        $gio_bat_dau = $_POST['gio-bat-dau'];
+        $gio_ket_thuc = $_POST['gio-ket-thuc'];
+
+;
+    }
         $sql = 'UPDATE suat_chieu SET gio_bat_dau = "' . $gio_bat_dau . '", gio_ket_thuc = "' . $gio_ket_thuc . '",  ngay_chieu = "' . $ngay_chieu . '",
         phong_chieu_id = "' . $phong_chieu . '", dinh_dang_phim_id = "' . $dinh_dang_phim . '"
         where id = "' . $id . '"';
+        // var_dump($sql);
+        // die();
 
-        execute($sql);
+        $query=mysqli_query($connect,$sql);
         echo "<script language='javascript'>alert('Cập nhật thành công!')</script>";
         header('Location: ./danh-sach.php?id=' . $item['phim_id'] . '');
-    }
+    
 }
 
-die();
+
 ?>
 
 
@@ -57,7 +71,7 @@ die();
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5 d-flex" ">
                 <li class=" breadcrumb-item text-sm"><a class="opacity-5 text-dark text-decoration-none color-background"></a>Pages</li>
                 <li class="breadcrumb-item text-sm text-dark" aria-current="page">Danh sách phim</li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Thêm phim mới</li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Sửa suất chiếu</li>
             </ol>
         </nav>
         <nav class="navbar navbar-light bg-light">
@@ -65,16 +79,16 @@ die();
         </nav>
     </nav>
     <div class="container-fluid py-4" style="height:85vh">
-        <form method="post" class="form-control w-50 d-flex flex-column justify-content-center m-auto" enctype="multipart/form-data">
+        <form method="POST" class="form-control w-50 d-flex flex-column justify-content-center m-auto" enctype="multipart/form-data">
             <div class="d-flex w-100 mb-4 justify-content-around">
 
                 <div class="w-50">
                     <label class="form-label">Giờ bắt đầu</label>
-                    <input type="datetime-local" class="form-control" name="gio-bat-dau" value="<?= $item['gio_bat_dau'] ?>">
+                    <input type="datetime-local" class="form-control" name="gio-bat-dau" value="<?= date('Y-m-d\TH:i', strtotime($item['gio_bat_dau']));  ?>">
                 </div>
                 <div class="w-50">
                     <label class="form-label">Giờ kết thúc</label>
-                    <input type="datetime-local" class="form-control" name="gio-ket-thuc" value="<?= $item['gio_ket_thuc'] ?>">
+                    <input type="datetime-local" class="form-control" name="gio-ket-thuc" value="<?= date('Y-m-d\TH:i', strtotime($item['gio_ket_thuc'])); ?>">
                 </div>
             </div>
             <div class=" d-flex w-100 mb-4 justify-content-around">
@@ -100,15 +114,15 @@ die();
             <div class="d-flex w-100 mb-4 justify-content-around">
                 <div class="w-100">
                     <select class="form-select" aria-label="Default select example" name="dinh-dang-phim">
-                        <?php
+<!--                         <?php
                         $sql = "SELECT * FROM dinh_dang_phim";
                         $result = executeResult($sql);
                         foreach ($result as $rows) {
                             echo '
-                                <option value="' . $rows['id'] . '">' . $rows['ten'] . '</option>
+                                <option value="' . $rows['id'] . '">' . $rows['id'] . '</option>
                             ';
                         }
-                        ?>
+                        ?> -->
 
                         <?php
                         $select_dinhdang = "SELECT * FROM dinh_dang_phim";
@@ -123,7 +137,7 @@ die();
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Cập nhật</button>
+            <button name="submit" class="btn btn-primary">Cập nhật</button>
         </form>
     </div>
     <?php
