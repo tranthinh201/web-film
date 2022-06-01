@@ -122,7 +122,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                                     <a href="./dat-ve.php?id=' . $row['id'] . '">Mua vé</a>
                                                 </div>
                                                 <div class="detail-film">
-                                                    <a href="#">Chi tiết</a>
+                                                    <a href="./chi-tiet-phim.php?id=' . $row['id'] . '">Chi tiết</a>
                                                 </div>
                                             </div>
                                         </article>
@@ -202,7 +202,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                         </div>
                                         <div class="d-over">
                                             <div class="entity-play">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href=../image/phim/' . $row['hinh_anh'] . '" data-magnific-popup="image">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href= "<iframe width="560" height="315" src="https://www.youtube.com/embed/TcMBFSGVi1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
