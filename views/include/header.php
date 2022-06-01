@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <div class="navbar-extra">
-                    <a class="btn-theme btn" href="#"><i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;Mua vé</a>
+                    <a class="btn-theme btn" href="./movies-list.php"><i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;Mua vé</a>
                 </div>
             </div>
         </nav>
