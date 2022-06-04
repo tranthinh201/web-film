@@ -323,7 +323,7 @@ if (isset($_GET['suat_chieu'])) {
                 <!--  -->
             </div>
         
-            <div id="value-list">
+            <div id="value-list" style="opacity: 0;">
     
             </div>
         </div>
