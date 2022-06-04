@@ -202,7 +202,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                         </div>
                                         <div class="d-over">
                                             <div class="entity-play">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href= "<iframe width="560" height="315" src="https://www.youtube.com/embed/TcMBFSGVi1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href= "" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
