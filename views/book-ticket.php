@@ -1,9 +1,14 @@
 <?php include('../config/db.php');
 session_start();
 if (!isset($_SESSION['user-client'])) {
-    echo '<script>alert("dang nhap di cu")</script>';
-    header("Location: /phim/views/login.php");
+    echo '<script>confirm("dang nhap di cu")</script>';
+    header("Location: ./login.php");
 }
+// else
+// {
+//     header("Location:./dat-ve.php");
+// }
+
 if (isset($_GET['suat_chieu'])) {
     $id       = $_GET['suat_chieu'];
     $nsql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, phim.ngon_ngu, phim.ten, phim.thoi_luong, phim.gioi_han_tuoi, phim.hinh_anh, loai_phim.ten_loai FROM loai_phim, suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
@@ -76,7 +81,7 @@ if (isset($_GET['suat_chieu'])) {
                         Chọn loại vé
                     </li>
                     <li>
-                        Đặt lại<i></i>
+                      <a href=""><i class="fas fa-redo"></i> Đặt lại</a>
                     </li>
                 </ul>
             </div>
@@ -323,7 +328,7 @@ if (isset($_GET['suat_chieu'])) {
                 <!--  -->
             </div>
         
-            <div id="value-list" style="opacity: 0;">
+            <div id="value-list" >
     
             </div>
         </div>
@@ -449,7 +454,8 @@ if (isset($_GET['suat_chieu'])) {
   
     var list = document.getElementById('value-list');
     var valueListSeat = document.getElementById('value-list-seat')
-    var text = '<span>Ghế bạn vừa chọn là: </span>';
+    var text = '<span>Ghế bạn vừa chọn là: </span> ';
+    var confirm='<a href="checkout.php" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
     var listArray = [];
     var listSeat = [];
     var checkboxs = document.querySelectorAll('.checkbox');
@@ -468,7 +474,7 @@ if (isset($_GET['suat_chieu'])) {
                 else {
                     listArray.push(`<input type="text" value = ${this.value} class = "input-check-seat" name="is-seat[]">`);
                     // listSeat.push(`<span>${this.id}</span>`)
-                    list.innerHTML = text + listArray.join(' , ');
+                    list.innerHTML = text + listArray.join(' , ')+confirm;
                     for (var test of text2) {
                         if (test.htmlFor == this.id) {
                             test.style.backgroundColor = 'black';
@@ -479,7 +485,7 @@ if (isset($_GET['suat_chieu'])) {
                 listArray = listArray.filter(e => e !== `<input type="text" value = ${this.value} class = "input-check-seat" name="is-seat[]">`);
                 listSeat = listSeat.filter(e => e !== `<span>${this.id}</span>`);
                 // valueListSeat.innerHTML = text + listSeat.join(", ")
-                list.innerHTML = listArray.join(' , ');
+                list.innerHTML = text +listArray.join(' , ') +confirm;
                 console.log(listArray)
                 for (var test of text2) {
                     if (test.htmlFor == this.id) {

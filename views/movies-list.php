@@ -1,5 +1,14 @@
 
-<?php include('../config/db.php') ?>
+<?php 
+include('../config/db.php');
+session_start();
+if (!isset($_SESSION['user-client'])) {
+    echo '<script>confirm("dang nhap di cu")</script>';
+    header("Location: ./login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,134 +41,68 @@
             <input id="tab2-1" class="mr-t-1px" name="tabs-two" type="radio" checked="checked">
             <div class="tab-ui">
                 <?php
-                $sql = "SELECT * FROM phim WHERE trang_thai = 'Đang chiếu' AND da_xoa = '0'";
+                $sql = "SELECT phim.id,phim.ten,phim.hinh_anh,phim.thoi_luong,loai_phim.ten_loai kind_movie FROM phim INNER JOIN loai_phim ON phim.loai_phim_id=loai_phim.id WHERE phim.trang_thai = 'Đang chiếu' AND phim.da_xoa = '0'";
                 $result = executeResult($sql);
                 foreach ($result as $items) {
                     echo '
                     <div class="item-movie">
                         <div class="image-movie">
                             <img src="../image/phim/' . $items['hinh_anh'] . '" alt="phim">
+
                             <div class="booking-movie">
                                 <a href="./dat-ve.php?id=' . $items['id'] . '" class="button">Đặt vé</a>
                             </div>
+                            <div class="info-movie">
+                                <ul class="intu">
+                                    <li><span>Thể loại</span>:'.$items['kind_movie'].'</li>
+                                    <li><span>Thời lượng</span> : '.$items['thoi_luong'].' phút </li>
+                                </ul>
+                            </div>                            
                         </div>
                         <div class="name-movie">
-                        <a href="./dat-ve.php?id=' . $items['id'] . '" class="button"><span>' . $items['ten'] . '</span></a>
+                        <a href="./chi-tiet-phim.php?id=' . $items['id'] . '" class="button"><span>' . $items['ten'] . '</span></a>
                         </div>
+
                     </div>
                     ';
                 }
                 ?>
+
             </div>
+
         </div>
         <div class="tab-2" >
             <label for="tab2-2" class="border-bottom">PHIM SẮP CHIẾU</label>
             <input id="tab2-2" class="mr-t-1px" name="tabs-two" type="radio">
             <div class="tab-ui">
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                <?php
+                $sql = "SELECT phim.id,phim.ten,phim.hinh_anh,phim.thoi_luong,loai_phim.ten_loai kind_movie FROM phim INNER JOIN loai_phim ON phim.loai_phim_id=loai_phim.id WHERE phim.trang_thai = 'Sắp chiếu' AND phim.da_xoa = '0'";
+                $result = executeResult($sql);
+                foreach ($result as $items) {
+                    echo '
+                    <div class="item-movie">
+                        <div class="image-movie">
+                            <img src="../image/phim/' . $items['hinh_anh'] . '" alt="phim">
+
+                            <div class="booking-movie">
+                                <a href="./dat-ve.php?id=' . $items['id'] . '" class="button">Đặt vé</a>
+                            </div>
+                            <div class="info-movie">
+                                <ul class="intu">
+                                    <li><span>Thể loại</span>:'.$items['kind_movie'].'</li>
+                                    <li><span>Thời lượng</span> : '.$items['thoi_luong'].' phút </li>
+                                </ul>
+                            </div>                            
                         </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
+                        <div class="name-movie">
+                        <a href="./chi-tiet-phim.php?id=' . $items['id'] . '" class="button"><span>' . $items['ten'] . '</span></a>
                         </div>
+
                     </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="item-movie" >
-                    <div class="image-movie">
-                        <img src="https://www.galaxycine.vn/media/2021/12/7/1350x900_1638861163467.jpg" alt="phim">
-                        <div class="booking-movie">
-                            <a href="./mua-ve.php?id" class="button">Đặt vé</a>
-                        </div>
-                    </div>
-                    <div class="name-movie">
-                        <a href="Javascript:void(0)">
-                            <span>SPIDER-MAN NO WAY HOME</span>
-                        </a>
-                    </div>
-                </div>
+                    ';
+                }
+                ?>
+
             </div>
         </div>
     </div>

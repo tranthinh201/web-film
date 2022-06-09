@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
             </ol>
         </nav>
         <nav class="navbar navbar-light bg-light">
-            <a class="btn btn-outline-success me-2" href="../suat-chieu/">Trở về</a>
+            <a class="btn btn-outline-success me-2" href="../suat-chieu/danh-sach.php?id=<?= $id ?>">Trở về</a>
         </nav>
     </nav>
     <div class="container-fluid py-4" style="height:85vh">

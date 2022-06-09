@@ -26,3 +26,18 @@
         } 
     }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php
+    include './include/library.php'
+?>
+    <title>thanh toán</title>
+</head>
+<body>
+    <h2>hellooo</h2>
+</body>
+<?php
+    include './include/library.php'; 
+?>
+</html>

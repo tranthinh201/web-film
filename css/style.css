@@ -183,3 +183,19 @@ select:focus {
 .mr-t-1px {
   margin-top: -1px;
 }
+.name-movie
+{
+  padding-top: 30px;
+}
+.intu > li
+{
+  position: relative;
+  margin-left: -25px;
+  text-decoration: none;
+  list-style: none;
+}
+.intu > li >span
+{
+  font-weight: bold;
+ 
+}
