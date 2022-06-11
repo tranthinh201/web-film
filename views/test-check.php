@@ -1,5 +1,4 @@
-
-  <?php include('../config/db.php');
+<?php include('../config/db.php');
 session_start();
 if (!isset($_SESSION['user-client'])) {
     echo '<script>alert("dang nhap di cu")</script>';
@@ -7,12 +6,18 @@ if (!isset($_SESSION['user-client'])) {
 }
 if (isset($_GET['suat_chieu'])) {
     $id       = $_GET['suat_chieu'];
-    $nsql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, phim.ngon_ngu, phim.ten, phim.thoi_luong, phim.gioi_han_tuoi, phim.hinh_anh, loai_phim.ten_loai FROM loai_phim, suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
+    $nsql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.ngay_chieu, 
+                        suat_chieu.dinh_dang_phim_id, phim.ngon_ngu, phim.ten, phim.thoi_luong, 
+                        phim.gioi_han_tuoi, phim.hinh_anh, loai_phim.ten_loai, TIME(gio_ket_thuc), TIME(gio_bat_dau)
+                    FROM loai_phim, suat_chieu, phim 
+                    WHERE phim.loai_phim_id = loai_phim.id AND suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
+   
+
     $query = mysqli_query($connect, $nsql);
     $item  = mysqli_fetch_assoc($query);
    
 
-    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot, ghe_ngoi.loai_ghe_id
+    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot
                 FROM ghe_ngoi
                 LEFT JOIN ve_ban
                 ON ghe_ngoi.id = ve_ban.ghe_id AND  ve_ban.suat_chieu_id = '$id'
@@ -22,215 +27,600 @@ if (isset($_GET['suat_chieu'])) {
                 ON phong_chieu.id = ghe_ngoi.phong_chieu_id
                 WHERE phong_chieu.id = ".$item['phong_chieu_id']."
                 ORDER BY ghe_ngoi.id ASC";
-     var_dump($data);
-
+    
+    $rowData = "SELECT DISTINCT ghe_ngoi.vi_tri_day
+                  FROM ghe_ngoi
+                  WHERE ghe_ngoi.phong_chieu_id = ".$item['phong_chieu_id']."";
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Movie Seat Booking</title>
-  </head>
-  <body>
-    <div class="movie-container">
-      <label> Select a movie:</label>
-      <select id="movie">
-        <option value="220">Godzilla vs Kong (RS.220)</option>
-        <option value="320">Radhe (RS.320)</option>
-        <option value="250">RRR (RS.250)</option>
-        <option value="260">F9 (RS.260)</option>
-      </select>
-    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap -->
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- Animate.css -->
+    <link href="../animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome iconic font -->
+    <link href="../fontawesome/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+    <!-- Magnific Popup -->
+    <link href="../magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- Slick carousel -->
+    <link href="../slick/slick.css" rel="stylesheet" type="text/css" />
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <!-- Theme styles -->
+    <link href="../css/dot-icons.css" rel="stylesheet" type="text/css">
+    <link href="../css/theme.css" rel="stylesheet" type="text/css">
+    <link href="../css/booking.css" rel='stylesheet' type='text/css'>
+    <title>Đặt vé phim <?= $item['ten'] ?></title>
+</head>
 
-    <ul class="showcase">
-      <li>
-        <div class="seat"></div>
-        <small>Available</small>
-      </li>
-      <li>
-        <div class="seat selected"></div>
-        <small>Selected</small>
-      </li>
-      <li>
-        <div class="seat sold"></div>
-        <small>Sold</small>
-      </li>
-    </ul>
+<body>
+    <?php include('./include/header.php'); ?>
+    <section class="after-head d-flex section-text-white position-relative">
+        <div class="d-background" data-image-src="http://via.placeholder.com/1920x1080" data-parallax="scroll"></div>
+        <div class="d-background bg-black-80"></div>
+        <div class="top-block top-inner container">
+            <div class="top-block-content">
+                <h1 class="section-title">Đặt vé</h1>
+                <div class="page-breadcrumbs">
+                    <a class="content-link" href="./index.php">Trang chủ</a>
+                    <span class="text-theme mx-2"><i class="fas fa-chevron-right"></i></span>
+                    <a class="content-link" href="./dat-ve.php?id=<?= $id; ?>"><?= $item['ten'] ?></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="after-head d-flex section-text-white position-relative" style="background-color: #f9f6ec;">
+        <div class="container">
+            <div class="header-book-seat">
+                <h2>Chọn ghế</h2>
+                <ul class="book-seat-right">
+                    <li>
+                      <a href="javascript:void(0)">
+                      <i class="fas fa-dollar-sign"></i>
+                        Chọn loại vé
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">
+                        <i class="fas fa-redo"></i>
+                        Đặt lại
+                      </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
     <div class="container">
-      <div class="screen"></div>
-
-      <div class="row">
-        <?php
-          $resultData = executeResult($data);
-         
-          foreach($resultData as $value) {
-            if($value['vi_tri_day'] == "A") {
-              if($value['suat_chieu_id'] == NULL) {
+        <div class="screen">
+            <img src="../image/banner/bg_screen.gif" class="img-banner-screen" alt="banner">
+            <strong class="text-screen">
+                Screen
+            </strong>
+        </div>
+<!-- ------------------------LIST SEAT------------------------------ -->
+        <div class="input-box-wrapper">
+          <div class="list-row-seat">
+            <?php
+              $resultDataRow = executeResult($rowData);
+              foreach($resultDataRow as $row) {
                 echo '
-                  <div class="seat" type-seat= "'.$value['loai_ghe_id'].'" id-seat="'.$value['id'].'">'.$value['vi_tri_cot'].''.$value['vi_tri_day'].'</div>
+                <div class="box">
+                  <label class="name-row">
+                      '.$row['vi_tri_day'].'
+                  </label>
+                </div>
                 ';
               }
-              else {
-                echo '
-                  <div class="seat sold" type-seat= "'.$value['loai_ghe_id'].'" id-seat="'.$value['id'].'">'.$value['vi_tri_cot'].''.$value['vi_tri_day'].'</div>
-                ';
-              }
-            } 
-          }
-        ?>
-      </div>
+            ?>
+          </div>
+          <div class="list-seat-choose">
+            <div class="<?= $item['phong_chieu_id'] == 1 ? "box room-one" : "box room-tw" ?>">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'A') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'B') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'C') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'D') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'E') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'F') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'G') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'H') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'I') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'J') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'K') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'L') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+          </div>   
+      </div> 
+    </div>
+<!-- ------------------------LIST SEAT-------------------------- -->
 
-    <p class="text">
-      You have selected <span id="count">0</span> seat for a price of RS.<span
-        id="total"
-        >0</span
-      >
-    </p>
-    <script src="script.js"></script>
-  </body>
+
+<!-- ------------------------SEAT INFOR ----------------------- -->
+<div class="container">
+    <div class="note-seat">
+        <ul class="seat-infor">
+            <li>
+                <i class="fas fa-square" style="color:red"></i>
+                <span>Ghế đã có chủ</span>
+            </li>
+            <li>
+                <i class="fas fa-square" style="color:848484"></i>
+                <span>Ghế đã chưa đặt</span>
+            </li>
+            <li>
+                <i class="fas fa-square" style="color:black"></i>
+                <span>Ghế đang chọn</span>
+            </li>
+            <li>
+                <i class="fas fa-square" style="color:green"></i>
+                <span>Ghế không thể chon</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="border-bottom: 1px solid gray;"></div>   
+<!-- ------------------------SEAT INFOR ----------------------- -->
+
+
+<!-- -----------------------PRODUCT------------------------=--- -->
+<div class="product-show">
+    <div class="container">
+        <div class="product">
+            <h2 class="content-product">
+                Đặt hàng sản phẩm
+            </h2>
+            <div class="list-product">
+                <div class="item-product">
+                    <div class="image-product">
+                        <img src="https://media.lottecinemavn.com/Media/WebAdmin/ddbf689b2c5046f8845b64b1ed3c51ca.jpg" alt="">
+                    </div>
+                    <div class="name-product">
+                        <a href="javascript:void(0)">HARMONY COMBO</a>
+                    </div>
+                    <div class="price-product">
+                        <span class="dash-price">
+                            Giá bán online
+                        </span>
+                        <span class="price">
+                            110.000Đ
+                        </span>
+                    </div>
+                </div>
+                <div class="item-product">
+                    <div class="image-product">
+                        <img src="https://media.lottecinemavn.com/Media/WebAdmin/ddbf689b2c5046f8845b64b1ed3c51ca.jpg" alt="">
+                    </div>
+                    <div class="name-product">
+                        <a href="javascript:void(0)">HARMONY COMBO</a>
+                    </div>
+                    <div class="price-product">
+                        <span class="dash-price">
+                            Giá bán online
+                        </span>
+                        <span class="price">
+                            110.000Đ
+                        </span>
+                    </div>
+                </div>
+                <div class="item-product">
+                    <div class="image-product">
+                        <img src="https://media.lottecinemavn.com/Media/WebAdmin/4a1e32e319b34e8fa657bd7f025115e0.png" alt="">
+                    </div>
+                    <div class="name-product">
+                        <a href="javascript:void(0)">Jurassic Solo Combo</a>
+                    </div>
+                    <div class="price-product">
+                        <span class="dash-price">
+                            Giá bán online
+                        </span>
+                        <span class="price">
+                            110.000Đ
+                        </span>
+                    </div>
+                </div>
+                <div class="item-product">
+                    <div class="image-product">
+                        <img src="https://media.lottecinemavn.com/Media/WebAdmin/b877b2c0595c449b9bd319bb8b64e20b.png" alt="">
+                    </div>
+                    <div class="name-product">
+                        <a href="javascript:void(0)">OTTO COMBO</a>
+                    </div>
+                    <div class="price-product">
+                        <span class="dash-price">
+                            Giá bán online
+                        </span>
+                        <span class="price">
+                            110.000Đ
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -----------------------PRODUCT---------------------------- -->
+
+<!-- ----------------------BTN-NEXT --------------------------- -->
+<div class="btn-next">
+    <div class="container">
+        <a href="javascript:void(0)" class="btn-container">
+            <i class="fas fa-long-arrow-alt-left"></i>
+            Trở lại
+        </a>
+        <a href="javascript:void(0)" class="btn-container">
+            Bước tiếp theo
+            <i class="fas fa-long-arrow-alt-right"></i>
+        </a>
+    </div>
+</div>
+<!-- ----------------------BTN-NEXT --------------------------- -->
+
+<!-- ----------------------TOTAL-MOVIE------------------------- -->
+<div class="total-movie">
+    <div class="container">
+        <div class="item-movie">
+            <p class="title-item-movie">Phim chiếu rạp</p>
+            <div class="box-item-movie">
+                <div class="image-box-item-movie">
+                    <img src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
+                </div>
+                <div class="infor-movie">
+                    <div class="name-mocie">
+                        <p><?= $item['ten'] ?></p>
+                    </div>
+                    <div class="type-movie">
+                        <p><?= $item['dinh_dang_phim_id'] ?></p>
+                    </div>
+                    <div class="age-watch-movie">
+                        <p><?= $item['gioi_han_tuoi'] ?> tuổi trở lên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin vé đặt</p>
+            <div class="infor-ticket">
+                <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Ngày chiếu
+                        </li>
+                        <li>
+                            Giờ chiếu
+                        </li>
+                        <li>
+                            Rạp chiếu
+                        </li>
+                        <li>
+                            Ghế ngồi
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <?= $item['ngay_chieu'] ?>
+                        </li>
+                        <li>
+                            <?= $item['TIME(gio_bat_dau)'] ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
+                        </li>
+                        <li>
+                            Vincom Nguyễn Chí Thanh
+                        </li>
+                        <li id="value-list">
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="total-price-tiket">
+                    <span>20.000Đ</span>
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin sản phẩm</p>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Tổng tiền đơn hàng</p>
+            <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Đặt trước phim
+                        </li>
+                        <li style="margin-top: 0;">
+                            Đồ uống
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            200.000Đ
+                        </li>
+                        <li style="margin-top: 0;">
+                            120.000Đ
+                        </li>
+                    </ul>
+            </div>
+            <div class="total-price-tiket" style="margin-top: 60px;">
+                <span>320.000Đ</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------TOTAL-MOVIE------------------------- -->
+
+
+<?php
+    include('./include/footer.php')
+?>
+
+</body>
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../js/swiper-bundle.min.js"></script>
+
 </html>
 
-
 <script>
-    const container = document.querySelector(".container");
-const seats = document.querySelectorAll(".row .seat:not(.sold)");
-const count = document.getElementById("count");
-const total = document.getElementById("total");
-const movieSelect = document.getElementById("movie");
+
+  
+    var list = document.getElementById('value-list');
+    var valueListSeat = document.getElementById('value-list-seat')
+    var listArray = [];
+    var listSeat = [];
+    var checkboxs = document.querySelectorAll('.checkbox');
+    var text2 = document.querySelectorAll('.list-seat-choose>.box>label');
+    var hehe = document.querySelectorAll('#value-list>p');
+    var box = document.getElementsByClassName('box');
+    console.log(box)
+    for (var check of checkboxs) {
+        check.addEventListener('click', function() {
+             console.log(listSeat)
+            if (this.checked == true) {
+                console.log(this)
+                if(listArray.length > 5) {
+                    alert('Bạn chỉ có thể đặt tối đa 6 ghế')
+                }
+                else {
+                    listArray.push(`${this.id}`);
+                    // listSeat.push(`<span>${this.id}</span>`)
+                    list.innerHTML = listArray.join(' , ');
+                    for (var test of text2) {
+                        if (test.htmlFor == this.id) {
+                            test.style.backgroundColor = 'black';
+                        }
+                    }
+                }
+            } else {
+                listArray = listArray.filter(e => e !== `${this.id}">`);
+                listSeat = listSeat.filter(e => e !== `<span>${this.id}</span>`);
+                list.innerHTML = listArray.join(' , ');
+                console.log(listArray)
+                for (var test of text2) {
+                    if (test.htmlFor == this.id) {
+                        test.style.backgroundColor = '#848484';
+                    }
+                }
+            }
+        })
+    }
 
 
+    var arraySeat = [];
+    var seat = document.querySelectorAll('.seat')
+    for(var checkSeat of seat) {
+        checkSeat.addEventListener('click', function() {
+            console.log(checkSeat);
+            checkSeat.style.backgroundColor = 'back'
+        })
+    }
 
-// Seat click event
-container.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("seat") &&
-    !e.target.classList.contains("sold")
-  ) {
-    e.target.classList.toggle("selected");
-
-  }
-});
-
+    
 </script>
-
-
-<style>
-    @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #242333;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: "Lato", sans-serif;
-  margin: 0;
-}
-
-.movie-container {
-  margin: 20px 0;
-}
-
-.movie-container select {
-  background-color: #fff;
-  border: 0;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-left: 10px;
-  padding: 5px 15px 5px 15px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.container {
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
-
-.seat {
-  background-color: #444451;
-  margin: 3px;
-  font-size: 50px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.seat.selected {
-  background-color: green;
-}
-
-.seat.sold {
-  background-color: #fff;
-  color: black
-}
-
-.seat:nth-of-type(2) {
-  margin-right: 18px;
-}
-
-.seat:nth-last-of-type(2) {
-  margin-left: 18px;
-}
-
-.seat:not(.sold):hover {
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-.showcase .seat:not(.sold):hover {
-  cursor: default;
-  transform: scale(1);
-}
-
-.showcase {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #777;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-}
-
-.showcase li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-}
-.showcase li small {
-  margin-left: 2px;
-}
-
-.row {
-  display: flex;
-}
-
-.screen {
-  background-color: #fff;
-  height: 120px;
-  width: 100%;
-  margin: 15px 0;
-  transform: rotateX(-48deg);
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
-}
-
-p.text{
-    margin: 5px 0;
-}
-
-p.text span{
-    color: rgb(158, 248, 158);
-}
-</style>
