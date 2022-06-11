@@ -5,7 +5,7 @@ include('../../include/check-log.php');
 
 if (isset($_GET['id'])) {
     $id       = $_GET['id'];
-    $sql      = 'SELECT suat_chieu.id, ten, ngay_chieu, phong_chieu_id, TIME(gio_bat_dau), TIME(gio_ket_thuc), dinh_dang_phim_id, phim_id FROM phim, suat_chieu WHERE suat_chieu.phim_id = phim.id AND  phim_id = "' . $id . '"';
+    $sql      = 'SELECT suat_chieu.id, ten, ngay_chieu, phong_chieu_id, TIME(gio_bat_dau), TIME(gio_ket_thuc), dinh_dang_phim_id, phim_id FROM phim, suat_chieu WHERE suat_chieu.phim_id = phim.id AND phim_id = "' . $id . '" order by suat_chieu.ngay_chieu DESC';
     $query = mysqli_query($connect, $sql);
 }
 

@@ -35,7 +35,7 @@ if (isset($_GET['suat_chieu'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Trang chủ</title>
+    <title>chọn chỗ ngồi</title>
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Animate.css -->
@@ -455,7 +455,7 @@ if (isset($_GET['suat_chieu'])) {
     var list = document.getElementById('value-list');
     var valueListSeat = document.getElementById('value-list-seat')
     var text = '<span>Ghế bạn vừa chọn là: </span> ';
-    var confirm='<a href="checkout.php" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
+    var confirm='<a href="checkout.php?id=<?= $id; ?>" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
     var listArray = [];
     var listSeat = [];
     var checkboxs = document.querySelectorAll('.checkbox');

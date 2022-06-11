@@ -13,6 +13,7 @@ if (isset($_GET['id'])) {
 
     $loai_phim      = 'SELECT * FROM loai_phim WHERE loai_phim.id = ' . $item['loai_phim_id'] . '';
     $query_loai_phim = mysqli_query($connect, $loai_phim);
+    
     $ten_loai_phim  = mysqli_fetch_assoc($query_loai_phim);
 }
 ?>

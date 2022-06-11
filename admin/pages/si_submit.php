@@ -5,7 +5,7 @@ if (isset($_SESSION['user'])) {
     header('location: ../pages/dashboard');
 }
 
-var_dump($_SESSION['user']);
+// var_dump($_SESSION['user']);
 
 if (isset($_POST['submit']) && $_POST['username'] != '' && $_POST['password'] != '') {
     $username = $_POST['username'];

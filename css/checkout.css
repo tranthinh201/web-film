@@ -1,0 +1,441 @@
+#container {
+    position: relative;
+    min-width: 980px;
+    border-top: 1px solid #e9e4d2;
+    min-height: 669px;
+}
+#container .sub
+{
+	margin: 39px 0 0;
+}
+#content 
+{
+	position: relative;
+	min-height: 400px;
+}
+.orderPayment {
+    width: 100%;
+    padding: 50px 0;
+    background: #f9f6ec;
+}
+
+.ad-banner.wing_banner.left_banner {
+    left: 50%;
+    margin-left: -660px;
+}
+.ad-banner.wing_banner {
+    position: absolute;
+    top: 145px;
+    width: 160px;
+    height: 300px;
+}
+.left_banner {
+    position: relative;
+    top: 146px;
+    left: -170px;
+}
+div {
+	display: block;
+}
+a {
+    text-decoration: none;
+    color: #555;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+}
+.ad-banner.wing_banner.right_banner {
+    right: 50%;
+    margin-right: -660px;
+}
+
+.ad-banner.wing_banner {
+    position: absolute;
+    top: 145px;
+    width: 160px;
+    height: 300px;
+}
+.right_banner {
+    position: absolute;
+    top: 146px;
+    right: -170px;
+}
+.orderPayment {
+    width: 100%;
+    padding: 50px 0;
+    background: #f9f6ec;
+}
+.orderCont {
+    width: 980px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #231f20;
+}
+.orderCont .order_tit {
+    padding-bottom: 30px;
+    font-size: 28px;
+    color: #231f20;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.tableRet {
+    width: 100%;
+    border-top: 2px solid #231f20;
+}
+colgroup {
+    display: table-column-group;
+}
+.tableRet tfoot {
+    border-top: 1px solid #f9f6ec;
+    background: #dad2b4;
+}
+.tableRet tfoot .mount dt {
+    font-size: 18px;
+}
+.tableRet tfoot .mount dd {
+    float: right;
+}
+.tableRet tfoot .mount dt {
+    float: left;
+}
+.tableRet tfoot td {
+    line-height: 74px;
+    padding: 0 50px 0 147px;
+}
+.tableRet td {
+    vertical-align: top;
+}
+.tableRet tfoot td {
+    padding: 0 50px;
+    line-height: 80px;
+}
+.tableRet tbody tr:first-child {
+    border-top: none;
+}
+.tableRet tbody tr {
+    border-top: 1px solid #dedede;
+    background: #fff;
+}
+.tableRet tbody td {
+    padding: 20px 0 20px 30px;
+    vertical-align: middle;
+}
+.tableRet tbody th, .tableRet tbody td {
+    padding: 30px 0 30px 30px;
+}
+.tableRet .thumImg {
+    display: inline-block;
+    width: 108px;
+    vertical-align: middle;
+    text-align: center;
+}
+.order_Lbox2 {
+    display: inline-block;
+    margin-left: 9px;
+    width: 623px;
+    vertical-align: middle;
+}
+.table_typeC.tableRet td.sum {
+    padding-right: 50px;
+}
+.table_typeC.tableRet tbody td {
+    padding: 20px 0 20px 30px;
+    vertical-align: middle;
+}
+.tableRet tbody td {
+    padding: 30px 0 30px 30px;
+}
+.tableRet td {
+    vertical-align: top;
+}
+.tableRet .thumImg img {
+    width:85px;
+    height: 104px;
+}
+.order_Lbox2 {
+    display: inline-block;
+    margin-left: 9px;
+    width: 623px;
+    vertical-align: middle;
+}
+.order_title {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #231f20;
+}
+ ul, li {
+    list-style: none;
+}
+.order_tList li.bg_none {
+    padding-left: 0;
+    background: none;
+}
+.order_tList li {
+    display: inline-block;
+    padding: 0 10px;
+    background: url(/LCHS/Image/Bg/bg_line_order.gif) no-repeat 0 50%;
+    color: #231f20;
+    font-size: 13px;
+    line-height: 20px;
+}
+.tableRet .sum em {
+    font-weight: bold;
+}
+.dcPayment {
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+    padding: 38px 0 50px;
+    font-size: 14px;
+    color: #231f20;
+}
+.dcPayment_inner {
+    position: relative;
+}
+.dcPayment .dc_tit {
+    padding-bottom: 10px;
+    font-size: 24px;
+}
+.stepBox.step1 {
+    margin-top: 20px;
+}
+.stepBox {
+    margin-top: 20px;
+    background: #fff;
+}
+.stepBox > dt.on {
+    background: #282e34;
+    border: 1px solid #282e34;
+}
+.stepBox > dt {
+    background: #f5f5f5;
+    border: 1px solid #dedede;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+.stepBox > dt.on a {
+    color: #cdc197;
+    background: url(/LCHS/Image/Btn/btn_order_on.png) no-repeat 925px 50%;
+}
+.stepBox > dt a {
+    height: 70px;
+    padding: 25px 30px;
+    display: block;
+    background: url(/LCHS/Image/Btn/btn_order_off.png) no-repeat 925px 50%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.stepBox > dd.on {
+    display: block;
+}
+.payMethod > dd {
+    padding: 30px 30px 50px;
+}
+.wallet_choice {
+    display: block;
+    padding-bottom: 20px;
+}
+.stepBox > dd {
+    display: none;
+    padding-bottom: 30px;
+    border: 1px solid #dedede;
+    border-top: none;
+}
+.stepBox > dt.on {
+    background: #282e34;
+    border: 1px solid #282e34;
+}
+.stepBox > dt {
+    background: #f5f5f5;
+    border: 1px solid #dedede;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+.pay_card {
+    padding: 36px 0;
+    border-top: 1px solid #999;
+    background: #f9f6ec;
+    text-align: center;
+}
+.pay_card {
+    padding: 36px 0;
+    border-top: 1px solid #999;
+    background: #f9f6ec;
+    text-align: center;
+}
+.payMethod .wallet_choice dt {
+    display: block;
+    width: auto;
+    padding: 21px 0 9px;
+}
+.payMethod .wallet_choice dd {
+    display: block;
+}
+.payMethod .walletKind {
+    width: 100%;
+}
+.payMethod .walletKind > li:first-child {
+    margin-left: 0;
+}
+.payMethod .walletKind > li {
+    float: left;
+    margin-left: 7px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.payMethod .walletKind > li > a {
+    display: table;
+    height: 40px;
+    padding: 0 15px 0 20px;
+    word-break: break-all;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.stepBox a {
+    color: #231f20;
+}
+.agree_box {
+    height: 167px;
+    margin-bottom: 0;
+    padding: 20px;
+    border: 1px solid #dedede;
+    overflow-y: auto;
+    background: #f9f6ec;
+    font-size: 14px;
+    color: #666;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.mt20 {
+    margin-top: 20px !important;
+}
+.agree_box > strong:first-child {
+    margin-top: 0;
+}
+.agree_box > strong {
+    margin: 45px 0 15px;
+    color: #231f20;
+}
+.agree_box strong {
+    display: inline-block;
+    font-weight: bold;
+}
+.agree_box p {
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+.agree_box ul {
+    padding-left: 10px;
+    line-height: 24px;
+}
+.agree_box ul, .agree_box p {
+    margin-bottom: 0;
+}
+.agree_box p {
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+.mb10 {
+    margin-bottom: 10px !important;
+}
+.mt10 {
+    margin-top: 10px !important;
+}
+input {
+    margin: 0;
+    padding: 0;
+}
+input, select, textarea {
+    font-size: 12px;
+    font-family: 'NanumGothic';
+    color: #555;
+    vertical-align: middle;
+}
+.btn_wrap {
+    width: 100%;
+    background: #cdc197;
+    position: absolute;
+}
+.btn_inner {
+    width: 980px;
+    margin: 0 auto;
+    line-height: 50px;
+}
+.btn_inner .btn_prev {
+    float: left;
+    padding-left: 29px;
+    background: url(/LCHS/Image/Btn/btn_total_prev02.png) no-repeat 0 50%;
+}
+.paymentBar {
+    background: #282e34 url(/LCHS/Image/Bg/bg_paymentBar_01.gif) repeat-y top center;
+    font-size: 14px;
+}
+.paymentCont {
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+}
+.paymentCont dl {
+    float: left;
+    width: 326px;
+    min-height: 150px;
+    padding: 30px 30px 26px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.paymentCont .total_tit {
+    margin-bottom: 16px;
+    color: #cdc197;
+    font-size: 14px;
+    font-weight: bold;
+}
+.paymentCont dd {
+    position: relative;
+    min-height: 80px;
+    padding-bottom: 24px;
+}
+.order_List li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.order_List li strong {
+    float: left;
+    color: #a7a9ac;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.order_List li p {
+    float: right;
+    color: #fff;
+}
+.paymentCont .price {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+.paymentCont .price strong {
+    font-family: 'linlivertine';
+    font-size: 24px;
+}

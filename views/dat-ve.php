@@ -1,5 +1,12 @@
 <?php include('../config/db.php');
 include('../config/sql_cn.php');
+
+
+session_start();
+if (!isset($_SESSION['user-client'])) {
+    echo '<script>confirm("dang nhap di cu")</script>';
+    header("Location: ./login.php");
+}
 if (isset($_GET['id'])) {
     $id       = $_GET['id'];
     $sql      = 'SELECT * FROM phim, loai_phim WHERE phim.loai_phim_id = loai_phim.id AND phim.id = "' . $id . '"';
