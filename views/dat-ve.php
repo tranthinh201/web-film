@@ -53,7 +53,7 @@ if (isset($_GET['id'])) {
                         <?php
 
                         $date = new DateTime();
-                        $sql = 'select * from suat_chieu where suat_chieu.ngay_chieu > now()';
+                        $sql ='select * from suat_chieu where suat_chieu.gio_bat_dau > now() AND suat_chieu.phim_id = "'.$id .'"';
                         $result = executeResult($sql);
 
                         foreach ($result as $row) {
@@ -118,6 +118,7 @@ if (isset($_GET['id'])) {
     <script src="../js/fescript.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ4Qy67ZAILavdLyYV2ZwlShd0VAqzRXA&callback=initMap"></script>
     <script async defer src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js"></script>
+
 </body>
 
 </html>
