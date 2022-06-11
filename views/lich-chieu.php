@@ -51,100 +51,97 @@
     </ul>
   </div>
 </div>
-<!-- <div class="container" id="lich-chieu>
-    <div class="demo-frame">
-      <div class="slick slick-tab">
-          <?php
-            $date = new DateTime();
-            for ($i = 1; $i <= 14; $i++) {
-                echo '<div>'. $date->add(new DateInterval('P1D'))->format('d/m') . '</div>';
-            }
-          ?>
-      </div>
-      <div class="slick slick-content">
-          <?php
-            $date = new DateTime();
-            for ($i = 1; $i <= 14; $i++) {
-                $sql = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id
-                        FROM suat_chieu, phim
-                        WHERE suat_chieu.phim_id = phim.id
-                        AND ngay_chieu = "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
-                        
-                $result = executeResult($sql);
-                echo '<div>';
-                foreach ($result as $row) {
-                    echo '    
-                        <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">
-                        ' . date('H:i', strtotime($row['TIME(gio_bat_dau)']))  . '
-                        ' . $row['dinh_dang_phim_id']  . '
-                        ' . $row['phong_chieu_id']  . '
-                        </a>
-                    ';
-                }
-                echo '</div>';
-            }
-          ?>
-      </div>
-  </div>
-</div> -->
 
-<div class="container" id="lich-chieu">
-    <div class="demo-frame">
-      <div class="slick slick-tab">
+<div id="lich-chieu">
+
+  <div class="container">
+      <div class="demo-frame">
+        <div class="slick slick-tab">
+            <?php
+              $date = new DateTime();
+              for ($i = 1; $i <= 14; $i++) {
+                  echo '<div>'. $date->add(new DateInterval('P1D'))->format('d/m') . '</div>';
+              }
+            ?>
+        </div>
+        <div class="slick slick-content">
           <?php
             $date = new DateTime();
-            for ($i = 1; $i <= 14; $i++) {
-                echo '<div>'. $date->add(new DateInterval('P1D'))->format('d/m') . '</div>';
-            }
-          ?>
-      </div>
-      <div class="slick slick-content">
-        <?php
-          $date = new DateTime();
-          for ($i = 0; $i <= 14; $i++) {
-                echo '<div>';
-                    $sql = 'SELECT DISTINCT phim.ten, phim.id
-                            FROM phim, suat_chieu
-                            WHERE phim.id = suat_chieu.phim_id AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
-                    $query = mysqli_query($connect, $sql);
-                      while ($row = mysqli_fetch_array($query)) {?>
-                          <div>
-                                <!-- HTML -->
-                                  <a href=""><?= $row['ten']  ?></a>
-                                <!-- HTML -->
-                            <?php
-                                $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
-                                            FROM suat_chieu, phim
-                                            WHERE suat_chieu.phim_id = phim.id
-                                            AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
-                                            AND suat_chieu.phim_id = "'.$row['id'].'"';
-                                $q = mysqli_query($connect, $sqlInfor);
-                                var_dump($sqlInfor);
-                                
-                                $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
-                                            FROM suat_chieu, phim, ve_ban
-                                            WHERE suat_chieu.phim_id = phim.id
-                                            AND suat_chieu.id = ve_ban.suat_chieu_id
-                                            AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
-                                            AND suat_chieu.phim_id = "'.$row['id'].'"';
-                              
+            for ($i = 0; $i <= 14; $i++) {
+                  echo '<div>';
+                      $sql = 'SELECT DISTINCT phim.ten, phim.id
+                              FROM phim, suat_chieu
+                              WHERE phim.id = suat_chieu.phim_id AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
+                      $query = mysqli_query($connect, $sql);
+                  
+                        while ($row = mysqli_fetch_array($query)) {?>
+                            <div>
+                                  <!-- HTML -->
+                                    <a href="./chi-tiet-phim.php?id="><?= $row['ten']  ?></a>
+                                  <!-- HTML -->
+                              <div class="show-time-box">
+                              <?php
+                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
+                                              FROM suat_chieu, phim
+                                              WHERE suat_chieu.phim_id = phim.id
+                                              AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
+                                              AND suat_chieu.phim_id = "'.$row['id'].'" 
+                                              ORDER BY suat_chieu.gio_bat_dau ASC';
+                                  $q = mysqli_query($connect, $sqlInfor);
+                                  
+                                  $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
+                                              FROM suat_chieu, phim, ve_ban
+                                              WHERE suat_chieu.phim_id = phim.id
+                                              AND suat_chieu.id = ve_ban.suat_chieu_id
+                                              AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
+                                              AND suat_chieu.phim_id = "'.$row['id'].'"';
 
-                                while ($rows = mysqli_fetch_array($q)) {?>
-                                    <div>
-                                        <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">
-                                          <?= date('H:i', strtotime($rows['TIME(gio_bat_dau)'])) ?>
-                                          <?= $rows['dinh_dang_phim_id']  ?>
-                                          <?= $rows['phong_chieu_id']  ?>
-                                          <?= $rows['ngay_chieu']  ?>
-                                        </a>
-                                    </div>
-                                <?php } ?> 
-                            </div> 
-                      <?php } ?>
-                </div>
-            <?php } ?>          
+                                  $querySeat = mysqli_query($connect, $sqlSeat);
+                                  $item  = mysqli_fetch_assoc($querySeat);
+                      
+                      
+                                  
+                                  while ($rows = mysqli_fetch_array($q)) {?>
+                                      <?php
+                                        $sumSeat = 'SELECT  COUNT(ghe_ngoi.vi_tri_cot)
+                                                    FROM ghe_ngoi, phong_chieu
+                                                    WHERE phong_chieu.id = ghe_ngoi.phong_chieu_id
+                                                    AND ghe_ngoi.phong_chieu_id = '.$rows['phong_chieu_id'].'';
+                                              $querySum = mysqli_query($connect, $sumSeat);
+                                              $itemSum  = mysqli_fetch_assoc($querySum);
+                                      ?>
+                                      <div class="show-time">
+                                          <div class="dinh-dang">
+                                            <?= $rows['dinh_dang_phim_id']  ?> | Phụ đề
+                                          </div>
+                                          <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" class="btn-time btn btn-show-time" aria-disabled="true">
+                                            
+                                          <div class="phong-chieu">
+                                            <span>
+                                              SCREEN <?= $rows['phong_chieu_id']  ?>
+                                            </span>
+                                          </div>
+  
+                                          <div class="time-start">
+                                            <?= date('H:i', strtotime($rows['TIME(gio_bat_dau)'])) ?>
+                                          </div>
+  
+                                          <div class="seat-sum">
+                                              <?= $item['COUNT(ve_ban.suat_chieu_id)']  ?> /
+                                              <?= $itemSum['COUNT(ghe_ngoi.vi_tri_cot)']   ?>
+                                          </div>
+  
+                                          </a>
+                                      </div>
+                                  <?php } ?> 
+                              </div> 
+                        <?php } ?>
+                            </div>
+                  </div>
+              <?php } ?>          
+          </div>
     </div>
-
+</div>
 
 </body>
 </html>
@@ -179,18 +176,46 @@
     display:none !important
   }
 
+
+
   .slick-tab .slick-slide {
-        padding:5px 15px;text-align: center;
+        padding:5px 35px;
+        text-align: center;
+        background-color: white;
   }
   .slick-tab .slick-current{
     border-bottom:solid 2px blue
   }
 
   .slick-content .slick-slide{
-    background:#ddd;padding:15px;min-height: 200px;
+    background: white;
+    padding:15px;min-height: 200px;
   }
-  /*#endregion*/
+  
 
+  .btn-show-time {
+    background-color: white;
+    color: black;
+    border: 1px solid #e5e5e5;
+  }
+
+  #lich-chieu {
+    background-color: #f9f6ec;
+  }
+
+  .phong-chieu, .seat-sum, .time-start {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 2px;
+  }
+
+
+  .show-time-box {
+    display: flex;
+  }
+
+  .show-time {
+    margin: 10px;
+  }
 </style>
 
 <script src="../js/jquery-3.6.0.min.js"></script>
