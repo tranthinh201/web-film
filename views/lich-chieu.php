@@ -77,18 +77,18 @@
                         while ($row = mysqli_fetch_array($query)) {?>
                             <div>
                                   <!-- HTML -->
-                                    <a href="./chi-tiet-phim.php?id="><?= $row['ten']  ?></a>
+                                    <a href="./chi-tiet-phim.php?id=<?= $row['id']  ?>"><?= $row['ten']  ?></a>
                                   <!-- HTML -->
                               <div class="show-time-box">
                               <?php
-                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
+                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id suat, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
                                               FROM suat_chieu, phim
                                               WHERE suat_chieu.phim_id = phim.id
                                               AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
                                               AND suat_chieu.phim_id = "'.$row['id'].'" 
                                               ORDER BY suat_chieu.gio_bat_dau ASC';
                                   $q = mysqli_query($connect, $sqlInfor);
-                                  
+                                 
                                   $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
                                               FROM suat_chieu, phim, ve_ban
                                               WHERE suat_chieu.phim_id = phim.id
@@ -114,7 +114,7 @@
                                           <div class="dinh-dang">
                                             <?= $rows['dinh_dang_phim_id']  ?> | Phụ đề
                                           </div>
-                                          <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" class="btn-time btn btn-show-time" aria-disabled="true">
+                                          <a href="./book-ticket.php?suat_chieu=<?= $rows['suat']  ?>" class="btn-time btn btn-show-time" aria-disabled="true">
                                             
                                           <div class="phong-chieu">
                                             <span>
