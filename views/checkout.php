@@ -1,5 +1,5 @@
 <?php
-    require('../config/db.php');
+require('../config/db.php');
 session_start();
 if (!isset($_SESSION['user-client'])) {
     echo '<script>confirm("dang nhap di cu")</script>';
