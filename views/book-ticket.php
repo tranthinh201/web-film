@@ -591,7 +591,6 @@ if (isset($_GET['suat_chieu'])) {
     var text = '<span>Ghế bạn vừa chọn là: </span> ';
     var confirm='<a href="checkout.php?id=<?= $id;?>" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
 =======
->>>>>>> 796e2e3064d635e6be8bf45471668e9b8e21ac9b
     var listArray = [];
     var listIdSeat = [];
     var checkboxs = document.querySelectorAll('.checkbox');
