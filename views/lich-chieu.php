@@ -13,8 +13,6 @@
     <?php
       include('./include/library.php');
     ?>
-
-    
     <title>Lịch chiếu phim</title>
 </head>
 <body>
@@ -22,16 +20,16 @@
   include('./include/header.php');
 ?>
 <div class="banner-lich-chieu">
-  <img src="../image/banner/banner-lich-chieu.jpg" alt="bannẻ page lịch chiếu" class="w-100">
+  <img src="../assets/image/banner/banner-lich-chieu.jpg" alt="bannẻ page lịch chiếu" class="w-100">
 </div>
 
 <div class="contnt-cinema">
   <div class="container">
     <div class="d-flex p-2 h4">
-      <div class="p-2">
+      <div class="p-2 h5">
         Phủ Lý
       </div>
-      <div class="table-price-ticket p-2 border border-primary">
+      <div class="table-price-ticket p-2 border border-primary h6" style="border-color: black !important;">
         <a href="javascript:void(0)">Bảng giá vé</a>
       </div>
     </div>
@@ -53,7 +51,6 @@
 </div>
 
 <div id="lich-chieu">
-
   <div class="container">
       <div class="demo-frame">
         <div class="slick slick-tab">
@@ -89,17 +86,6 @@
                                               ORDER BY suat_chieu.gio_bat_dau ASC';
                                   $q = mysqli_query($connect, $sqlInfor);
                                  
-                                  $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
-                                              FROM suat_chieu, phim, ve_ban
-                                              WHERE suat_chieu.phim_id = phim.id
-                                              AND suat_chieu.id = ve_ban.suat_chieu_id
-                                              AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
-                                              AND suat_chieu.phim_id = "'.$row['id'].'"';
-
-                                  $querySeat = mysqli_query($connect, $sqlSeat);
-                                  $item  = mysqli_fetch_assoc($querySeat);
-                      
-                      
                                   
                                   while ($rows = mysqli_fetch_array($q)) {?>
                                       <?php
@@ -109,6 +95,16 @@
                                                     AND ghe_ngoi.phong_chieu_id = '.$rows['phong_chieu_id'].'';
                                               $querySum = mysqli_query($connect, $sumSeat);
                                               $itemSum  = mysqli_fetch_assoc($querySum);
+
+                                        $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
+                                                    FROM suat_chieu, phim, ve_ban
+                                                    WHERE suat_chieu.phim_id = phim.id
+                                                    AND suat_chieu.id = ve_ban.suat_chieu_id
+                                                    AND suat_chieu.id =  "'.$rows['suat'].'"';
+                
+                                  
+                                              $querySeat = mysqli_query($connect, $sqlSeat);
+                                              $item  = mysqli_fetch_assoc($querySeat);
                                       ?>
                                       <div class="show-time">
                                           <div class="dinh-dang">
@@ -141,8 +137,28 @@
               <?php } ?>          
           </div>
     </div>
+    <div  style="background-color: #f9f6ec;">
+      <div class="container">
+        <ul>
+          <li>Lịch chiếu phim có thể thay đổi và được báo trước</li>
+          <li>Thời gian bắt đầu chiếu phim có thể chênh lệch 15 phút do chiếu quảng cáo, giới thiệu phim ra rạp</li>
+        </ul>
+      </div>
+    </div>
 </div>
 
+<div class="mt-5" id="vi-tri-rap">
+  <div class="container">
+    <div class="text-address">
+      <h4 class="p-2">Vị trí của rạp chiếu</h4>
+    </div>
+    <div class="maps">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12524.713903500506!2d105.79341840623455!3d21.047896623520497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5c357d21c785ea3d!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyDEkGnhu4duIEzhu7Fj!5e0!3m2!1svi!2s!4v1655270027379!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+
+<?php include('./include/footer.php'); ?>
 </body>
 </html>
 
@@ -168,15 +184,13 @@
   
   .demo-frame{
     width: 100%;
-    height: 100vh;
+    padding: 20px;
   }
   
   .slick-slider .slick-arrow,
   .slick-slider .slick-dots{
     display:none !important
   }
-
-
 
   .slick-tab .slick-slide {
         padding:5px 35px;
