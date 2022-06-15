@@ -46,69 +46,175 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </section>
-    <div class="container">
-        <div class="sidebar-container">
+<div id="lich-chieu">
+  <div class="container">
+      <div class="demo-frame">
+        <div class="slick slick-tab">
+            <?php
+              $date = new DateTime();
+              for ($i = 1; $i <= 14; $i++) {
+                  echo '<div>'. $date->add(new DateInterval('P1D'))->format('d/m') . '</div>';
+              }
+            ?>
         </div>
-        select * from suat_chieu
-        where suat_chieu.ngay_chieu > now() + INTERVAL 7 day;
+        <div class="slick slick-content">
+          <?php
+            $date = new DateTime();
+            for ($i = 0; $i <= 14; $i++) {
+                  echo '<div>';
+                      $sql = 'SELECT DISTINCT phim.ten, phim.id
+                              FROM phim, suat_chieu
+                              WHERE phim.id = suat_chieu.phim_id AND phim.id = "'.$id.'"';
+                      $query = mysqli_query($connect, $sql);
+                  
+                        while ($row = mysqli_fetch_array($query)) {?>
+                            <div>
+                                  
+                              <div class="show-time-box">
+                              <?php
+                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id suat, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
+                                              FROM suat_chieu, phim
+                                              WHERE suat_chieu.phim_id = phim.id
+                                              AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"
+                                              AND phim.id = "'.$id.'" 
+                                              ORDER BY suat_chieu.gio_bat_dau ASC';
 
-        <article class="movie-line-entity">
-            <div class="entity-extra" style="width: 100%">
-                <div class="text-uppercase entity-extra-title">Lịch chiếu</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <?php
+                                  $q = mysqli_query($connect, $sqlInfor);
 
-                        $date = new DateTime();
-                        $sql ='select * from suat_chieu where suat_chieu.gio_bat_dau > now() AND suat_chieu.phim_id = "'.$id .'"';
-                        $result = executeResult($sql);
+                                  while ($rows = mysqli_fetch_array($q)) {?>
+                                      <?php
+                                        $sumSeat = 'SELECT  COUNT(ghe_ngoi.vi_tri_cot)
+                                                    FROM ghe_ngoi, phong_chieu
+                                                    WHERE phong_chieu.id = ghe_ngoi.phong_chieu_id
+                                                    AND ghe_ngoi.phong_chieu_id = '.$rows['phong_chieu_id'].'';
+                                              $querySum = mysqli_query($connect, $sumSeat);
+                                              $itemSum  = mysqli_fetch_assoc($querySum);
 
-                        foreach ($result as $row) {
-                            echo '<div class="showtime-item">
-                                     <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">' . date('H:i', strtotime($row['gio_bat_dau']))  . '</a>
-                                    </div>';
-                        }
-
-                        // $date = strtotime("+1 day");
-                        // echo date('d/m/Y', $date);
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </article>
+                                        $sqlSeat = 'SELECT suat_chieu.id, COUNT(ve_ban.suat_chieu_id)
+                                                    FROM suat_chieu, phim, ve_ban
+                                                    WHERE suat_chieu.phim_id = phim.id
+                                                    AND suat_chieu.id = ve_ban.suat_chieu_id
+                                                    AND suat_chieu.id =  "'.$rows['suat'].'"
+                                                    AND phim.id = "'.$id.'"';
+                                        
+                                        $querySeat = mysqli_query($connect, $sqlSeat);
+                                        $item  = mysqli_fetch_assoc($querySeat);
+                                      ?>
+                                      <div class="show-time">
+                                          <div class="dinh-dang">
+                                            <?= $rows['dinh_dang_phim_id']  ?> | Phụ đề
+                                          </div>
+                                          <a href="./book-ticket.php?suat_chieu=<?= $rows['suat']  ?>" class="btn-time btn btn-show-time" aria-disabled="true">
+                                            
+                                          <div class="phong-chieu">
+                                            <span>
+                                              SCREEN <?= $rows['phong_chieu_id']  ?>
+                                            </span>
+                                          </div>
+  
+                                          <div class="time-start">
+                                            <?= date('H:i', strtotime($rows['TIME(gio_bat_dau)'])) ?>
+                                          </div>
+  
+                                          <div class="seat-sum">
+                                              <?= $item['COUNT(ve_ban.suat_chieu_id)']  ?> /
+                                              <?= $itemSum['COUNT(ghe_ngoi.vi_tri_cot)']   ?>
+                                          </div>
+  
+                                          </a>
+                                      </div>
+                                  <?php } ?> 
+                              </div> 
+                        <?php } ?>
+                            </div>
+                  </div>
+              <?php } ?>          
+          </div>
     </div>
+</div>
 
 
-    <article class="movie-line-entity">
-        <div class="entity-extra" style="width: 100%">
-            <div class="text-uppercase entity-extra-title">Lịch chiếu</div>
-            <div class="entity-showtime">
-                <div class="showtime-wrap">
-                    <?php
+<?php
+  include('./include/footer.php');
+?>
+</body>
+</html>
 
-                    $date = new DateTime();
-                    for ($i = 1; $i <= 7; $i++) {
-                        $sql = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), id  FROM suat_chieu WHERE ngay_chieu = "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
+<style>
+  .list-menu-lich-chieu > li{
+    height: 50px;
+  }
 
-                        $result = executeResult($sql);
-                        foreach ($result as $row) {
-                            echo '
-                                <div class="showtime-item">
-                                    <a href="./book-ticket.php?id=' . $row['id'] . '" style="color:white" class="btn-time btn" aria-disabled="true">' . date('H:i', strtotime($row['TIME(gio_bat_dau)']))  . '</a>
-                                </div>
-                            ';
-                        }
-                    }
-                    // $date = strtotime("+1 day");
-                    // echo date('d/m/Y', $date);
-                    ?>
+  .list-menu-lich-chieu > li > a {
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+  }
 
-                </div>
-            </div>
-        </div>
-    </article>
+  .list-menu-lich-chieu > li:first-child {
+    background-color: #ff8a00;
+  }
 
-    <?php include './include/footer.php' ?>
+  .list-menu-lich-chieu > li:first-child > a {
+    color: white;
+  }
+
+  
+  .demo-frame{
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .slick-slider .slick-arrow,
+  .slick-slider .slick-dots{
+    display:none !important
+  }
+
+
+
+  .slick-tab .slick-slide {
+        padding:5px 35px;
+        text-align: center;
+        background-color: white;
+  }
+  .slick-tab .slick-current{
+    border-bottom:solid 2px blue
+  }
+
+  .slick-content .slick-slide{
+    background: white;
+    padding:15px;min-height: 200px;
+  }
+  
+
+  .btn-show-time {
+    background-color: white;
+    color: black;
+    border: 1px solid #e5e5e5;
+  }
+
+  #lich-chieu {
+    background-color: #f9f6ec;
+  }
+
+  .phong-chieu, .seat-sum, .time-start {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 2px;
+  }
+
+
+  .show-time-box {
+    display: flex;
+  }
+
+  .show-time {
+    margin: 10px;
+  }
+</style>
+
+
+
+<?php include './include/footer.php' ?>
     <!-- jQuery library -->
     <script src="../js/jquery-3.3.1.js"></script>
     <!-- Bootstrap -->
@@ -129,3 +235,25 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+<script>
+        $('.slick-tab').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            asNavFor: '.slick-content',
+            dots: true,           
+            focusOnSelect: true,
+            infinite: false,
+            variableWidth: true
+        });
+
+        $('.slick-content').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slick-tab',
+            infinite: false
+        });
+        
+    </script>
