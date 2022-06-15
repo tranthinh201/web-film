@@ -41,26 +41,26 @@ if (isset($_GET['suat_chieu'])) {
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Bootstrap -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Animate.css -->
-    <link href="../animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/animate.css/animate.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome iconic font -->
-    <link href="../fontawesome/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/fontawesome/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
     <!-- Magnific Popup -->
-    <link href="../magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
     <!-- Slick carousel -->
-    <link href="../slick/slick.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/slick/slick.css" rel="stylesheet" type="text/css" />
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,500,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <!-- Theme styles -->
-    <link href="../css/dot-icons.css" rel="stylesheet" type="text/css">
-    <link href="../css/theme.css" rel="stylesheet" type="text/css">
-    <link href="../css/booking.css" rel='stylesheet' type='text/css'>
+    <link href="../assets/css/dot-icons.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/booking.css" rel='stylesheet' type='text/css'>
     <title>Đặt vé phim <?= $item['ten'] ?></title>
 </head>
 
@@ -629,3 +629,354 @@ if (isset($_GET['suat_chieu'])) {
 
     
 </script>
+
+<style>
+    .header-book-seat {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header-book-seat > h2 {
+    font-weight: 700;
+}
+
+.header-book-seat > ul {
+    display: flex;
+}
+
+.header-book-seat > ul > li {
+    list-style: none;
+    margin: 10px;
+    font-size: 14px;
+    border: 1px solid #d1d1d1;
+    padding: 2px 6px;
+    background-color: white;
+}
+
+.header-book-seat > ul > li > a {
+    color: black;
+}
+
+.screen {
+    position: relative;
+}
+
+.screen > .img-banner-screen {
+    width: 100%;
+    display: block;
+    margin: 15px 0;
+    line-height: 25px;
+}
+
+.screen > .text-screen {
+    font-size: 20px;
+    color: #231f20;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+    font-weight: bold;
+    position: absolute;
+    z-index: 100;
+    top: -12%;
+    left: 50%;
+}
+
+.is-check {
+    background-color: blue;
+}
+.container>.title {
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+}
+
+.input-box-wrapper {
+    background: #F9F8F3;
+    position: relative;
+}
+
+.list-row-seat {
+    position: absolute;
+    top: 20px;
+    left: 16%;
+}
+
+.name-row {
+    text-transform: capitalize;
+    display: block;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    margin: 5px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+    line-height: 23px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.list-seat-choose {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.box {
+    display: flex;
+    align-items: center;
+    border-bottom: 0;
+}
+
+
+.list-seat-choose>.box>label {
+    text-transform: capitalize;
+    display: block;
+    cursor: pointer;
+    width: 100%;     
+    text-align: center;
+    user-select: none;
+    margin: 5px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: #848484;      
+    color: #fff;
+    font-size: 11px;
+    line-height: 23px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.list-seat-choose>.box>label:hover {
+    background-color: #231f20;
+}
+
+
+.list-seat-choose .box .checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.print-value {
+    border: 1px solid #333;
+    height: 200px;
+}
+
+.check {
+    background-color: gray;
+    width: 200px;
+    height: 200px;
+}
+
+.input-check-seat {
+    border: none;
+    width: 40px;
+    height: auto;
+}
+.is-check {
+    background: red !important;
+}
+.box > label:nth-of-type(4), 
+.box > label:nth-of-type(8), 
+.box > label:nth-of-type(12) {
+    margin-right: 30px;
+}
+
+.box:nth-of-type(5),
+.box:nth-of-type(10),
+.box:nth-of-type(15) {
+    margin-bottom: 10px !important;
+}
+
+.name-row:nth-of-type(5),
+.name-row:nth-of-type(10),
+.name-row:nth-of-type(15) {
+    margin-bottom: 15px !important;
+}
+
+
+
+.seat-infor {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.seat-infor > li {
+    list-style: none;
+    margin: 15px;
+}
+
+/* ------product--------- */
+
+.product-show {
+    background-color: #f9f6ec;
+    padding: 20px;
+}
+
+.list-product {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-product {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.item-product {
+    border: 1px solid #dedede;
+    background: #fff;
+}
+
+.item-product > .image-product > img {
+    width: 230px;
+}
+
+.name-product {
+    padding: 10px;
+    border-top: 1px solid #dedede;
+    height: 80px;
+}
+
+.name-product > a{
+    font-weight: bold;
+}
+
+.price-product {
+    border-top: 1px solid #dedede;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.dash-price {
+    font-weight: bold;
+}
+
+.price-product > .price {
+    font-weight: bold;
+    font-size: 18px;
+}
+/* --------------------- */
+
+/* ---------BTN NEXT ------------ */
+.btn-next {
+    background-color: #cdc197;
+    width: 100%;
+}
+
+.btn-next > .container {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+
+.btn-next > .container > .btn-container {
+    font-size: 18px;
+    color: #231f20;
+    font-weight: bold;
+}
+
+/* ---------BTN NEXT ------------ */
+
+/* ---------TOTAL MOVIE---------- */
+.total-movie {
+    background-color: #231f20;
+    height: 200px;
+}
+
+.total-movie > .container {
+    display: flex;
+    height: 100%;
+}
+
+.total-movie > .container > .item-movie {
+    border: 1px solid white;
+    width: 25%;
+    height: 100%;
+    padding: 15px;
+}
+
+.item-movie > .title-item-movie {
+    font-size: 16px;
+    color: #cdc197;
+}
+
+.item-movie > .box-item-movie {
+    display: flex;
+    margin-top: 10px;
+}
+
+.box-item-movie > .image-box-item-movie {
+    margin-right: 10px;
+}
+
+.box-item-movie > .image-box-item-movie > img {
+    width: 130px;
+}
+
+.infor-movie {
+    font-size: 14px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detail-ticket {
+    display: flex;
+}
+
+.detail-ticket > ul {
+    padding: 0;
+    margin-right: 10px;
+}
+
+.detail-ticket > ul:first-child {
+    width: 100px;
+}
+
+.detail-ticket > ul:last-child > li {
+    color: white;
+}
+
+.detail-ticket > ul > li {
+    list-style: none;
+}
+
+.detail-ticket > ul > li:last-child {
+    margin-top: 22px;
+}
+
+.total-price-tiket {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.total-price-tiket > span {
+    font-size: 20px;
+    font-weight: bold;
+}
+/* ---------TOTAL MOVIE---------- */
+
+</style>
