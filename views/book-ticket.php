@@ -1,22 +1,25 @@
 <?php include('../config/db.php');
 session_start();
+
 if (!isset($_SESSION['user-client'])) {
-    echo '<script>confirm("dang nhap di cu")</script>';
+    echo '<script>confirm("Xin mời bạn đăng nhập")</script>';
     header("Location: ./login.php");
 }
-// else
-// {
-//     header("Location:./dat-ve.php");
-// }
 
 if (isset($_GET['suat_chieu'])) {
     $id       = $_GET['suat_chieu'];
-    $nsql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, phim.ngon_ngu, phim.ten, phim.thoi_luong, phim.gioi_han_tuoi, phim.hinh_anh, loai_phim.ten_loai FROM loai_phim, suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
+    $nsql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.ngay_chieu, 
+                        suat_chieu.dinh_dang_phim_id, phim.ngon_ngu, phim.ten, phim.thoi_luong, 
+                        phim.gioi_han_tuoi, phim.hinh_anh, loai_phim.ten_loai, TIME(gio_ket_thuc), TIME(gio_bat_dau)
+                    FROM loai_phim, suat_chieu, phim 
+                    WHERE phim.loai_phim_id = loai_phim.id AND suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
+   
+
     $query = mysqli_query($connect, $nsql);
     $item  = mysqli_fetch_assoc($query);
    
 
-    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot
+    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot, loai_ghe.phu_thu
                 FROM ghe_ngoi
                 LEFT JOIN ve_ban
                 ON ghe_ngoi.id = ve_ban.ghe_id AND  ve_ban.suat_chieu_id = '$id'
@@ -24,18 +27,23 @@ if (isset($_GET['suat_chieu'])) {
                 ON suat_chieu.id = ve_ban.suat_chieu_id 
                 LEFT JOIN phong_chieu
                 ON phong_chieu.id = ghe_ngoi.phong_chieu_id
+                LEFT JOIN loai_ghe 
+                ON loai_ghe.id = ghe_ngoi.loai_ghe_id
                 WHERE phong_chieu.id = ".$item['phong_chieu_id']."
                 ORDER BY ghe_ngoi.id ASC";
+
+    $rowData = "SELECT DISTINCT ghe_ngoi.vi_tri_day
+                  FROM ghe_ngoi
+                  WHERE ghe_ngoi.phong_chieu_id = ".$item['phong_chieu_id']."";
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Trang chủ</title>
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Animate.css -->
@@ -53,7 +61,7 @@ if (isset($_GET['suat_chieu'])) {
     <link href="../css/dot-icons.css" rel="stylesheet" type="text/css">
     <link href="../css/theme.css" rel="stylesheet" type="text/css">
     <link href="../css/booking.css" rel='stylesheet' type='text/css'>
-    <title>Trang chủ</title>
+    <title>Đặt vé phim <?= $item['ten'] ?></title>
 </head>
 
 <body>
@@ -76,12 +84,18 @@ if (isset($_GET['suat_chieu'])) {
         <div class="container">
             <div class="header-book-seat">
                 <h2>Chọn ghế</h2>
-                <ul>
+                <ul class="book-seat-right">
                     <li>
+                      <a href="javascript:void(0)">
+                      <i class="fas fa-dollar-sign"></i>
                         Chọn loại vé
+                      </a>
                     </li>
                     <li>
-                      <a href=""><i class="fas fa-redo"></i> Đặt lại</a>
+                      <a href="javascript:void(0)">
+                        <i class="fas fa-redo"></i>
+                        Đặt lại
+                      </a>
                     </li>
                 </ul>
             </div>
@@ -89,250 +103,251 @@ if (isset($_GET['suat_chieu'])) {
     </section>
     <div class="container">
         <div class="screen">
-            <img src="../image/banner/bg_screen.gif" class="img-banner-screen" alt="banner">
+            <img src="../assets/image/banner/bg_screen.gif" class="img-banner-screen" alt="banner">
             <strong class="text-screen">
                 Screen
             </strong>
         </div>
+<!-- ------------------------LIST SEAT------------------------------ -->
         <div class="input-box-wrapper">
+          <div class="list-row-seat">
+            <?php
+              $resultDataRow = executeResult($rowData);
+              foreach($resultDataRow as $row) {
+                echo '
                 <div class="box">
-                <div class="name-row">
-                    A
+                  <label class="name-row">
+                      '.$row['vi_tri_day'].'
+                  </label>
                 </div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'A') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                   <div class="name-row">B</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'B') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">C</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'C') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">D</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'D') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">E</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'E') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">F</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'F') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">G</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'G') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">H</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'H') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">I</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'I') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                    <div class="name-row">J</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'J') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">K</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'K') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <div class="box">
-                <div class="name-row">L</div>
-                    <?php
-                    $resultdata = executeResult($data);
-                    foreach ($resultdata as $value) {
-                        if ($value['vi_tri_day'] == 'L') {
-                          if($value['suat_chieu_id'] == NULL) {
-                                    echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
-                                <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';  
-                            }
-                            else {
-                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '</label>';
-                              
-                            }
-                          }
-                    }
-                    ?>
-                </div>
-                <!--  -->
+                ';
+              }
+            ?>
+          </div>
+          <div class="list-seat-choose">
+            <div class="<?= $item['phong_chieu_id'] == 1 ? "box room-one" : "box room-tw" ?>">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'A') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
             </div>
-        
-            <div id="value-list" >
-    
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'B') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
             </div>
-        </div>
-     
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'C') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'D') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'E') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'F') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'G') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'H') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'I') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'J') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'K') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+            <div class="box">
+                <?php
+                $resultdata = executeResult($data);
+                foreach ($resultdata as $value) {
+                    if ($value['vi_tri_day'] == 'L') {
+                      if($value['suat_chieu_id'] == NULL) {
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                        }
+                        else {
+                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          
+                        }
+                      }
+                }
+                ?>
+            </div>
+          </div>   
+      </div> 
+    </div>
+<!-- ------------------------LIST SEAT-------------------------- -->
+
+
+<!-- ------------------------SEAT INFOR ----------------------- -->
 <div class="container">
     <div class="note-seat">
         <ul class="seat-infor">
@@ -356,8 +371,10 @@ if (isset($_GET['suat_chieu'])) {
     </div>
 </div>
 <div style="border-bottom: 1px solid gray;"></div>   
+<!-- ------------------------SEAT INFOR ----------------------- -->
 
-<!-- -----------------------PRODUCT---------------------------- -->
+
+<!-- -----------------------PRODUCT------------------------=--- -->
 <div class="product-show">
     <div class="container">
         <div class="product">
@@ -436,6 +453,116 @@ if (isset($_GET['suat_chieu'])) {
 
 <!-- -----------------------PRODUCT---------------------------- -->
 
+<!-- ----------------------BTN-NEXT --------------------------- -->
+<div class="btn-next">
+    <div class="container">
+        <a href="javascript:void(0)" class="btn-container">
+            <i class="fas fa-long-arrow-alt-left"></i>
+            Trở lại
+        </a>
+        <form action="./checkout.php?suatchieu=<?=$id?>" method="post" enctype='multipart/form-data'>
+            <div id="list-seat">
+
+            </div>
+            <button class="btn-container">
+                Bước tiếp theo
+                <i class="fas fa-long-arrow-alt-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+<!-- ----------------------BTN-NEXT --------------------------- -->
+
+<!-- ----------------------TOTAL-MOVIE------------------------- -->
+<div class="total-movie">
+    <div class="container">
+        <div class="item-movie">
+            <p class="title-item-movie">Phim chiếu rạp</p>
+            <div class="box-item-movie">
+                <div class="image-box-item-movie">
+                    <img src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
+                </div>
+                <div class="infor-movie">
+                    <div class="name-mocie">
+                        <p><?= $item['ten'] ?></p>
+                    </div>
+                    <div class="type-movie">
+                        <p><?= $item['dinh_dang_phim_id'] ?></p>
+                    </div>
+                    <div class="age-watch-movie">
+                        <p><?= $item['gioi_han_tuoi'] ?> tuổi trở lên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin vé đặt</p>
+            <div class="infor-ticket">
+                <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Ngày chiếu
+                        </li>
+                        <li>
+                            Giờ chiếu
+                        </li>
+                        <li>
+                            Rạp chiếu
+                        </li>
+                        <li>
+                            Ghế ngồi
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <?= $item['ngay_chieu'] ?>
+                        </li>
+                        <li>
+                            <?= $item['TIME(gio_bat_dau)'] ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
+                        </li>
+                        <li>
+                            Vincom Nguyễn Chí Thanh
+                        </li>
+                        <li id="value-list">
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="total-price-tiket">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin sản phẩm</p>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Tổng tiền đơn hàng</p>
+            <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Đặt trước phim
+                        </li>
+                        <li style="margin-top: 0;">
+                            Đồ uống
+                        </li>
+                    </ul>
+                    <ul>
+                        <li id="price-ticket">
+                            0
+                        </li>
+                        <li style="margin-top: 0;">
+                            120.000Đ
+                        </li>
+                    </ul>
+            </div>
+            <div class="total-price-tiket" style="margin-top: 60px;">
+                <span>320.000Đ</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------TOTAL-MOVIE------------------------- -->
 
 <?php
     include('./include/footer.php')
@@ -453,28 +580,31 @@ if (isset($_GET['suat_chieu'])) {
 
   
     var list = document.getElementById('value-list');
+    var isSeat = document.getElementById('list-seat'); 
     var valueListSeat = document.getElementById('value-list-seat')
-    var text = '<span>Ghế bạn vừa chọn là: </span> ';
-    var confirm='<a href="checkout.php" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
     var listArray = [];
-    var listSeat = [];
+    var listIdSeat = [];
     var checkboxs = document.querySelectorAll('.checkbox');
-    var text2 = document.querySelectorAll('.input-box-wrapper>.box>label');
+    var text2 = document.querySelectorAll('.list-seat-choose>.box>label');
     var hehe = document.querySelectorAll('#value-list>p');
     var box = document.getElementsByClassName('box');
-    console.log(box)
+    var listPrice = [];
+    var price = document.getElementById('price-ticket');
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
-             console.log(listSeat)
+            const toNumbers = arr => arr.map(Number)
+            console.log(toNumbers(listPrice).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
             if (this.checked == true) {
-            
                 if(listArray.length > 5) {
-                    alert('Đéo được hơn 6 người đâu dmm')
+                    alert('Bạn chỉ có thể đặt tối đa 6 ghế')
                 }
                 else {
-                    listArray.push(`<input type="text" value = ${this.value} class = "input-check-seat" name="is-seat[]">`);
-                    // listSeat.push(`<span>${this.id}</span>`)
-                    list.innerHTML = text + listArray.join(' , ')+confirm;
+                    listArray.push(`${this.id}`);
+                    listIdSeat.push(`<input type="text" name="is-seat[]" value=${this.value}>`);
+                    listPrice.push(`${this.getAttribute("price")}`);
+                    isSeat.innerHTML = listIdSeat;
+                    list.innerHTML = listArray.join(' , ');
+                    price.innerHTML =  listPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
                     for (var test of text2) {
                         if (test.htmlFor == this.id) {
                             test.style.backgroundColor = 'black';
@@ -482,11 +612,11 @@ if (isset($_GET['suat_chieu'])) {
                     }
                 }
             } else {
-                listArray = listArray.filter(e => e !== `<input type="text" value = ${this.value} class = "input-check-seat" name="is-seat[]">`);
-                listSeat = listSeat.filter(e => e !== `<span>${this.id}</span>`);
-                // valueListSeat.innerHTML = text + listSeat.join(", ")
-                list.innerHTML = text +listArray.join(' , ') +confirm;
-                console.log(listArray)
+                listArray = listArray.filter(e => e !== `${this.id}`);
+                listIdSeat = listIdSeat.filter(e => e !== `<input type="text" name="is-seat[]" value=${this.value}>`);
+                listPrice = listPrice.filter(e => e !== `${this.getAttribute("price")}`);
+                list.innerHTML = listArray.join(' , ');
+                isSeat.innerHTML = listIdSeat.join(' , ');
                 for (var test of text2) {
                     if (test.htmlFor == this.id) {
                         test.style.backgroundColor = '#848484';
@@ -496,15 +626,6 @@ if (isset($_GET['suat_chieu'])) {
         })
     }
 
-
-    var arraySeat = [];
-    var seat = document.querySelectorAll('.seat')
-    for(var checkSeat of seat) {
-        checkSeat.addEventListener('click', function() {
-            console.log(checkSeat);
-            checkSeat.style.backgroundColor = 'back'
-        })
-    }
 
     
 </script>
