@@ -430,6 +430,7 @@ if (isset($_GET['suat_chieu'])) {
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -449,13 +450,13 @@ if (isset($_GET['suat_chieu'])) {
 
 </html>
 
-<script>
+<script type="text/javascript">
 
   
     var list = document.getElementById('value-list');
     var valueListSeat = document.getElementById('value-list-seat')
     var text = '<span>Ghế bạn vừa chọn là: </span> ';
-    var confirm='<a href="checkout.php?id=<?= $id; ?>" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
+    var confirm='<a href="checkout.php?id=<?= $id;?>" title="" style="margin-left:20px;">Tiếp tục thanh toán</a>';
     var listArray = [];
     var listSeat = [];
     var checkboxs = document.querySelectorAll('.checkbox');
@@ -504,7 +505,5 @@ if (isset($_GET['suat_chieu'])) {
             console.log(checkSeat);
             checkSeat.style.backgroundColor = 'back'
         })
-    }
-
-    
+    } 
 </script>

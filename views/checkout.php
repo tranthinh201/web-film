@@ -295,30 +295,19 @@ if (isset($_GET['id'])) {
                         <label id="settleAgreeEN" for="settleAgree" style="display: none;">Yes, I agree to the Terms and Conditions and am purchasing age-appropriate tickets with this order.</label>
                         <!---->
                     </div>
-                </div>                
+                </div>             
+               
             </div>
-            
-            <div class="btn_wrap">
-                <div class="btn_inner">
-                    <a href="javascript:void(0);" class="btn_prev "><i class="fas fa-arrow-alt-circle-left"></i> Trở lại</a>
-                </div>
-            </div>
-            <div class="paymentBar">
-                <div class="paymentCont">
-                    <dl class="paymentPrice">
-                        <dt class="total_tit">Thành tiền</dt>
-                    </dl>
-                    <dd>
-                        <ul class="order_List">
-                            <li><strong class="Lang-LBL0035">Đặt trước phim</strong><p>170.000₫</p></li>
+
+        </div>                 
+                <div class="checkoutt" style="padding:50px">
+                    <div class="btn">
+                        <ul>
+                            <li>toong tien:</li>
+                            <li> 170000d</li>
                         </ul>
-                        <p class="price">
-                            <strong>170.000đ</strong>
-                        </p>
-                    </dd>
+                    </div>
                 </div>
-            </div>
-        </div> 
     </div>
 
 </body>

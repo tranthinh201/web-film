@@ -69,7 +69,7 @@
             $date = new DateTime();
             for ($i = 0; $i <= 14; $i++) {
                   echo '<div>';
-                      $sql = 'SELECT DISTINCT phim.ten, phim.id
+                      $sql = 'SELECT DISTINCT phim.ten, phim.id phimid
                               FROM phim, suat_chieu
                               WHERE phim.id = suat_chieu.phim_id AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P1D'))->format('Y-m-d') . '"';
                       $query = mysqli_query($connect, $sql);
@@ -77,15 +77,15 @@
                         while ($row = mysqli_fetch_array($query)) {?>
                             <div>
                                   <!-- HTML -->
-                                    <a href="./chi-tiet-phim.php?id="><?= $row['ten']  ?></a>
+                                    <a href="./chi-tiet-phim.php?id=<?= $row['phimid'] ?>"><?= $row['ten']  ?></a>
                                   <!-- HTML -->
                               <div class="show-time-box">
                               <?php
-                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id, suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
+                                  $sqlInfor = 'SELECT TIME(gio_bat_dau), TIME(gio_ket_thuc), suat_chieu.id , suat_chieu.phong_chieu_id, suat_chieu.dinh_dang_phim_id, suat_chieu.ngay_chieu
                                               FROM suat_chieu, phim
                                               WHERE suat_chieu.phim_id = phim.id
                                               AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
-                                              AND suat_chieu.phim_id = "'.$row['id'].'" 
+                                              AND suat_chieu.phim_id = "'.$row['phimid'].'" 
                                               ORDER BY suat_chieu.gio_bat_dau ASC';
                                   $q = mysqli_query($connect, $sqlInfor);
                                   
@@ -94,7 +94,7 @@
                                               WHERE suat_chieu.phim_id = phim.id
                                               AND suat_chieu.id = ve_ban.suat_chieu_id
                                               AND suat_chieu.ngay_chieu =  "' . $date->add(new DateInterval('P0D'))->format('Y-m-d') . '"
-                                              AND suat_chieu.phim_id = "'.$row['id'].'"';
+                                              AND suat_chieu.phim_id = "'.$row['phimid'].'"';
 
                                   $querySeat = mysqli_query($connect, $sqlSeat);
                                   $item  = mysqli_fetch_assoc($querySeat);
@@ -114,7 +114,7 @@
                                           <div class="dinh-dang">
                                             <?= $rows['dinh_dang_phim_id']  ?> | Phụ đề
                                           </div>
-                                          <a href="./book-ticket.php?suat_chieu=' . $row['id'] . '" class="btn-time btn btn-show-time" aria-disabled="true">
+                                          <a href="./book-ticket.php?suat_chieu=<?= $rows['id']?>" class="btn-time btn btn-show-time" aria-disabled="true">
                                             
                                           <div class="phong-chieu">
                                             <span>
@@ -144,6 +144,7 @@
 </div>
 
 </body>
+<?php include('./include/footer.php') ?>
 </html>
 
 <style>
