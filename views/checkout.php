@@ -10,7 +10,8 @@ if (!isset($_SESSION['user-client'])) {
     
 if (isset($_GET['id'])) {
     $id       = $_GET['id'];
-    $sql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.ngay_chieu,suat_chieu.gio_bat_dau,suat_chieu.gio_ket_thuc,phim.ten,phim.hinh_anh FROM  suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
+    $sql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.ngay_chieu,suat_chieu.gio_bat_dau,suat_chieu.gio_ket_thuc,
+    suat_chieu.dinh_dang_phim_id,phim.gioi_han_tuoi,phim.ten,phim.hinh_anh,TIME(gio_ket_thuc), TIME(gio_bat_dau) FROM  suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
 
     $query = mysqli_query($connect, $sql);    
     // var_dump($query);
@@ -62,16 +63,6 @@ if (isset($_GET['id'])) {
                                 <col style="width: 784px;">
                                 <col style="width: 196px;">
                             </colgroup>
-                            <tfoot>                          
-                                <tr>
-                                    <td colspan="2">
-                                        <dl class="mount">
-                                            <dt class="Lang-LBL0039">Tổng số tiền đặt hàng</dt>
-                                            <dd class="sum"><em><strong>170.000</strong>₫</em></dd>
-                                        </dl>
-                                    </td>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 <tr>
                                     <td>   
@@ -85,7 +76,7 @@ if (isset($_GET['id'])) {
                                                     <em class="Lang-LBL0055">Ngày chiếu</em> <?= $item['ngay_chieu']; ?>
                                                 </li>
                                                 <li>
-                                                    <em class="Lang-LBL1029">Lịch chiếu phim</em> &nbsp;<?= $item['gio_bat_dau']; ?> ~ <?= $item['gio_ket_thuc'] ?>
+                                                    <em class="Lang-LBL1029">Lịch chiếu phim</em> &nbsp;<?= $item['TIME(gio_bat_dau)']; ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
                                                 </li>
                                                 <li>
                                                     <em class="Lang-LBL1030">Rạp chiếu</em> &nbsp;Bắc Ninh</li>
@@ -134,6 +125,16 @@ if (isset($_GET['id'])) {
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>                          
+                                <tr>
+                                    <td colspan="2">
+                                        <dl class="mount">
+                                            <dt class="Lang-LBL0039">Tổng số tiền đặt hàng</dt>
+                                            <dd class="sum"><em><strong><?=$sum?></strong>₫</em></dd>
+                                        </dl>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </fieldset>
                 </div>
@@ -314,17 +315,99 @@ if (isset($_GET['id'])) {
             </div>
 
         </div>                 
-                <div class="checkoutt" style="padding:50px">
-                    <div class="btn">
-                        <ul>
-                            <li>toong tien:</li>
-                            <li> <?= $sum ?></li>
-                        </ul>
-                    </div>
-                </div></div>
-                <a href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
+                <a style="right:0;" href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
                     HIHI
                 </a>
+                <!-- ----------------------TOTAL-MOVIE------------------------- -->
+<div class="total-movie">
+    <div class="container">
+        <div class="item-movie">
+            <p class="title-item-movie">Phim chiếu rạp</p>
+            <div class="box-item-movie">
+                <div class="image-box-item-movie">
+                    <img src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
+                </div>
+                <div class="infor-movie">
+                    <div class="name-mocie">
+                        <p><?= $item['ten'] ?></p>
+                    </div>
+                    <div class="type-movie">
+                        <p><?= $item['dinh_dang_phim_id'] ?></p>
+                    </div>
+                    <div class="age-watch-movie">
+                        <p><?= $item['gioi_han_tuoi'] ?> tuổi trở lên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin vé đặt</p>
+            <div class="infor-ticket">
+                <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Ngày chiếu
+                        </li>
+                        <li>
+                            Giờ chiếu
+                        </li>
+                        <li>
+                            Rạp chiếu
+                        </li>
+                        <li>
+                            Ghế ngồi
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <?= $item['ngay_chieu'] ?>
+                        </li>
+                        <li>
+                            <?= $item['TIME(gio_bat_dau)'] ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
+                        </li>
+                        <li>
+                            Vincom Nguyễn Chí Thanh
+                        </li>
+                        <li id="value-list">
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="total-price-tiket">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Thông tin sản phẩm</p>
+        </div>
+        <div class="item-movie">
+            <p class="title-item-movie">Tổng tiền đơn hàng</p>
+            <div class="detail-ticket">
+                    <ul>
+                        <li>
+                            Đặt trước phim
+                        </li>
+                        <li style="margin-top: 0;">
+                            Đồ uống
+                        </li>
+                    </ul>
+                    <ul>
+                        <li id="price-ticket">
+                            0
+                        </li>
+                        <li style="margin-top: 0;">
+                            120.000Đ
+                        </li>
+                    </ul>
+            </div>
+            <div class="total-price-tiket" style="margin-top: 60px;">
+                <span><?= $sum?>vnđ</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------TOTAL-MOVIE------------------------- -->
     </div>
 
 </body>

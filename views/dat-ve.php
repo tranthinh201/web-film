@@ -134,9 +134,7 @@ if (isset($_GET['id'])) {
 </div>
 
 
-<?php
-  include('./include/footer.php');
-?>
+
 </body>
 </html>
 

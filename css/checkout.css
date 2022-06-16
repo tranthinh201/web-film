@@ -368,3 +368,81 @@ input, select, textarea {
 {
     padding: 150px;
 }
+.total-movie {
+    background-color: #231f20;
+    height: 200px;
+}
+
+.total-movie > .container {
+    display: flex;
+    height: 100%;
+}
+
+.total-movie > .container > .item-movie {
+    border: 1px solid white;
+    width: 25%;
+    height: 100%;
+    padding: 15px;
+}
+
+.item-movie > .title-item-movie {
+    font-size: 16px;
+    color: #cdc197;
+}
+
+.item-movie > .box-item-movie {
+    display: flex;
+    margin-top: 10px;
+}
+
+.box-item-movie > .image-box-item-movie {
+    margin-right: 10px;
+}
+
+.box-item-movie > .image-box-item-movie > img {
+    width: 130px;
+}
+
+.infor-movie {
+    font-size: 14px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detail-ticket {
+    display: flex;
+}
+
+.detail-ticket > ul {
+    padding: 0;
+    margin-right: 10px;
+}
+
+.detail-ticket > ul:first-child {
+    width: 100px;
+}
+
+.detail-ticket > ul:last-child > li {
+    color: white;
+}
+
+.detail-ticket > ul > li {
+    list-style: none;
+}
+
+.detail-ticket > ul > li:last-child {
+    margin-top: 22px;
+}
+
+.total-price-tiket {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.total-price-tiket > span {
+    font-size: 20px;
+    font-weight: bold;
+}
+/* ---------TOTAL MOVIE---------- */
