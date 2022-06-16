@@ -465,14 +465,15 @@ if (isset($_GET['suat_chieu'])) {
             <i class="fas fa-long-arrow-alt-left"></i>
             Trở lại
         </a>
+        <form action="./checkout.php?id=<?=$id?>" method="post" enctype='multipart/form-data'>
             <div id="list-seat">
 
             </div>
             <button class="btn-container">
-                <a href="checkout.php?id=<?= $id;?>">Bước tiếp theo</a>
+                Bước tiếp theo
                 <i class="fas fa-long-arrow-alt-right"></i>
             </button>
-        
+        </form>
     </div>
 </div>
 <!-- ----------------------BTN-NEXT --------------------------- -->

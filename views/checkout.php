@@ -6,31 +6,8 @@ if (!isset($_SESSION['user-client'])) {
     header("Location: ./login.php");
 }
 
-    // if (isset($_GET['suatchieu'])) {
-    //     $suat_chieu       = $_GET['suatchieu'];
-    //     $length = count($_POST['is-seat']);
-    //     // $nguoiLon = $_GET['nguoi-lon'];
-    //     // $treEm = $_GET['tre-em'];
-    //     // var_dump($nguoiLon);
-    //     // var_dump($treEm);
-    //     for($i = 0; $i < $length; $i++) {
-    //         $GHE = "SELECT * FROM ghe_ngoi WHERE id = ".$_POST["is-seat"][$i]."";
-    //         $result = executeResult($GHE);
-            
-    //         foreach ($result as $row) {
-    //             $SQL = "INSERT INTO ve_ban(ghe_id, gia_ve_id, suat_chieu_id) VALUES(".$_POST["is-seat"][$i].", '1', '".$suat_chieu."')";
-    //             execute($SQL);
-                
-    //         }
-        
-            
-    //         // $SQL = "INSERT INTO ve_ban(ghe_id) VALUES(".$_POST["is-seat"][$i].")";
-    //         // execute($SQL);
-    //         // if($i == $length ) {
-    //         //     echo "<script>alert('Đặt zes thàng kum')</script>";
-    //         // }
-    //     } 
-    // }
+
+    
 if (isset($_GET['id'])) {
     $id       = $_GET['id'];
     $sql      = 'SELECT suat_chieu.phong_chieu_id, suat_chieu.ngay_chieu,suat_chieu.gio_bat_dau,suat_chieu.gio_ket_thuc,phim.ten,phim.hinh_anh FROM  suat_chieu, phim WHERE suat_chieu.phim_id = phim.id and suat_chieu.id = "' . $id . '"';
@@ -42,7 +19,14 @@ if (isset($_GET['id'])) {
 
     // $data2="select * from ghe_ngoi "
 
+    $length = count($_POST['is-seat']);
+
+
+    $_SESSION['counter'] = ($_POST['is-seat']);
+
+    
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,12 +95,42 @@ if (isset($_GET['id'])) {
                                                     <em class="Lang-LBL0038">Số lượt truy cập</em> &nbsp;HOC SINH, SINH VIEN - 2
                                                 </li>
                                                 <li>
-                                                    <em class="Lang-LBL0033">Ghế ngồi </em>&nbsp;&nbsp;&nbsp;E7, E8</li>
+                                                    <em class="Lang-LBL0033">Ghế ngồi </em>&nbsp;&nbsp;&nbsp;
+                                                    <?php
+                                                        for($i = 0; $i < $length; $i++) {
+                                                            $GHE = "SELECT * FROM ghe_ngoi WHERE id = ".$_POST["is-seat"][$i]."";
+
+                                                            $result = executeResult($GHE);
+                                                            
+                                                            foreach ($result as $row) {
+                                                                echo ''.$row['vi_tri_day'].''.$row['vi_tri_cot'].',';
+                                                            }
+                                                        
+                                                           
+                                                        } 
+                                                    ?>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>
                                     <td class="sum"> 
-                                        <em><strong>170.000</strong>₫</em>
+                                        <em><strong>
+                                            <?php
+                                                        for($i = 0; $i < $length; $i++) {
+                                                            $tien = "SELECT loai_ghe.phu_thu FROM loai_ghe, ghe_ngoi WHERE loai_ghe.id = ghe_ngoi.loai_ghe_id AND ghe_ngoi.id = ".$_POST["is-seat"][$i]."";
+                                                          
+                                                            $result = executeResult($tien);
+                                                            
+                                                            $sum = 0;
+                                                            foreach ($result as $row) {
+                                                                $sum += $row['phu_thu'] * $length;
+                                                            }
+                                                        
+                                                            
+                                                        } 
+                                                        echo $sum;
+                                                    ?>
+                                        </strong>₫</em>
                                     </td>
                                 </tr>
                             </tbody>
@@ -304,10 +318,13 @@ if (isset($_GET['id'])) {
                     <div class="btn">
                         <ul>
                             <li>toong tien:</li>
-                            <li> 170000d</li>
+                            <li> <?= $sum ?></li>
                         </ul>
                     </div>
-                </div>
+                </div></div>
+                <a href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
+                    HIHI
+                </a>
     </div>
 
 </body>
