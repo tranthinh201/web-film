@@ -19,8 +19,8 @@
               
                 $result = executeResult($GHE);
                 foreach ($result as $row) {
-                    $SQL = "INSERT INTO ve_ban(ghe_id, suat_chieu_id, ngay_ban, tong_tien, khach_hang_id, da_huy) VALUES(".$_SESSION['counter'][$i].", '".$id."', '".$date."', ".$row['phu_thu'].", '".$row_up['id'].", 0')";
-             
+                    $SQL = "INSERT INTO ve_ban(ghe_id, suat_chieu_id, ngay_ban, tong_tien, khach_hang_id, da_huy) VALUES(".$_SESSION['counter'][$i].", '".$id."', '".$date."', ".$row['phu_thu'].", '".$row_up['id']."', 0)";
+                    var_dump($SQL);
                     $query = mysqli_query($connect, $SQL);
 
                 }
@@ -35,5 +35,6 @@
                         header("Location:./lich-chieu.php");
                     }
             }
+
 
 ?>

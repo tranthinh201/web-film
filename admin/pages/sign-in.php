@@ -10,16 +10,15 @@
 
 <?php
 	  session_start();
-			if (isset($_SESSION['thongbao'])) {
-				
+			if (isset($_SESSION['thongbao'])) {	
 				echo '<script type="text/javascript">alert("'. $_SESSION['thongbao'].'")</script>'; 
 				session_unset();
 			}
-    
-		if (isset($_SESSION['thongbaoo'])) {
-			echo '<script type="text/javascript">alert("'. $_SESSION['thongbaoo'].'")</script>'; 
-			session_unset();
-		}
+
+			if (isset($_SESSION['thongbaoo'])) {
+				echo '<script type="text/javascript">alert("'. $_SESSION['thongbaoo'].'")</script>'; 
+				session_unset();
+			}
       ?>
 <form class="form-structor" action="./si_submit.php" method="POST">
 	<div class="signup">
