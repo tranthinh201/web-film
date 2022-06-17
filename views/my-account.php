@@ -21,7 +21,6 @@
         <div class="container">
             <div class="infor-ticket">
                 <?php
-
                     $SQLSC = "SELECT DISTINCT ve_ban.suat_chieu_id, phim.ten, TIME(suat_chieu.gio_bat_dau), TIME(suat_chieu.gio_ket_thuc), phim.hinh_anh, ve_ban.ngay_ban, suat_chieu.ngay_chieu
                                 FROM ve_ban, khach_hang, suat_chieu, phim
                                 WHERE khach_hang.id = ve_ban.khach_hang_id 
@@ -46,6 +45,7 @@
                         ';
                         foreach($SC as $row) {
                             echo'
+                            <div class="container-box-ticket">
                             <div class="box-ticket">
                                 <div class="image">
                                     <img src="../image/phim/'.$row['hinh_anh'].'"/>
@@ -84,8 +84,11 @@
                         }
 
                     }
+                    echo '</div>';
                     ?>
             </div>
+            <span class="badge badge-warning">Sau khi bạn huỷ vé tiền sẽ trả về tài khoản sau 30 phút</span>
+            <span class="badge badge-warning">Bạn sẽ không thể huỷ vé trước 30p khi phim chiếu</span>
             </div>
         </div>
     <?php
@@ -185,6 +188,11 @@
     .box-remove {
         display: flex;
         align-items: center;
+    }
+
+    .container-box-ticket {
+        padding: 10px;
+        border-bottom: 1px solid;
     }
         
 
