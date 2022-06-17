@@ -53,6 +53,16 @@
 <div id="lich-chieu">
   <div class="container">
       <div class="demo-frame">
+        <div class="btn btn-left">
+          <button>
+            <i class="fas fa-angle-left"></i>
+          </button>
+        </div>
+        <div class="btn btn-right">
+          <button>
+            <i class="fas fa-angle-right"></i>
+          </button>
+        </div>
         <div class="slick slick-tab">
             <?php
               $date = new DateTime();
@@ -195,9 +205,33 @@
   .demo-frame{
     width: 100%;
     padding: 20px;
+    position: relative;
+  }
+
+  .demo-frame > .btn {
+    position: absolute;
+    z-index: 10000;
+    top: 10px;
+  }
+
+  .demo-frame > .btn > button {
+   border: none;
+   outline: none;
+   background-color: inherit;
+   color: orange;
+   font-size: 40px;
+   border: 1px solid;
+  }
+
+  .demo-frame > .btn-right {
+    right: -50px;
+  }
+
+  .demo-frame > .btn-left {
+    left: -50px;
   }
   
-  .slick-slider .slick-arrow,
+
   .slick-slider .slick-dots{
     display:none !important
   }
@@ -255,7 +289,9 @@
             dots: true,           
             focusOnSelect: true,
             infinite: false,
-            variableWidth: true
+            variableWidth: true,
+            prevArrow: $('.btn-left'),
+            nextArrow: $('.btn-right')
         });
 
         $('.slick-content').slick({
