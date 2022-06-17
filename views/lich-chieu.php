@@ -20,7 +20,7 @@
   include('./include/header.php');
 ?>
 <div class="banner-lich-chieu">
-  <img src="../assets/image/banner/banner-lich-chieu.jpg" alt="bannẻ page lịch chiếu" class="w-100">
+  <img src="../image/banner/banner-4.jpg" alt="bannẻ page lịch chiếu" class="w-100">
 </div>
 
 <div class="contnt-cinema">
