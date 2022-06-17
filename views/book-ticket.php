@@ -111,7 +111,7 @@ if (isset($_GET['suat_chieu'])) {
             </strong>
         </div>
 <!-- ------------------------LIST SEAT------------------------------ -->
-        <div class="input-box-wrapper">
+<div class="input-box-wrapper">
           <div class="list-row-seat">
             <?php
               $resultDataRow = executeResult($rowData);
@@ -151,7 +151,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'B') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -169,7 +169,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'C') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -187,7 +187,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'D') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -205,7 +205,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'E') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -223,7 +223,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'F') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -241,7 +241,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'G') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -259,7 +259,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'H') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -277,7 +277,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'I') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -295,7 +295,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'J') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -313,7 +313,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'K') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -331,7 +331,7 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'L') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
@@ -347,6 +347,7 @@ if (isset($_GET['suat_chieu'])) {
       </div> 
     </div>
 <!-- ------------------------LIST SEAT-------------------------- -->
+
 
 
 <!-- ------------------------SEAT INFOR ----------------------- -->
@@ -546,22 +547,22 @@ if (isset($_GET['suat_chieu'])) {
                         <li>
                             Đặt trước phim
                         </li>
-                        <li style="margin-top: 0;">
+                        <!-- <li style="margin-top: 0;">
                             Đồ uống
-                        </li>
+                        </li> -->
                     </ul>
                     <ul>
                         <li id="price-ticket">
                             0
                         </li>
-                        <li style="margin-top: 0;">
+                        <!-- <li style="margin-top: 0;">
                             120.000Đ
-                        </li>
+                        </li> -->
                     </ul>
             </div>
-            <div class="total-price-tiket" style="margin-top: 60px;">
+            <!-- <div class="total-price-tiket" style="margin-top: 60px;">
                 <span>320.000Đ</span>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -581,8 +582,7 @@ if (isset($_GET['suat_chieu'])) {
 
 <script type="text/javascript">
 
-  
-    var list = document.getElementById('value-list');
+var list = document.getElementById('value-list');
     var isSeat = document.getElementById('list-seat'); 
     var valueListSeat = document.getElementById('value-list-seat')
     var text = '<span>Ghế bạn vừa chọn là: </span> ';
@@ -598,7 +598,6 @@ if (isset($_GET['suat_chieu'])) {
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
             const toNumbers = arr => arr.map(Number)
-            console.log(toNumbers(listPrice).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
             if (this.checked == true) {
                 if(listArray.length > 5) {
                     alert('Bạn chỉ có thể đặt tối đa 6 ghế')
@@ -609,7 +608,7 @@ if (isset($_GET['suat_chieu'])) {
                     listPrice.push(`${this.getAttribute("price")}`);
                     isSeat.innerHTML = listIdSeat;
                     list.innerHTML = listArray.join(' , ');
-                    price.innerHTML =  listPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+                    price.innerHTML =  toNumbers(listPrice).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
                     for (var test of text2) {
                         if (test.htmlFor == this.id) {
                             test.style.backgroundColor = 'black';
@@ -631,16 +630,6 @@ if (isset($_GET['suat_chieu'])) {
         })
     }
 
-
-
-    var arraySeat = [];
-    var seat = document.querySelectorAll('.seat')
-    for(var checkSeat of seat) {
-        checkSeat.addEventListener('click', function() {
-            console.log(checkSeat);
-            checkSeat.style.backgroundColor = 'back'
-        })
-    } 
 </script>
 
 
