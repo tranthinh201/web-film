@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 17, 2022 lúc 11:29 AM
+-- Thời gian đã tạo: Th6 17, 2022 lúc 04:35 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -1229,7 +1229,8 @@ INSERT INTO `khach_hang` (`id`, `ho_ten`, `so_cmnd`, `mat_khau`, `so_dien_thoai`
 ('KH00002', 'Võ Thành Tài', '287516287850', '827CCB0EEA8A706C4C34A16891F84E7B', '0932938178', 'thanhtai@gmail.com', 'Quận Tân Phú', '2018-12-09', '1997-12-10', b'1'),
 ('KH00003', 'Trần Thịnh', '098765432311', '05a70454516ecd9194c293b0e415777f', '0964997201', 'thinh@gmail.com', NULL, '2022-05-28', '2022-06-02', b'1'),
 ('KH00004', 'Thanh Nhàn', '098765432313', '202cb962ac59075b964b07152d234b70', '0964996201', 'hihi@gmail.com', NULL, '2022-06-01', '2022-06-03', b'1'),
-('KH00005', 'Trần Thịnh', '1234567888', '3198dae15bb55b9ac6f45d47da599da7', '0964997201', 'hihitran@gmail.com', NULL, '2022-06-03', '2022-06-23', b'1');
+('KH00005', 'Trần Thịnh', '1234567888', '3198dae15bb55b9ac6f45d47da599da7', '0964997201', 'hihitran@gmail.com', NULL, '2022-06-03', '2022-06-23', b'1'),
+('KH00006', 'Trần Thịnh', '1234567887', '202cb962ac59075b964b07152d234b70', '0964997202', 'cuong@gmail.com', NULL, '2022-06-17', '2022-06-02', b'1');
 
 --
 -- Bẫy `khach_hang`
@@ -1573,22 +1574,23 @@ CREATE TABLE `ve_ban` (
   `tong_tien` int(10) UNSIGNED NOT NULL,
   `suat_chieu_id` varchar(15) NOT NULL,
   `ghe_id` int(10) UNSIGNED NOT NULL,
-  `khach_hang_id` varchar(15) DEFAULT NULL
+  `khach_hang_id` varchar(15) DEFAULT NULL,
+  `da_huy` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve_ban`
 --
 
-INSERT INTO `ve_ban` (`id`, `ngay_ban`, `tong_tien`, `suat_chieu_id`, `ghe_id`, `khach_hang_id`) VALUES
-('VB0000000001', '2022-06-17', 90000, 'SC00000001', 379, 'KH00004'),
-('VB0000000002', '2022-06-17', 90000, 'SC00000001', 380, 'KH00004'),
-('VB0000000003', '2022-06-17', 90000, 'SC00000001', 381, 'KH00004'),
-('VB0000000004', '2022-06-17', 90000, 'SC00000001', 382, 'KH00004'),
-('VB0000000005', '2022-06-17', 135000, 'SC00000002', 304, 'KH00004'),
-('VB0000000006', '2022-06-17', 135000, 'SC00000002', 320, 'KH00004'),
-('VB0000000007', '2022-06-17', 135000, 'SC00000002', 336, 'KH00004'),
-('VB0000000008', '2022-06-17', 90000, 'SC00000002', 352, 'KH00004');
+INSERT INTO `ve_ban` (`id`, `ngay_ban`, `tong_tien`, `suat_chieu_id`, `ghe_id`, `khach_hang_id`, `da_huy`) VALUES
+('VB0000000001', '2022-06-17', 90000, 'SC00000001', 379, 'KH00004', 0),
+('VB0000000002', '2022-06-17', 90000, 'SC00000001', 380, 'KH00004', 0),
+('VB0000000003', '2022-06-17', 90000, 'SC00000001', 381, 'KH00004', 0),
+('VB0000000004', '2022-06-17', 90000, 'SC00000001', 382, 'KH00004', 0),
+('VB0000000005', '2022-06-17', 135000, 'SC00000002', 304, 'KH00004', 0),
+('VB0000000006', '2022-06-17', 135000, 'SC00000002', 320, 'KH00004', 0),
+('VB0000000007', '2022-06-17', 135000, 'SC00000002', 336, 'KH00004', 0),
+('VB0000000008', '2022-06-17', 90000, 'SC00000002', 352, 'KH00004', 1);
 
 --
 -- Bẫy `ve_ban`
@@ -1834,8 +1836,7 @@ ALTER TABLE `suat_chieu`
 -- Các ràng buộc cho bảng `ve_ban`
 --
 ALTER TABLE `ve_ban`
-  ADD CONSTRAINT `FK_VEBAN_GHENGOI` FOREIGN KEY (`ghe_id`) REFERENCES `ghe_ngoi` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_VEBAN_SUATCHIEU` FOREIGN KEY (`suat_chieu_id`) REFERENCES `suat_chieu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_VEBAN_GHENGOI` FOREIGN KEY (`ghe_id`) REFERENCES `ghe_ngoi` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
