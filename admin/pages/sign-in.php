@@ -4,13 +4,17 @@
 	<title>Đăng nhập</title>
 	<meta charset="UTF-8">
 
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-<!--===============================================================================================-->
+
 </head>
 <body>
-	
 
+
+<form class="form-structor" action="./si_submit.php" method="POST">
+	<div class="signup">
+
+		<h2 class="form-title" id="signup">Đăng nhập</h2>		
+		<p style="margin-bottom:15px;color:red;position:absolute;">
       <?php
 	  session_start();
 			if (isset($_SESSION['thongbao'])) {
@@ -20,12 +24,18 @@
 			}
       ?>
 
+    </p>
+    <p style="margin-bottom:15px;color:green;">
+
       <?php
 		if (isset($_SESSION['thongbaoo'])) {
 			echo '<script type="text/javascript">alert("'. $_SESSION['thongbaoo'].'")</script>'; 
 			session_unset();
 		}
       ?>
+
+    </p>
+
     
 <form class="form-structor" action="./si_submit.php" method="POST">
 	<div class="signup">
