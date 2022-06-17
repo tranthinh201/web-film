@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['user-client'])) {
     echo '<script>confirm("Xin mời bạn đăng nhập")</script>';
-    header("Location: ./login.php");
+    header("Location: ../login.php");
 }
 
 if (isset($_GET['suat_chieu'])) {
@@ -44,7 +44,6 @@ if (isset($_GET['suat_chieu'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Chọn chỗ ngồi</title>
 
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
