@@ -72,17 +72,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 </html>
 
 <style>
-    * {box-sizing: border-box;}
-*:hover, *:focus {outline:0}
-html {height: 100%;}
-body {
-  height: 100%;
-  background: rgba(0,0,0,.3);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 17px;
-  color:#777;
-}
+
 button, select, input {
   font-family: 'Roboto', sans-serif;
   font-size: 17px;
