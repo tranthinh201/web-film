@@ -9,22 +9,24 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<p style="margin-bottom:25px;color:red;">
+	
+
       <?php
-      if (isset($_SESSION['thongbao'])) {
-        echo $_SESSION['thongbao'];
-        session_unset();
-      }
+	  session_start();
+			if (isset($_SESSION['thongbao'])) {
+				
+				echo '<script type="text/javascript">alert("'. $_SESSION['thongbao'].'")</script>'; 
+				session_unset();
+			}
       ?>
-    </p>
-    <p style="margin-bottom:25px;color:green;">
+
       <?php
-      if (isset($_SESSION['thongbaoo'])) {
-        echo $_SESSION['thongbaoo'];
-        session_unset();
-      }
+		if (isset($_SESSION['thongbaoo'])) {
+			echo '<script type="text/javascript">alert("'. $_SESSION['thongbaoo'].'")</script>'; 
+			session_unset();
+		}
       ?>
-    </p>
+    
 <form class="form-structor" action="./si_submit.php" method="POST">
 	<div class="signup">
 		<h2 class="form-title" id="signup">Đăng nhập</h2>

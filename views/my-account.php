@@ -81,10 +81,11 @@
                             <?php } 
                             echo '</div>';
                             echo '<span style="font-size:18px;">Tổng tiền: '.$sum.'</span>';
+                            echo '</div>';
                         }
 
                     }
-                    echo '</div>';
+                   
                     ?>
             </div>
             <span class="badge badge-warning">Sau khi bạn huỷ vé tiền sẽ trả về tài khoản sau 30 phút</span>
