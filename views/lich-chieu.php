@@ -1,7 +1,7 @@
 <?php
   include('../config/db.php');
   include('../config/sql_cn.php');
-  
+  session_start();
   $sql = "SELECT COUNT(phong_chieu.id), SUM(phong_chieu.so_luong_day), SUM(phong_chieu.so_luong_cot) FROM phong_chieu";
   $query = mysqli_query($connect, $sql);
   $item  = mysqli_fetch_assoc($query);
