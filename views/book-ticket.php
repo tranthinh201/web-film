@@ -31,7 +31,7 @@ if (isset($_GET['suat_chieu'])) {
                 ON loai_ghe.id = ghe_ngoi.loai_ghe_id
                 WHERE phong_chieu.id = ".$item['phong_chieu_id']."
                 ORDER BY ghe_ngoi.id ASC";
-    var_dump($data);
+
     $rowData = "SELECT DISTINCT ghe_ngoi.vi_tri_day
                   FROM ghe_ngoi
                   WHERE ghe_ngoi.phong_chieu_id = ".$item['phong_chieu_id']."";
