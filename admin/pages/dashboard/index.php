@@ -26,10 +26,10 @@ include('../../../config/db.php') ?>
 
 <body class="g-sidenav-show  bg-gray-200">
   <?php include('../../include/sidebar.php');
-  $doanhthu = 'SELECT SUM(tong_tien) FROM ve_ban';
+  $doanhthu = "SELECT MONTH(ngay_ban) AS ngayban,SUM(tong_tien) AS tongtien FROM `ve_ban` WHERE MONTH(ngay_ban)='6' GROUP BY ngayban";
   $resultdoanhthu = executeResult($doanhthu);
   foreach ($resultdoanhthu as $row) {
-    $now = $row['SUM(tong_tien)'];
+    $now = $row['tongtien'];
   }
   ?>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -49,14 +49,14 @@ include('../../../config/db.php') ?>
                 <i class="fas fa-dollar-sign"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Doanh thu hôm nay</p>
+                <p class="text-sm mb-0 text-capitalize">Doanh thu tháng 6</p>
 
-                <h4 class="mb-0"><?= number_format($now, 0, '', ','); ?></h4>
+                <h4 class="mb-0"><?= number_format($now, 0, '', ','); ?>vnđ</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>hơn tuần trước</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>hơn tháng trước</p>
             </div>
           </div>
         </div>
@@ -67,8 +67,16 @@ include('../../../config/db.php') ?>
                 <i class="fas fa-users"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Tổng người dùng hôm nay</p>
-                <h4 class="mb-0">2,300</h4>
+                <?php
+                  $sql_user="SELECT COUNT(id) as userne FROM `nguoi_dung`";
+                  $result_user=mysqli_query($connect,$sql_user);
+                  foreach($result_user as $un)
+                  {
+                    $ng=$un['userne'];
+                  } 
+                ?>
+                <p class="text-sm mb-0 text-capitalize">Tổng số người dùng</p>
+                <h4 class="mb-0"><?= $ng?></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -83,14 +91,22 @@ include('../../../config/db.php') ?>
               <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">person</i>
               </div>
+              <?php
+                $sql_clients="SELECT MONTH(ngay_dang_ky) as ngaydki,COUNT(id) as clients FROM `khach_hang`WHERE MONTH(ngay_dang_ky) ='6' GROUP BY ngaydki";
+                $resultne=mysqli_query($connect,$sql_clients);
+                foreach($resultne as $rowss)
+                {
+                  $client=$rowss['clients'];
+                }
+              ?>              
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Những khách hàng mới</p>
-                <h4 class="mb-0">3,462</h4>
+                <p class="text-sm mb-0 text-capitalize">Những khách hàng mới trong tháng 6</p>
+                <h4 class="mb-0"><?= $client ?></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> hơn ngày hôm qua</p>
+              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> hơn tháng trước</p>
             </div>
           </div>
         </div>
@@ -100,9 +116,17 @@ include('../../../config/db.php') ?>
               <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">weekend</i>
               </div>
+              <?php
+                $sql_tickets="SELECT sum(tong_tien) AS hnay FROM `ve_ban` WHERE ngay_ban=CURDATE()";
+                $resultne2=mysqli_query($connect,$sql_tickets);
+                foreach($resultne2 as $rowss2)
+                {
+                  $tickets=$rowss2['hnay'];
+                }
+              ?>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Doanh số bán hàng</p>
-                <h4 class="mb-0">$103,430</h4>
+                <p class="text-sm mb-0 text-capitalize">Doanh số vé bán hôm nay</p>
+                <h4 class="mb-0"><?= number_format($tickets, 0, '', ',');?>vnđ</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -123,12 +147,12 @@ include('../../../config/db.php') ?>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Tổng doanh thu trong năm 2022</h6>
+              <p class="text-sm ">tính từ 22-05-2021 đến 22-05-2022</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+                <p class="mb-0 text-sm">cập nhật 2 ngày trước </p>
               </div>
             </div>
           </div>
@@ -163,8 +187,8 @@ include('../../../config/db.php') ?>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Nhiệm vụ đã hoàn thành</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Tổng số suất chiếu trong năm nay</h6>
+              <p class="text-sm ">tính từ 22-05-2021 đến 22-05-2022</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -632,13 +656,26 @@ include('../../../config/db.php') ?>
   <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../../assets/js/plugins/chartjs.min.js"></script>
+
+<!-- charts 1 -->
+<?php 
+  $sqll="SELECT MONTHNAME(ngay_ban) AS ngayban,SUM(tong_tien) AS tongtien FROM `ve_ban` GROUP BY ngayban";
+  $result=mysqli_query($connect,$sqll);
+  foreach($result as $datane)
+  {
+    $year[]=$datane['ngayban'];
+    $amount[]=$datane['tongtien'];
+  }
+
+?>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
-
+    const labelss=<?= json_encode($year)?>;
+    const amount=<?= json_encode($amount)?>;
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: labelss,
         datasets: [{
           label: "Sales",
           tension: 0.4,
@@ -646,8 +683,8 @@ include('../../../config/db.php') ?>
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 20, 10, 22, 50, 10, 40],
-          maxBarThickness: 6
+          data: amount,
+          maxBarThickness: 9
         }, ],
       },
       options: {
@@ -714,12 +751,25 @@ include('../../../config/db.php') ?>
     });
 
 
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
 
+// charts 2
+<?php 
+  $sqll2="SELECT DAYNAME(ngay_ban) as ngayban,COUNT(ghe_id) as ghedat FROM `ve_ban`WHERE MONTH(ngay_ban)='5' GROUP BY ngayban";
+  $result2=mysqli_query($connect,$sqll2);
+  foreach($result2 as $data2)
+  {
+    $year2[]=$data2['ngayban'];
+    $amount2[]=$data2['ghedat'];
+  }
+
+?>
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+    const labelss2=<?= json_encode($year2);?>;
+    const amount2=<?= json_encode($amount2)?>;
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: labelss2,
         datasets: [{
           label: "Mobile apps",
           tension: 0,
@@ -732,7 +782,7 @@ include('../../../config/db.php') ?>
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+          data: amount2,
           maxBarThickness: 6
 
         }],
@@ -797,12 +847,26 @@ include('../../../config/db.php') ?>
       },
     });
 
-    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
 
+
+// charts3 
+<?php 
+  $sqll3="SELECT MONTHNAME(ngay_chieu) as ngaychieu,COUNT(phim_id) as phimne FROM `suat_chieu`GROUP BY ngaychieu";
+  $result3=mysqli_query($connect,$sqll3);
+  foreach($result3 as $data3)
+  {
+    $year3[]=$data3['ngaychieu'];
+    $amount3[]=$data3['phimne'];
+  }
+
+?>
+    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+    const labelss3=<?= json_encode($year3);?>;
+    const amount3=<?= json_encode($amount3)?>;
     new Chart(ctx3, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: labelss3,
         datasets: [{
           label: "Mobile apps",
           tension: 0,
@@ -814,7 +878,7 @@ include('../../../config/db.php') ?>
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: amount3,
           maxBarThickness: 6
 
         }],

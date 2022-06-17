@@ -31,10 +31,7 @@
                     {
                         header("Location:./contact-us.php");
                     }
-            die();          
+                     
             }
-
-           
-
 
 ?>

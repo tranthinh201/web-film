@@ -9,7 +9,12 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<p style="margin-bottom:25px;color:red;">
+
+<form class="form-structor" action="./si_submit.php" method="POST">
+	<div class="signup">
+
+		<h2 class="form-title" id="signup">Đăng nhập</h2>		
+		<p style="margin-bottom:15px;color:red;position:absolute;">
       <?php
       if (isset($_SESSION['thongbao'])) {
         echo $_SESSION['thongbao'];
@@ -17,7 +22,7 @@
       }
       ?>
     </p>
-    <p style="margin-bottom:25px;color:green;">
+    <p style="margin-bottom:15px;color:green;">
       <?php
       if (isset($_SESSION['thongbaoo'])) {
         echo $_SESSION['thongbaoo'];
@@ -25,9 +30,6 @@
       }
       ?>
     </p>
-<form class="form-structor" action="./si_submit.php" method="POST">
-	<div class="signup">
-		<h2 class="form-title" id="signup">Đăng nhập</h2>
 		<div class="form-holder">
 			<input type="text" class="input" placeholder="Username" name="username"/>
 			<input type="password" class="input" placeholder="Password" name="password" />
