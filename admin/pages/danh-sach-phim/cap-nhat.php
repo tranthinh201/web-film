@@ -14,7 +14,7 @@ $cast = "";
 $nation = "";
 $producer = "";
 $synopsis = "";
-
+$trailer = "";
 if (isset($_GET['id'])) {
     $id       = $_GET['id'];
     $sql      = 'SELECT * FROM phim WHERE id = "' . $id . '"';
@@ -35,6 +35,7 @@ if (!empty($_POST)) {
     $nation = $_POST['nation'];
     $producer = $_POST['producer'];
     $synopsis = $_POST['synopsis'];
+    $trailer = $_POST['trailer'];
     $synopsis = str_replace('"', '\\"', $synopsis);
     if ($_FILES['image']['name'] == "") {
         $image = $item['hinh_anh'];
@@ -48,8 +49,9 @@ if (!empty($_POST)) {
         $image_tmp = $_FILES['image']['tmp_name'];
 
         $sql = 'UPDATE phim SET ten = "' . $name . '", thoi_luong = ' . $time . ',  gioi_han_tuoi = ' . $age . ',
-        ngay_cong_chieu = "' . $date . '", ngon_ngu = "' . $language . '", dien_vien = "' . $cast . '", quoc_gia = "' . $nation . '", nha_san_xuat =  "' . $producer . '", tom_tat =  "' . $synopsis . '", trang_thai =  "' . $status . '", hinh_anh = "' . $image . '", loai_phim_id = "' . $type . '"
+        ngay_cong_chieu = "' . $date . '", ngon_ngu = "' . $language . '", dien_vien = "' . $cast . '", quoc_gia = "' . $nation . '", nha_san_xuat =  "' . $producer . '", tom_tat =  "' . $synopsis . '", trang_thai =  "' . $status . '", hinh_anh = "' . $image . '", loai_phim_id = "' . $type . '", trailer = "'.$trailer.'"
         where id = "' . $id . '"';
+      
         $result = mysqli_query($conn, $sql);
         if ($result == true) {
             echo "<script language='javascript'>alert('Cập nhật phim thành công!')</script>";
@@ -133,7 +135,6 @@ if (!empty($_POST)) {
                 </div>
             </div>
             <div class="d-flex w-100 mb-4 justify-content-around">
-
                 <div class="w-25">
                     <label class="form-label">Tóm tắt</label>
                     <textarea class="form-control checked" rows="8" name="synopsis" name="synopsis" disabled><?= $item['tom_tat'] ?></textarea>
@@ -144,6 +145,7 @@ if (!empty($_POST)) {
                     <img style="max-height:200px" src="../../../image/phim/<?= $item['hinh_anh'] ?>">
                 </div>
                 <div class=" w-25">
+                    <label class="form-label">Thể loại</label>
                     <select class="form-select checked" aria-label="Default select example" name="type" disabled>
                         <?php
                         while ($row_theloai = mysqli_fetch_assoc($query_theloai)) { ?>
@@ -153,6 +155,11 @@ if (!empty($_POST)) {
                         <?php } ?>
 
                     </select>
+                    <div class="w-100">
+                        <label class="form-label">Trailer</label>
+                        <input type="text" name="trailer" value="<?= $item['trailer'] ?>" class="form-control checked" disabled>
+                        <video src="<?= $item['trailer'] ?>" width="300px"></video>
+                    </div>
                 </div>
             </div>
             <div class="d-flex justify-content-around">

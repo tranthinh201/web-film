@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 <head>
     <?php include('./include/library.php'); ?>
-    <title>Trang chu</title>
+    <title>Trang chủ</title>
 </head>
 
 <body class="body">
@@ -26,7 +26,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                 <div class="slick-spaced slick-carousel" data-slick-view="navigation responsive-4">
                     <div class="slick-slides">
                         <?php
-                        $sql = "SELECT ten, ten_loai, hinh_anh, thoi_luong FROM phim, loai_phim where phim.loai_phim_id = loai_phim.id LIMIT 6";
+                        $sql = "SELECT ten, ten_loai, hinh_anh, thoi_luong, trailer FROM phim, loai_phim where phim.loai_phim_id = loai_phim.id LIMIT 6";
                         $result = executeResult($sql);
                         foreach ($result as $row) {
                             echo '
@@ -38,7 +38,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                     <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
                                     <div class="d-over bg-highlight-bottom">
                                         <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="../image/phim/' . $row['hinh_anh'] . '" data-magnific-popup="image">
+                                            <a class="action-icon-theme action-icon-bordered rounded-circle" href= "' . $row['trailer'] . '" data-magnific-popup="iframe" autoplay="true">
                                                 <span class="icon-content"><i class="fas fa-play"></i></span>
                                             </a>
                                         </div>
@@ -101,7 +101,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                 <div class="slick-slide">
                                     <article class="poster-entity" data-role="hover-wrap">
                                         <div class="embed-responsive embed-responsive-poster">
-                                            <img class="embed-responsive-item" src="https://media.lottecinemavn.com/Media/WebAdmin/af5cec0ec4db43d0b6c4858500166dab.png" alt="" />
+                                            <img class="embed-responsive-item" src="../image/banner/banner-3.jpg" alt="" />
                                         </div>
 
                                     </article>
@@ -202,7 +202,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
                                         </div>
                                         <div class="d-over">
                                             <div class="entity-play">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href= "" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href= "' . $row['trailer'] . '" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>

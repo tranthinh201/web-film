@@ -6,8 +6,9 @@
            $length = count($_SESSION['counter']);
            $id = $_GET['id'];
            $date = date('Y-m-d');
-           $sum = $_GET['sum'];
-
+           $ACCOUNT = 'SELECT id FROM khach_hang where email = "' . $_SESSION['user-client'] . '"';
+            $query_up = mysqli_query($connect, $ACCOUNT);
+            $row_up = mysqli_fetch_assoc($query_up);
 
 
             for($i = 0; $i < $length; $i++) 
@@ -18,10 +19,13 @@
               
                 $result = executeResult($GHE);
                 foreach ($result as $row) {
-                    $SQL = "INSERT INTO ve_ban(ghe_id, gia_ve_id, suat_chieu_id, ngay_ban, tong_tien) VALUES(".$_SESSION['counter'][$i].", '1', '".$id."', '".$date."', ".$row['phu_thu'].")";
-                            // var_dump($SQL);
+                    $SQL = "INSERT INTO ve_ban(ghe_id, suat_chieu_id, ngay_ban, tong_tien, khach_hang_id) VALUES(".$_SESSION['counter'][$i].", '".$id."', '".$date."', ".$row['phu_thu'].", '".$row_up['id']."')";
+                            
+                          
                     $query = mysqli_query($connect, $SQL);
+
                 }
+                      
 
                     if ($query==true) {
                         // code...
@@ -31,7 +35,6 @@
                     {
                         header("Location:./contact-us.php");
                     }
-            die();          
             }
 
            

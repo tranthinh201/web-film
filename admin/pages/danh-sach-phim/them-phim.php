@@ -13,6 +13,7 @@ $cast = "";
 $nation = "";
 $producer = "";
 $synopsis = "";
+$trailer = "";
 if (!empty($_POST)) {
     $name = $_POST['name'];
     $type = $_POST['type'];
@@ -25,13 +26,14 @@ if (!empty($_POST)) {
     $nation = $_POST['nation'];
     $producer = $_POST['producer'];
     $synopsis = $_POST['synopsis'];
+    $trailer = $_POST['trailer'];
 
     $image = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
 
     if ($name != '') {
-        $sql = 'insert into phim(ten, thoi_luong, gioi_han_tuoi, ngay_cong_chieu, ngon_ngu, dien_vien, quoc_gia, nha_san_xuat, tom_tat, trang_thai, hinh_anh, loai_phim_id) 
-        values ("' . $name . '", "' . $time . '", "' . $age . '", "' . $date . '", "' . $language . '", "' . $cast . '", "' . $nation . '", "' . $producer . '", "' . $synopsis . '", "' . $status . '", "' . $image . '", "' . $type . '")';
+        $sql = 'insert into phim(ten, thoi_luong, gioi_han_tuoi, ngay_cong_chieu, ngon_ngu, dien_vien, quoc_gia, nha_san_xuat, tom_tat, trang_thai, hinh_anh, loai_phim_id, trailer) 
+        values ("' . $name . '", "' . $time . '", "' . $age . '", "' . $date . '", "' . $language . '", "' . $cast . '", "' . $nation . '", "' . $producer . '", "' . $synopsis . '", "' . $status . '", "' . $image . '", "' . $type . '", "' . $trailer . '")';
 
         execute($sql);
         move_uploaded_file($image_tmp, '../../../image/phim/' . $image);
@@ -130,14 +132,21 @@ if (!empty($_POST)) {
                     <select class="form-select" aria-label="Default select example" name="type">
                         <?php
                         $sql = "SELECT * FROM loai_phim";
+                       
                         $result = executeResult($sql);
                         foreach ($result as $rows) {
                             echo '
-                                <option value="' . $rows['id'] . '">' . $rows['ten'] . '</option>
+                                <option value="' . $rows['id'] . '">' . $rows['ten_loai'] . '</option>
                             ';
                         }
                         ?>
                     </select>
+                </div>
+            </div>
+            <div class="d-flex w-100 mb-4 justify-content-around">
+                <div class="w-100">
+                    <label class="form-label">Trailer</label>
+                    <input type="text" name="trailer" class="form-control">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Thêm mới</button>
