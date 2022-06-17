@@ -4,11 +4,11 @@
 	<title>Đăng nhập</title>
 	<meta charset="UTF-8">
 
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-<!--===============================================================================================-->
+
 </head>
 <body>
+
 
 <form class="form-structor" action="./si_submit.php" method="POST">
 	<div class="signup">
@@ -16,20 +16,30 @@
 		<h2 class="form-title" id="signup">Đăng nhập</h2>		
 		<p style="margin-bottom:15px;color:red;position:absolute;">
       <?php
-      if (isset($_SESSION['thongbao'])) {
-        echo $_SESSION['thongbao'];
-        session_unset();
-      }
+	  session_start();
+			if (isset($_SESSION['thongbao'])) {
+				
+				echo '<script type="text/javascript">alert("'. $_SESSION['thongbao'].'")</script>'; 
+				session_unset();
+			}
       ?>
+
     </p>
     <p style="margin-bottom:15px;color:green;">
+
       <?php
-      if (isset($_SESSION['thongbaoo'])) {
-        echo $_SESSION['thongbaoo'];
-        session_unset();
-      }
+		if (isset($_SESSION['thongbaoo'])) {
+			echo '<script type="text/javascript">alert("'. $_SESSION['thongbaoo'].'")</script>'; 
+			session_unset();
+		}
       ?>
+
     </p>
+
+    
+<form class="form-structor" action="./si_submit.php" method="POST">
+	<div class="signup">
+		<h2 class="form-title" id="signup">Đăng nhập</h2>
 		<div class="form-holder">
 			<input type="text" class="input" placeholder="Username" name="username"/>
 			<input type="password" class="input" placeholder="Password" name="password" />

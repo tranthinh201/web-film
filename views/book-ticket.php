@@ -19,10 +19,10 @@ if (isset($_GET['suat_chieu'])) {
     $item  = mysqli_fetch_assoc($query);
    
 
-    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot, loai_ghe.phu_thu
+    $data = "SELECT ghe_ngoi.id, ve_ban.suat_chieu_id, ghe_ngoi.vi_tri_day, ghe_ngoi.vi_tri_cot, loai_ghe.phu_thu, ve_ban.da_huy
                 FROM ghe_ngoi
                 LEFT JOIN ve_ban
-                ON ghe_ngoi.id = ve_ban.ghe_id AND  ve_ban.suat_chieu_id = '$id'
+                ON ghe_ngoi.id = ve_ban.ghe_id AND  ve_ban.suat_chieu_id = '$id' 
                 LEFT JOIN suat_chieu
                 ON suat_chieu.id = ve_ban.suat_chieu_id 
                 LEFT JOIN phong_chieu
@@ -44,10 +44,8 @@ if (isset($_GET['suat_chieu'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<<<<<<< HEAD
-    <title>chọn chỗ ngồi</title>
-=======
->>>>>>> 796e2e3064d635e6be8bf45471668e9b8e21ac9b
+    <title>Chọn chỗ ngồi</title>
+
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Animate.css -->
@@ -113,7 +111,7 @@ if (isset($_GET['suat_chieu'])) {
             </strong>
         </div>
 <!-- ------------------------LIST SEAT------------------------------ -->
-        <div class="input-box-wrapper">
+<div class="input-box-wrapper">
           <div class="list-row-seat">
             <?php
               $resultDataRow = executeResult($rowData);
@@ -139,8 +137,13 @@ if (isset($_GET['suat_chieu'])) {
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -153,12 +156,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'B') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -171,12 +179,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'C') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -189,12 +202,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'D') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -207,12 +225,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'E') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -225,12 +248,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'F') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -243,12 +271,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'G') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -261,12 +294,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'H') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -279,12 +317,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'I') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -297,12 +340,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'J') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -315,12 +363,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'K') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -333,12 +386,17 @@ if (isset($_GET['suat_chieu'])) {
                 foreach ($resultdata as $value) {
                     if ($value['vi_tri_day'] == 'L') {
                       if($value['suat_chieu_id'] == NULL) {
-                                echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                                echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
                             <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
                         }
                         else {
-                          echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
-                          <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                         if($value['da_huy'] == '0') {
+                              echo ' <input type="checkbox" value="' . $value['id'] . '" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" disabled>
+                              <label class="is-check" for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';
+                          } else {
+                             echo ' <input type="checkbox" value="' . $value['id'] . '" price = "'.$value['phu_thu'].'" class="checkbox" id="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '" >
+                            <label " for="' . $value['vi_tri_cot'] . '' . $value['vi_tri_day'] . '">' . $value['vi_tri_cot'] . '</label>';  
+                          }
                           
                         }
                       }
@@ -349,6 +407,7 @@ if (isset($_GET['suat_chieu'])) {
       </div> 
     </div>
 <!-- ------------------------LIST SEAT-------------------------- -->
+
 
 
 <!-- ------------------------SEAT INFOR ----------------------- -->
@@ -466,10 +525,10 @@ if (isset($_GET['suat_chieu'])) {
             Trở lại
         </a>
         <form action="./checkout.php?id=<?=$id?>" method="post" enctype='multipart/form-data'>
-            <div id="list-seat">
+            <div id="list-seat" style="display:none;">
 
             </div>
-            <button class="btn-container">
+            <button class="btn-container" style="border: none; background: inherit; font-size: 19px; font-weight: bold;">
                 Bước tiếp theo
                 <i class="fas fa-long-arrow-alt-right"></i>
             </button>
@@ -548,22 +607,22 @@ if (isset($_GET['suat_chieu'])) {
                         <li>
                             Đặt trước phim
                         </li>
-                        <li style="margin-top: 0;">
+                        <!-- <li style="margin-top: 0;">
                             Đồ uống
-                        </li>
+                        </li> -->
                     </ul>
                     <ul>
                         <li id="price-ticket">
                             0
                         </li>
-                        <li style="margin-top: 0;">
+                        <!-- <li style="margin-top: 0;">
                             120.000Đ
-                        </li>
+                        </li> -->
                     </ul>
             </div>
-            <div class="total-price-tiket" style="margin-top: 60px;">
+            <!-- <div class="total-price-tiket" style="margin-top: 60px;">
                 <span>320.000Đ</span>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -583,8 +642,7 @@ if (isset($_GET['suat_chieu'])) {
 
 <script type="text/javascript">
 
-  
-    var list = document.getElementById('value-list');
+var list = document.getElementById('value-list');
     var isSeat = document.getElementById('list-seat'); 
     var valueListSeat = document.getElementById('value-list-seat')
     var text = '<span>Ghế bạn vừa chọn là: </span> ';
@@ -600,7 +658,6 @@ if (isset($_GET['suat_chieu'])) {
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
             const toNumbers = arr => arr.map(Number)
-            console.log(toNumbers(listPrice).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
             if (this.checked == true) {
                 if(listArray.length > 5) {
                     alert('Bạn chỉ có thể đặt tối đa 6 ghế')
@@ -611,7 +668,7 @@ if (isset($_GET['suat_chieu'])) {
                     listPrice.push(`${this.getAttribute("price")}`);
                     isSeat.innerHTML = listIdSeat;
                     list.innerHTML = listArray.join(' , ');
-                    price.innerHTML =  listPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+                    price.innerHTML =  toNumbers(listPrice).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
                     for (var test of text2) {
                         if (test.htmlFor == this.id) {
                             test.style.backgroundColor = 'black';
@@ -633,365 +690,6 @@ if (isset($_GET['suat_chieu'])) {
         })
     }
 
-
-
-    var arraySeat = [];
-    var seat = document.querySelectorAll('.seat')
-    for(var checkSeat of seat) {
-        checkSeat.addEventListener('click', function() {
-            console.log(checkSeat);
-            checkSeat.style.backgroundColor = 'back'
-        })
-    } 
 </script>
-<style>
-    .header-book-seat {
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
 
-.header-book-seat > h2 {
-    font-weight: 700;
-}
-
-.header-book-seat > ul {
-    display: flex;
-}
-
-.header-book-seat > ul > li {
-    list-style: none;
-    margin: 10px;
-    font-size: 14px;
-    border: 1px solid #d1d1d1;
-    padding: 2px 6px;
-    background-color: white;
-}
-
-.header-book-seat > ul > li > a {
-    color: black;
-}
-
-.screen {
-    position: relative;
-}
-
-.screen > .img-banner-screen {
-    width: 100%;
-    display: block;
-    margin: 15px 0;
-    line-height: 25px;
-}
-
-.screen > .text-screen {
-    font-size: 20px;
-    color: #231f20;
-    text-align: center;
-    font-weight: normal;
-    font-style: italic;
-    font-weight: bold;
-    position: absolute;
-    z-index: 100;
-    top: -12%;
-    left: 50%;
-}
-
-.is-check {
-    background-color: blue;
-}
-.container>.title {
-    font-size: 2rem;
-    text-align: center;
-    color: white;
-    text-transform: capitalize;
-}
-
-.input-box-wrapper {
-    background: #F9F8F3;
-    position: relative;
-}
-
-.list-row-seat {
-    position: absolute;
-    top: 20px;
-    left: 16%;
-}
-
-.name-row {
-    text-transform: capitalize;
-    display: block;
-    width: 100%;
-    text-align: center;
-    user-select: none;
-    margin: 5px;
-    display: block;
-    width: 22px;
-    height: 22px;
-    font-size: 14px;
-    line-height: 23px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-.list-seat-choose {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.box {
-    display: flex;
-    align-items: center;
-    border-bottom: 0;
-}
-
-
-.list-seat-choose>.box>label {
-    text-transform: capitalize;
-    display: block;
-    cursor: pointer;
-    width: 100%;     
-    text-align: center;
-    user-select: none;
-    margin: 5px;
-    display: block;
-    width: 22px;
-    height: 22px;
-    background: #848484;      
-    color: #fff;
-    font-size: 11px;
-    line-height: 23px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-.list-seat-choose>.box>label:hover {
-    background-color: #231f20;
-}
-
-
-.list-seat-choose .box .checkbox {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-input[type="checkbox"] {
-    display: none;
-}
-
-.print-value {
-    border: 1px solid #333;
-    height: 200px;
-}
-
-.check {
-    background-color: gray;
-    width: 200px;
-    height: 200px;
-}
-
-.input-check-seat {
-    border: none;
-    width: 40px;
-    height: auto;
-}
-.is-check {
-    background: red !important;
-}
-.box > label:nth-of-type(4), 
-.box > label:nth-of-type(8), 
-.box > label:nth-of-type(12) {
-    margin-right: 30px;
-}
-
-.box:nth-of-type(5),
-.box:nth-of-type(10),
-.box:nth-of-type(15) {
-    margin-bottom: 10px !important;
-}
-
-.name-row:nth-of-type(5),
-.name-row:nth-of-type(10),
-.name-row:nth-of-type(15) {
-    margin-bottom: 15px !important;
-}
-
-
-
-.seat-infor {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
-}
-
-.seat-infor > li {
-    list-style: none;
-    margin: 15px;
-}
-
-/* ------product--------- */
-
-.product-show {
-    background-color: #f9f6ec;
-    padding: 20px;
-}
-
-.list-product {
-    display: flex;
-    justify-content: space-between;
-}
-
-.content-product {
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    margin: 20px 0;
-}
-
-.item-product {
-    border: 1px solid #dedede;
-    background: #fff;
-}
-
-.item-product > .image-product > img {
-    width: 230px;
-}
-
-.name-product {
-    padding: 10px;
-    border-top: 1px solid #dedede;
-    height: 80px;
-}
-
-.name-product > a{
-    font-weight: bold;
-}
-
-.price-product {
-    border-top: 1px solid #dedede;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    align-items: center;
-}
-
-.dash-price {
-    font-weight: bold;
-}
-
-.price-product > .price {
-    font-weight: bold;
-    font-size: 18px;
-}
-/* --------------------- */
-
-/* ---------BTN NEXT ------------ */
-.btn-next {
-    background-color: #cdc197;
-    width: 100%;
-}
-
-.btn-next > .container {
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    align-items: center;
-}
-
-.btn-next > .container > .btn-container {
-    font-size: 18px;
-    color: #231f20;
-    font-weight: bold;
-}
-
-/* ---------BTN NEXT ------------ */
-
-/* ---------TOTAL MOVIE---------- */
-.total-movie {
-    background-color: #231f20;
-    height: 200px;
-}
-
-.total-movie > .container {
-    display: flex;
-    height: 100%;
-}
-
-.total-movie > .container > .item-movie {
-    border: 1px solid white;
-    width: 25%;
-    height: 100%;
-    padding: 15px;
-}
-
-.item-movie > .title-item-movie {
-    font-size: 16px;
-    color: #cdc197;
-}
-
-.item-movie > .box-item-movie {
-    display: flex;
-    margin-top: 10px;
-}
-
-.box-item-movie > .image-box-item-movie {
-    margin-right: 10px;
-}
-
-.box-item-movie > .image-box-item-movie > img {
-    width: 130px;
-}
-
-.infor-movie {
-    font-size: 14px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.detail-ticket {
-    display: flex;
-}
-
-.detail-ticket > ul {
-    padding: 0;
-    margin-right: 10px;
-}
-
-.detail-ticket > ul:first-child {
-    width: 100px;
-}
-
-.detail-ticket > ul:last-child > li {
-    color: white;
-}
-
-.detail-ticket > ul > li {
-    list-style: none;
-}
-
-.detail-ticket > ul > li:last-child {
-    margin-top: 22px;
-}
-
-.total-price-tiket {
-    display: flex;
-    justify-content: flex-end;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.total-price-tiket > span {
-    font-size: 20px;
-    font-weight: bold;
-}
-/* ---------TOTAL MOVIE---------- */
-
-</style>
 

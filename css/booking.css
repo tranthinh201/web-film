@@ -16,7 +16,14 @@
 .header-book-seat > ul > li {
     list-style: none;
     margin: 10px;
-    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid #d1d1d1;
+    padding: 2px 6px;
+    background-color: white;
+}
+
+.header-book-seat > ul > li > a {
+    color: black;
 }
 
 .screen {
@@ -53,26 +60,51 @@
     text-transform: capitalize;
 }
 
-.container .input-box-wrapper {
-    position: relative;
-    background: #F9F8F3;
-   
-}
 .input-box-wrapper {
+    background: #F9F8F3;
+    position: relative;
+}
+
+.list-row-seat {
+    position: absolute;
+    top: 20px;
+    left: 16%;
+}
+
+.name-row {
+    text-transform: capitalize;
+    display: block;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    margin: 5px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+    line-height: 23px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.list-seat-choose {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.input-box-wrapper .box {
+
+.box {
     display: flex;
     align-items: center;
     border-bottom: 0;
 }
 
 
-.input-box-wrapper>.box>label {
+.list-seat-choose>.box>label {
     text-transform: capitalize;
     display: block;
     cursor: pointer;
@@ -91,8 +123,12 @@
     -webkit-box-sizing: border-box;
 }
 
+.list-seat-choose>.box>label:hover {
+    background-color: #231f20;
+}
 
-.input-box-wrapper .box .checkbox {
+
+.list-seat-choose .box .checkbox {
     position: relative;
     width: 20px;
     height: 20px;
@@ -131,14 +167,16 @@ input[type="checkbox"] {
 .box:nth-of-type(5),
 .box:nth-of-type(10),
 .box:nth-of-type(15) {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
-.name-row {
-    margin-right: 20px;
-    width: 20px;
-    text-align: center;
+.name-row:nth-of-type(5),
+.name-row:nth-of-type(10),
+.name-row:nth-of-type(15) {
+    margin-bottom: 15px !important;
 }
+
+
 
 .seat-infor {
     display: flex;
@@ -206,3 +244,108 @@ input[type="checkbox"] {
     font-size: 18px;
 }
 /* --------------------- */
+
+/* ---------BTN NEXT ------------ */
+.btn-next {
+    background-color: #cdc197;
+    width: 100%;
+}
+
+.btn-next > .container {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+
+.btn-next > .container > .btn-container {
+    font-size: 18px;
+    color: #231f20;
+    font-weight: bold;
+ 
+}
+
+/* ---------BTN NEXT ------------ */
+
+/* ---------TOTAL MOVIE---------- */
+.total-movie {
+    background-color: #231f20;
+    height: 200px;
+}
+
+.total-movie > .container {
+    display: flex;
+    height: 100%;
+}
+
+.total-movie > .container > .item-movie {
+    border: 1px solid white;
+    width: 25%;
+    height: 100%;
+    padding: 15px;
+}
+
+.item-movie > .title-item-movie {
+    font-size: 16px;
+    color: #cdc197;
+}
+
+.item-movie > .box-item-movie {
+    display: flex;
+    margin-top: 10px;
+}
+
+.box-item-movie > .image-box-item-movie {
+    margin-right: 10px;
+}
+
+.box-item-movie > .image-box-item-movie > img {
+    width: 90px;
+}
+
+.infor-movie {
+    font-size: 14px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detail-ticket {
+    display: flex;
+}
+
+.detail-ticket > ul {
+    padding: 0;
+    margin-right: 10px;
+}
+
+.detail-ticket > ul:first-child {
+    width: 100px;
+}
+
+.detail-ticket > ul:last-child > li {
+    color: white;
+}
+
+.detail-ticket > ul > li {
+    list-style: none;
+}
+
+.detail-ticket > ul > li:last-child {
+    margin-top: 22px;
+}
+
+.total-price-tiket {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.total-price-tiket > span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#value-list {
+    margin-top: 0;
+}

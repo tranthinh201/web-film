@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php include './include/library.php' ?>
+	<?php
+	session_start();
+		include('../config/db.php');
+		 include './include/library.php'
+	 ?>
 	<title>Gioi thieu chung</title>
 	<link rel="stylesheet" href="../css/contact.css">
 </head>

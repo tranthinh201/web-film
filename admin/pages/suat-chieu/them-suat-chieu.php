@@ -3,12 +3,16 @@ require_once('../../../config/db.php');
 require_once('../../../config/sql_cn.php');
 session_start();
 include('../../include/check-log.php');
+
 if ($_GET['id']) {
     $id       = $_GET['id'];
     $sql = 'SELECT * FROM phim WHERE id ="' . $id . '"';
+    var_dump($sql);
     $query_up = mysqli_query($connect, $sql);
     $row_up = mysqli_fetch_assoc($query_up);
 }
+
+
 $gio_bat_dau = "";
 $gio_ket_thuc = "";
 $ngay_chieu = "";
@@ -24,10 +28,12 @@ if (!empty($_POST)) {
     if ($ngay_chieu != '') {
         $sql = 'INSERT INTO suat_chieu(gio_bat_dau, gio_ket_thuc, ngay_chieu, phong_chieu_id, dinh_dang_phim_id, phim_id) 
         values ("' . $gio_bat_dau . '", "' . $gio_ket_thuc . '", "' . $ngay_chieu . '", "' . $phong_chieu . '", "' . $dinh_dang_phim . '", "' . $id . '")';
-        // var_dump($sql);
-        // die();
-        execute($sql);
-        echo "<script language='javascript'>alert('Thêm mới phim thành công!')</script>";
+        $result = mysqli_query($conn, $sql);
+        if ($result == true) {
+            echo "<script language='javascript'>alert('Cập nhật phim thành công!')</script>";
+        } else {
+            echo "<script language='javascript'>alert('Cập nhật phim thất bại!')</script>";
+        }
     }
 }
 ?>

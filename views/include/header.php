@@ -42,7 +42,7 @@
                         $sql = 'SELECT * FROM khach_hang where email = "' . $_SESSION['user-client'] . '"';
                         $result = executeResult($sql);
                         foreach ($result as $row) {
-                            echo '<a href="javascript:void(0)"><i class="fas fa-user"></i>&nbsp;&nbsp' . $row['ho_ten'] . '&nbsp;&nbsp/&nbsp;&nbsp<a href="./logout.php">Đăng xuất</a></a>';
+                            echo '<a href="./my-account.php"><i class="fas fa-user"></i>&nbsp;&nbsp' . $row['ho_ten'] . '&nbsp;&nbsp/&nbsp;&nbsp<a href="./logout.php">Đăng xuất</a></a>';
                         }
                     } else {
                         echo '<a href="./login.php"><i class="fas fa-user"></i>&nbsp;&nbspĐăng nhập';

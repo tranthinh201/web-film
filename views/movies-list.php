@@ -2,10 +2,9 @@
 <?php 
 include('../config/db.php');
 session_start();
-// if (!isset($_SESSION['user-client'])) {
-//     echo '<script>confirm("dang nhap di cu")</script>';
-//     header("Location: ./login.php");
-// }
+if (!isset($_SESSION['user-client'])) {
+    header("Location: ./login.php");
+}
 
 ?>
 
