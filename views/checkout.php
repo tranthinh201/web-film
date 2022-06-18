@@ -45,17 +45,17 @@ if (isset($_GET['id'])) {
             <div class="orderPayment">
                 <div class="ad-banner wing_banner left_banner">
                         <div class="wrap_banner">
-                            <a target="_blank" href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10848"><img src="https://media.lottecinemavn.com/Media/WebAdmin/9c85e964756641bbb4cf5fb5213d458b.jpg" width="160" border="0" alt="Banner Tinh"></a>
+                            <a target="_blank"  href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10848"><img src="https://media.lottecinemavn.com/Media/WebAdmin/0cd75a89aea04679b76fc7416c5cb6ca.png" width="160" border="0" alt="Banner Tinh"></a>
                         </div>
                 </div>
                 <div class="ad-banner wing_banner right_banner">
                         <div class="wrap_banner">
-                            <a target="_blank" href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10848"><img src="https://media.lottecinemavn.com/Media/WebAdmin/9c85e964756641bbb4cf5fb5213d458b.jpg" width="160" border="0" alt="Banner Tinh"></a>
+                            <a target="_blank" href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10848"><img src="https://media.lottecinemavn.com/Media/WebAdmin/0cd75a89aea04679b76fc7416c5cb6ca.png" width="160" border="0" alt="Banner Tinh"></a>
                         </div>
                 </div>
                 <div class="orderCont">
                     <h2 class="order-tit">
-                        Dat hang/thanh toasn
+                        Đặt hàng/ Thanh toán
                     </h2>
                     <fieldset>
                         <table class="tableRet">
@@ -119,7 +119,7 @@ if (isset($_GET['id'])) {
                                                         
                                                             
                                                         } 
-                                                        echo $sum;
+                                                        echo number_format($sum, 0, '', ',');
                                                     ?>
                                         </strong>₫</em>
                                     </td>
@@ -130,7 +130,7 @@ if (isset($_GET['id'])) {
                                     <td colspan="2">
                                         <dl class="mount">
                                             <dt class="Lang-LBL0039">Tổng số tiền đặt hàng</dt>
-                                            <dd class="sum"><em><strong><?=$sum?></strong>₫</em></dd>
+                                            <dd class="sum"><em><strong><?=number_format($sum, 0, '', ',');?></strong>₫</em></dd>
                                         </dl>
                                     </td>
                                 </tr>
@@ -196,7 +196,7 @@ if (isset($_GET['id'])) {
                                 <dl class="wallet_choice" style="display: block;"> <!-- card_choice -->
                                     <dt class="Lang-LBL0049">Chọn thẻ</dt>
                                     <dd class="wallet_choice_wallet" style="display: block;"> <!-- card_choice_card -->
-                                        <ul class="walletKind"><li><a href="javascript:void(0)"><span><img src="/LCHS/Image/icon/momo.png">&nbsp;MoMo Pay</span></a></li><li><a href="javascript:void(0)"><span><img src="/LCHS/Image/icon/zalo.png">&nbsp;ZaloPay</span></a></li><li><a href="javascript:void(0)"><span><img src="/LCHS/Image/icon/airpay.png" style="height: 30px">&nbsp;</span></a></li><li><a href="javascript:void(0)"><span><img src="/LCHS/Image/icon/viettel.png" style="height: 30px">&nbsp;</span></a></li></ul>
+                                        <ul class="walletKind"><li><a href="javascript:void(0)"><span><img src="https://www.lottecinemavn.com/LCHS/Image/icon/momo.png">&nbsp;MoMo Pay</span></a></li><li><a href="javascript:void(0)"><span><img src="https://www.lottecinemavn.com/LCHS/Image/icon/zalo.png">&nbsp;ZaloPay</span></a></li><li><a href="javascript:void(0)"><span><img src="https://www.lottecinemavn.com/LCHS/Image/icon/airpay.png" style="height: 30px">&nbsp;</span></a></li><li><a href="javascript:void(0)"><span><img src="https://www.lottecinemavn.com/LCHS/Image/icon/viettel.png" style="height: 30px">&nbsp;</span></a></li></ul>
                                     </dd>
                                 </dl>
 
@@ -225,10 +225,6 @@ if (isset($_GET['id'])) {
                     </dl>
                     <!-- 선택 버튼 20161026 -->
                     <div class="wrap_btn_right">
-                        <ul class="sear_right">
-                            <li class="dcguide"><a href="javascript:ShowPopupDiscountView();"><span class="Lang-LBL00481">Các hình thức giảm giá</span></a></li>
-                            <li class="reset"><a href="javascript:void(0);" class="btn_reset_all"><span class="Lang-LBL0048">Quay lại bước đầu</span></a></li>
-                        </ul>
                     </div>
                     <!--// 선택 버튼 20161026 -->
                 <div id="agreeBoxLL" class="agree_box mt20">
@@ -315,17 +311,16 @@ if (isset($_GET['id'])) {
             </div>
 
         </div>                 
-                <a style="right:0;" href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
-                    HIHI
-                </a>
+
                 <!-- ----------------------TOTAL-MOVIE------------------------- -->
+
 <div class="total-movie">
     <div class="container">
         <div class="item-movie">
             <p class="title-item-movie">Phim chiếu rạp</p>
             <div class="box-item-movie">
                 <div class="image-box-item-movie">
-                    <img src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
+                    <img style="width: 70%;" src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
                 </div>
                 <div class="infor-movie">
                     <div class="name-mocie">
@@ -366,10 +361,22 @@ if (isset($_GET['id'])) {
                             <?= $item['TIME(gio_bat_dau)'] ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
                         </li>
                         <li>
-                            Vincom Nguyễn Chí Thanh
+                            Vincom Bắc Ninh
                         </li>
                         <li id="value-list">
-                            
+                            <?php
+                                for($i = 0; $i < $length; $i++) {
+                                    $GHE = "SELECT * FROM ghe_ngoi WHERE id = ".$_POST["is-seat"][$i]."";
+
+                                    $result = executeResult($GHE);
+                                    
+                                    foreach ($result as $row) {
+                                        echo ''.$row['vi_tri_day'].''.$row['vi_tri_cot'].',';
+                                    }
+                                
+                                   
+                                } 
+                            ?>                                                   
                         </li>
                     </ul>
                 </div>
@@ -380,6 +387,7 @@ if (isset($_GET['id'])) {
         </div>
         <div class="item-movie">
             <p class="title-item-movie">Thông tin sản phẩm</p>
+            <p class="price-ticket">vui lòng chọn sản phẩm</p>
         </div>
         <div class="item-movie">
             <p class="title-item-movie">Tổng tiền đơn hàng</p>
@@ -397,19 +405,27 @@ if (isset($_GET['id'])) {
                             0
                         </li>
                         <li style="margin-top: 0;">
-                            120.000Đ
+                            0
                         </li>
                     </ul>
             </div>
             <div class="total-price-tiket" style="margin-top: 60px;">
-                <span><?= $sum?>vnđ</span>
+                <span style="margin-top:-30px"><?= number_format($sum, 0, '', ',');?>đ</span>
+                <a class="btn_purchase" href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
+                    THANH TOÁN
+                </a>
             </div>
         </div>
     </div>
-</div>
 <!-- ----------------------TOTAL-MOVIE------------------------- -->
-    </div>
+</div>
 
+    <div class="footBnImg">
+        <div class="bnBxMain">
+             <a target="_blank" href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10835"><img src="https://media.lottecinemavn.com/Media/WebAdmin/7c75bc213f8b439fbf0ea7d4f7a3bf41.jpg" width="980" alt="Bottom 1 JW3"></a>
+             <a  target="_blank" href="https://www.lottecinemavn.com/LCHS/Contents/Movie/Movie-Detail-View.aspx?movie=10848"><img src="https://media.lottecinemavn.com/Media/WebAdmin/a7a22994983946c99da56432ab2d7633.jpg" width="980" height="372" alt="Bottom 2 EVT"></a>
+        </div>
+    </div>
 </body>
 
     <a class="scroll-top disabled" href="#"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
@@ -430,4 +446,7 @@ if (isset($_GET['id'])) {
     <script src="../js/script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ4Qy67ZAILavdLyYV2ZwlShd0VAqzRXA&callback=initMap"></script>
     <script async defer src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js"></script>
+    <script type="text/javascript">
+        var list = document.getElementById('value-list');
+    </script>
 </html>
