@@ -1,6 +1,7 @@
 <?php
        include('../config/db.php');
        require_once("../config/sql_cn.php");
+       include('./include/library.php');
        session_start();
 
            // code...
@@ -29,10 +30,37 @@
                         echo '<script type="text/javascript">alert("Ghế '.$row['vi_tri_day'].''.$row['vi_tri_cot'].' đã bị đặt. Bạn chậm hơn mất r :))")</script>'; 
                     } else {
                         $query = mysqli_query($connect, $SQL);
+                        if($query == true) {
+                            echo '
+                                <button type="button" class="btn badge-success">
+                                    Ghế <span class="badge badge-light">'.$row['vi_tri_day'].''.$row['vi_tri_cot'].'</span> đã đặt thành công!
+                                </button>
+                            ';
+                        }
+                        else {
+                            echo '
+                                <button type="button" class="btn badge-danger">
+                                    Ghế <span class="badge badge-light">'.$row['vi_tri_day'].''.$row['vi_tri_cot'].'</span> đã đặt thất bại!
+                                </button>
+                            ';
+                        }
                     }
 
                 } 
             }
-            var_dump($query);
 
 ?>
+
+<a type="button" class="btn btn-primary" href="./index.php">Trở về trang chủ</a>
+<?php
+?>
+
+<style>
+    a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+</style>
+

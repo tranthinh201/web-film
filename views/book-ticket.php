@@ -527,7 +527,7 @@ if (isset($_GET['suat_chieu'])) {
             <div id="list-seat" style="display:none;">
 
             </div>
-            <button class="btn-container" style="border: none; background: inherit; font-size: 19px; font-weight: bold;">
+            <button id="next-pay" class="btn-container" style="display: none; border: none; background: inherit; font-size: 19px; font-weight: bold; outline:none; cursor: pointer">
                 Bước tiếp theo
                 <i class="fas fa-long-arrow-alt-right"></i>
             </button>
@@ -654,10 +654,15 @@ var list = document.getElementById('value-list');
     var box = document.getElementsByClassName('box');
     var listPrice = [];
     var price = document.getElementById('price-ticket');
+    var nextBtnPay = document.getElementById('next-pay');
     for (var check of checkboxs) {
         check.addEventListener('click', function() {
             const toNumbers = arr => arr.map(Number)
             if (this.checked == true) {
+                if(listArray.length >= 0) {
+                    nextBtnPay.style.display = 'block';
+                }
+        
                 if(listArray.length > 5) {
                     alert('Bạn chỉ có thể đặt tối đa 6 ghế')
                 }
@@ -675,6 +680,7 @@ var list = document.getElementById('value-list');
                     }
                 }
             } else {
+    
                 listArray = listArray.filter(e => e !== `${this.id}`);
                 listIdSeat = listIdSeat.filter(e => e !== `<input type="text" name="is-seat[]" value=${this.value}>`);
                 listPrice = listPrice.filter(e => e !== `${this.getAttribute("price")}`);

@@ -45,13 +45,11 @@ if (!empty($_POST)) {
         move_uploaded_file($image_tmp, '../../../image/phim/' . $image);
     }
     if ($name != '') {
-        $image = $_FILES['image']['name'];
-        $image_tmp = $_FILES['image']['tmp_name'];
-
         $sql = 'UPDATE phim SET ten = "' . $name . '", thoi_luong = ' . $time . ',  gioi_han_tuoi = ' . $age . ',
         ngay_cong_chieu = "' . $date . '", ngon_ngu = "' . $language . '", dien_vien = "' . $cast . '", quoc_gia = "' . $nation . '", nha_san_xuat =  "' . $producer . '", tom_tat =  "' . $synopsis . '", trang_thai =  "' . $status . '", hinh_anh = "' . $image . '", loai_phim_id = "' . $type . '", trailer = "'.$trailer.'"
         where id = "' . $id . '"';
-      
+        var_dump($sql);
+        die();
         $result = mysqli_query($conn, $sql);
         if ($result == true) {
             echo "<script language='javascript'>alert('Cập nhật phim thành công!')</script>";
@@ -170,7 +168,7 @@ if (!empty($_POST)) {
         </form>
     </div>
     <?php
-    include('../../include/footer.php');
+    // include('../../include/footer.php');
     ?>
 </body>
 <script src="../assets/js/core/popper.min.js"></script>
