@@ -9,8 +9,8 @@ $sql_au = "SELECT * FROM vai_tro";
 $query_au = mysqli_query($connect, $sql_au);
 
 
-    $query_up=mysqli_query($connect,$sql_up);
-    $row_up=mysqli_fetch_array($query_up);
+    // $query_up=mysqli_query($connect,$sql_up);
+    // $row_up=mysqli_fetch_array($query_up);
 
 $sql_up = 'SELECT * FROM nguoi_dung WHERE id ="' . $id . '"';
 
@@ -109,26 +109,7 @@ if (isset($_POST['submit'])) {
                     </select>
                 </div>
             </div>
-
-            <?php 
-                if ($row_up['vai_tro_id'] == 'QL') {
-                    // code...
-                    echo ' <button type="submit" class="btn btn-primary" name="submit">Chỉnh sửa</button>';
-                }
-                else
-                {
-                    echo "bạn không đc phép truy cập";
-                }
-
-            <?php
-            if ($row_up['vai_tro_id'] == 'TR') {
-                // code...
-                echo ' <button type="submit" class="btn btn-primary" name="submit">Chỉnh sửa</button>';
-            } else {
-                echo "bạn không đc phép truy cập";
-            }
-
-            ?>
+            <button type="submit" class="btn btn-primary" name="submit">Chỉnh sửa</button>
 
 
         </form>
