@@ -179,7 +179,6 @@
 
 <?php include('./include/footer.php'); ?>
 </body>
-<?php include('./include/footer.php') ?>
 </html>
 
 <style>

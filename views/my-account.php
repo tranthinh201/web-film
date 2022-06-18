@@ -30,7 +30,7 @@
                                 AND khach_hang.id = '".$row_up['id']."'
                                 AND ve_ban.da_huy = 0";
                     $SC = executeResult($SQLSC);
-
+            
                     if(empty($result)) {
                         echo '<div class ="empty-result">
                                 Bạn chưa mua vé nào của chúng tôi ~.~
@@ -77,10 +77,10 @@
                                         <?=$rows['vi_tri_cot']?><?=$rows['vi_tri_day']?>
                                         <a href="./include/delete-ticket.php?id=<?=$rows['id']?>" onclick="return Del('<?= $rows['id'] ?>')"><i class="fas fa-times"></i></a>
                                     </div>
-                                    <?php $sum += $rows['tong_tien']?>
+                                    <?php  $sum += $rows['tong_tien']?>
                             <?php } 
                             echo '</div>';
-                            echo '<span style="font-size:18px;">Tổng tiền: '.$sum.'</span>';
+                            echo '<span style="font-size:18px;">Tổng tiền: '.number_format($sum, 0, ''. '.').'đ</span>';
                             echo '</div>';
                         }
 
