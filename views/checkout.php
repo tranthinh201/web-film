@@ -337,7 +337,7 @@ if (isset($_GET['id'])) {
             <p class="title-item-movie">Tổng tiền đơn hàng</p>
             <div class="total-price-tiket">
                 <span><?= number_format($sum, 0, '', ',');?>đ</span>
-                <a class="btn_purchase" href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
+                <a class="btn_purchase" href="./final.php?id=<?=$id?>">
                     THANH TOÁN
                 </a>
             </div>
