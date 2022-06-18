@@ -376,12 +376,12 @@ input, select, textarea {
 .total-movie > .container {
     display: flex;
     height: 100%;
+    justify-content: center;
 }
 
 .total-movie > .container > .item-movie {
     border: 1px solid white;
     width: 25%;
-    height: 100%;
     padding: 15px;
 }
 
@@ -436,7 +436,7 @@ input, select, textarea {
 
 .total-price-tiket {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -449,22 +449,16 @@ input, select, textarea {
 
 
 
-.btn_purchase {
-    width: 165px;
-    height: 60px;
-    line-height: 70px;
-    font-size: 24px;
-}
+
 .btn_purchase {
     display: block;
-    height: 40px;
     background: #b49763;
     font-size: 18px;
     font-weight: bold;
     color: #231f20;
     text-align: center;
-    line-height: 50px;
     cursor: pointer;
+    padding: 5px 10px;
 }
 .footBnImg {
     position: relative;

@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
     include './include/library.php'
 ?>
     <link rel="stylesheet" href="../css/checkout.css">
-    <title>thanh toán</title>
+    <title>Thanh toán</title>
 </head>
 <body>
     <?php include './include/header.php' ?>
@@ -302,7 +302,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div id="devMessage" class="mt10 mb10">
                         <input type="checkbox" id="settleAgree" name="settleAgree" value="Y">
-                        <label id="settleAgreeLL" for="settleAgree">cam kết mua vé xem phim này cho người xem ở độ tuổi quy định và tôi đã đọc và đồng ý với Điều Kiện và Điều Khoản.</label>
+                        <label id="settleAgreeLL" for="settleAgree">Cam kết mua vé xem phim này cho người xem ở độ tuổi quy định và tôi đã đọc và đồng ý với Điều Kiện và Điều Khoản.</label>
                         <label id="settleAgreeEN" for="settleAgree" style="display: none;">Yes, I agree to the Terms and Conditions and am purchasing age-appropriate tickets with this order.</label>
                         <!---->
                     </div>
@@ -317,71 +317,15 @@ if (isset($_GET['id'])) {
 <div class="total-movie">
     <div class="container">
         <div class="item-movie">
-            <p class="title-item-movie">Phim chiếu rạp</p>
+            <p class="title-item-movie">Thành tiền</p>
             <div class="box-item-movie">
-                <div class="image-box-item-movie">
-                    <img style="width: 70%;" src="../image/phim/<?= $item['hinh_anh'] ?>" alt="<?= $item['ten'] ?>">
-                </div>
-                <div class="infor-movie">
+                <div class="infor-movie" style="display: flex; justify-content: center; align-items: center;">
+                    <div style="margin-right: 10px; font-weight: 500; font-size: 18px;">
+                        Đặt trước phim: 
+                    </div>
                     <div class="name-mocie">
-                        <p><?= $item['ten'] ?></p>
+                        <span style="margin-top:-30px"><?= number_format($sum, 0, '', ',');?>đ</span>
                     </div>
-                    <div class="type-movie">
-                        <p><?= $item['dinh_dang_phim_id'] ?></p>
-                    </div>
-                    <div class="age-watch-movie">
-                        <p><?= $item['gioi_han_tuoi'] ?> tuổi trở lên</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item-movie">
-            <p class="title-item-movie">Thông tin vé đặt</p>
-            <div class="infor-ticket">
-                <div class="detail-ticket">
-                    <ul>
-                        <li>
-                            Ngày chiếu
-                        </li>
-                        <li>
-                            Giờ chiếu
-                        </li>
-                        <li>
-                            Rạp chiếu
-                        </li>
-                        <li>
-                            Ghế ngồi
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <?= $item['ngay_chieu'] ?>
-                        </li>
-                        <li>
-                            <?= $item['TIME(gio_bat_dau)'] ?> ~ <?= $item['TIME(gio_ket_thuc)'] ?>
-                        </li>
-                        <li>
-                            Vincom Bắc Ninh
-                        </li>
-                        <li id="value-list">
-                            <?php
-                                for($i = 0; $i < $length; $i++) {
-                                    $GHE = "SELECT * FROM ghe_ngoi WHERE id = ".$_POST["is-seat"][$i]."";
-
-                                    $result = executeResult($GHE);
-                                    
-                                    foreach ($result as $row) {
-                                        echo ''.$row['vi_tri_day'].''.$row['vi_tri_cot'].',';
-                                    }
-                                
-                                   
-                                } 
-                            ?>                                                   
-                        </li>
-                    </ul>
-                </div>
-                <div class="total-price-tiket">
-                    
                 </div>
             </div>
         </div>
@@ -391,26 +335,8 @@ if (isset($_GET['id'])) {
         </div>
         <div class="item-movie">
             <p class="title-item-movie">Tổng tiền đơn hàng</p>
-            <div class="detail-ticket">
-                    <ul>
-                        <li>
-                            Đặt trước phim
-                        </li>
-                        <li style="margin-top: 0;">
-                            Đồ uống
-                        </li>
-                    </ul>
-                    <ul>
-                        <li id="price-ticket">
-                            0
-                        </li>
-                        <li style="margin-top: 0;">
-                            0
-                        </li>
-                    </ul>
-            </div>
-            <div class="total-price-tiket" style="margin-top: 60px;">
-                <span style="margin-top:-30px"><?= number_format($sum, 0, '', ',');?>đ</span>
+            <div class="total-price-tiket">
+                <span><?= number_format($sum, 0, '', ',');?>đ</span>
                 <a class="btn_purchase" href="./final.php?id=<?=$id?>&sum=<?=$sum?>">
                     THANH TOÁN
                 </a>
