@@ -59,7 +59,7 @@ if (!isset($_SESSION['user-client'])) {
                             </div>                            
                         </div>
                         <div class="name-movie">
-                        <a href="./chi-tiet-phim.php?id=' . $items['id'] . '" class="button"><span>' . $items['ten'] . '</span></a>
+                        <a href="./detail-movie.php?id=' . $items['id'] . '" class="button"><span>' . $items['ten'] . '</span></a>
                         </div>
 
                     </div>
